@@ -25,9 +25,3 @@ func animate(state : String):
 	
 func flip_sprite() -> void:
 	animated_sprite_2D.flip_h = character.velocity.x < 0
-	#
-#func on_state_machine_newstate(previous_state_name, new_state_name):
-	#if animation_state != new_state_name:
-		#animation_state = new_state_name
-	#animate(animation_state)
-		#

@@ -246,7 +246,7 @@ script = ExtResource("5_rc75k")
 
 [node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("label")]
 script = ExtResource("7_hjhmt")
-label = NodePath("../Interaction Nodes/Label")
+label = NodePath("../Interaction Nodes/InteractionLabel")
 
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("6_2bu6f")
@@ -263,7 +263,7 @@ monitorable = false
 shape = SubResource("CircleShape2D_wdd2a")
 debug_color = Color(0.901961, 0.137255, 0.690196, 0.419608)
 
-[node name="Label" type="Label" parent="Interaction Nodes"]
+[node name="InteractionLabel" type="Label" parent="Interaction Nodes"]
 z_index = 1
 offset_left = -40.0
 offset_top = -71.0
@@ -272,6 +272,14 @@ offset_bottom = -25.0
 text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InteractionDescription" type="RichTextLabel" parent="Interaction Nodes"]
+z_index = 1
+offset_left = -98.0
+offset_top = -107.0
+offset_right = 99.0
+offset_bottom = -67.0
+text = "Lorem ipsum"
 
 [connection signal="area_entered" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_exited"]
