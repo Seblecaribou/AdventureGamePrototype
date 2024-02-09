@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d3h8d2gmlpihi"]
+[gd_scene load_steps=40 format=3 uid="uid://d3h8d2gmlpihi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
 [ext_resource type="Texture2D" uid="uid://epmonrvm47y" path="res://Free/Main Characters/Pink Man/Idle (32x32).png" id="2_kyrhk"]
@@ -6,12 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b6dcfnx735eu5" path="res://Free/Main Characters/Pink Man/Run (32x32).png" id="4_88vn8"]
 [ext_resource type="Script" path="res://Scripts/Components/InputComponent.gd" id="5_rc75k"]
 [ext_resource type="Script" path="res://Scripts/Components/MovementComponent.gd" id="6_2bu6f"]
+[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerObserveState.gd" id="6_3wlrt"]
 [ext_resource type="Script" path="res://Scripts/Components/InteractionComponent.gd" id="7_hjhmt"]
 [ext_resource type="Script" path="res://Scripts/Components/AnimationComponent.gd" id="8_s3oir"]
 [ext_resource type="Script" path="res://Scripts/Components/States/StateMachineComponent.gd" id="9_1l3eh"]
-[ext_resource type="Script" path="res://Scripts/Components/States/PlayerIdleState.gd" id="10_scoe8"]
-[ext_resource type="Script" path="res://Scripts/Components/States/PlayerRunState.gd" id="11_5bmtk"]
-[ext_resource type="Script" path="res://Scripts/Components/States/PlayerJumpState.gd" id="12_3gsbr"]
+[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerIdleState.gd" id="10_scoe8"]
+[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerRunState.gd" id="11_5bmtk"]
+[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerJumpState.gd" id="12_3gsbr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywadu"]
 radius = 11.0
@@ -206,9 +207,10 @@ radius = 62.0081
 texture_filter = 1
 script = ExtResource("1_5gnik")
 
-[node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player_character")]
 script = ExtResource("9_1l3eh")
 initial_state = NodePath("Idle")
+player_character = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("10_scoe8")
@@ -224,6 +226,9 @@ animation_component = NodePath("../../AnimationComponent")
 script = ExtResource("12_3gsbr")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
+
+[node name="Observe" type="Node" parent="StateMachineComponent"]
+script = ExtResource("6_3wlrt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -280,6 +285,7 @@ offset_top = -107.0
 offset_right = 99.0
 offset_bottom = -67.0
 text = "Lorem ipsum"
+fit_content = true
 
 [connection signal="area_entered" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_exited"]

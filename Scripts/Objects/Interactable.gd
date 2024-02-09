@@ -12,6 +12,7 @@ func _ready():
 	if item_data != null:
 		configure_interactable()
 
+
 func configure_interactable():
 	interact_type = item_id.get_slice("_", 0)
 	item_data.load_item_data(item_id, interact_type)

@@ -18,7 +18,7 @@ func jump() -> void:
 		character.velocity.y = jump_velocity
 
 
-func ground_player(delta: float):
+func ground_player(delta: float) -> void:
 	if not character.is_on_floor():
 		character.velocity.y += gravity * delta
 
@@ -31,7 +31,7 @@ func move(direction: float) -> void:
 		character.velocity.x = move_toward(character.velocity.x, 0, speed)
 		
 	character.move_and_slide()
-	
+
 
 func run(running: bool) -> void:
 	if running:

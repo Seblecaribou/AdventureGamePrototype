@@ -21,3 +21,15 @@ func check_run_button(function: Callable) -> void:
 func check_interact_button(function: Callable) -> void:
 	if Input.is_action_just_pressed("interact"):
 		function.call()
+
+func check_return_button(function: Callable) -> void:
+	if Input.is_action_just_pressed("return"):
+		function.call()
+
+func check_pause_button(function: Callable) -> void:
+	if Input.is_action_just_pressed("pause"):
+		function.call()
+
+func check_journal_button(function: Callable) -> void:
+	if Input.is_action_just_pressed("journal"):
+		function.call()
