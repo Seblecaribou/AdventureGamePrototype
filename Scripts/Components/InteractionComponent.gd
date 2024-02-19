@@ -24,6 +24,7 @@ func update_interact_label():
 
 func interact():
 	if interactions:
+		label.text = ""
 		var current_interaction = interactions[0]
 		match current_interaction.interact_type:#TODO write function for each match case in INTERACT_TYPE_ENUM
 			"obs":

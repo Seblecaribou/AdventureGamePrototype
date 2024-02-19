@@ -22,6 +22,8 @@ func animate(state : String):
 			animated_sprite_2D.play("jump")
 		"run":
 			animated_sprite_2D.play("run")
+		"observe":
+			animated_sprite_2D.play("observe")
 	
 func flip_sprite() -> void:
 	animated_sprite_2D.flip_h = character.velocity.x < 0

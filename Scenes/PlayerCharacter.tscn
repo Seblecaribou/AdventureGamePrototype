@@ -227,8 +227,10 @@ script = ExtResource("12_3gsbr")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
 
-[node name="Observe" type="Node" parent="StateMachineComponent"]
+[node name="Observe" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("6_3wlrt")
+player_character = NodePath("../..")
+animation_component = NodePath("../../AnimationComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -249,9 +251,10 @@ animated_sprite_2D = NodePath("../AnimatedSprite2D")
 [node name="InputComponent" type="Node2D" parent="."]
 script = ExtResource("5_rc75k")
 
-[node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("label")]
+[node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("label", "interaction_content")]
 script = ExtResource("7_hjhmt")
 label = NodePath("../Interaction Nodes/InteractionLabel")
+interaction_content = NodePath("../Interaction Nodes/InteractionDescription")
 
 [node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("6_2bu6f")
