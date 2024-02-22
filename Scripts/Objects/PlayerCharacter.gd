@@ -1,7 +1,13 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
+@export var input_manager : InputComponent
+@export var game_state_machine : StateMachineComponent
+var current_game_state : String
+
 func _physics_process(delta):
+	current_game_state = game_state_machine.current_state.name.to_lower()
+	
 	#Pause
 	#TODO create pause menu
 	#$InputComponent.check_pause_button()
@@ -11,9 +17,11 @@ func _physics_process(delta):
 	#$InputComponent.check_journal_button()
 	
 	#Movement
-	$InputComponent.check_directions_buttons($MovementComponent.move)
-	$InputComponent.check_run_button($MovementComponent.run)
-	$InputComponent.check_jump_button($MovementComponent.jump)
+	if current_game_state == "moving":
+		input_manager.check_directions_buttons($MovementComponent.move)
+		input_manager.check_run_button($MovementComponent.run)
+		input_manager.check_jump_button($MovementComponent.jump)
 	
 	#Interaction
-	$InputComponent.check_interact_button($InteractionComponent.interact)
+	#if current_game_state == "observe":
+		#input_manager.check_interact_button($InteractionComponent.interact)

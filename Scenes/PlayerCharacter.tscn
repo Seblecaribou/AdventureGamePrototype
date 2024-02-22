@@ -1,15 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://d3h8d2gmlpihi"]
+[gd_scene load_steps=39 format=3 uid="uid://d3h8d2gmlpihi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
+[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerStateMachine.gd" id="2_gtyy5"]
 [ext_resource type="Texture2D" uid="uid://epmonrvm47y" path="res://Free/Main Characters/Pink Man/Idle (32x32).png" id="2_kyrhk"]
 [ext_resource type="Texture2D" uid="uid://bqc8ybr13uhr7" path="res://Free/Main Characters/Pink Man/Jump (32x32).png" id="3_yjgcb"]
 [ext_resource type="Texture2D" uid="uid://b6dcfnx735eu5" path="res://Free/Main Characters/Pink Man/Run (32x32).png" id="4_88vn8"]
-[ext_resource type="Script" path="res://Scripts/Components/InputComponent.gd" id="5_rc75k"]
 [ext_resource type="Script" path="res://Scripts/Components/MovementComponent.gd" id="6_2bu6f"]
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerObserveState.gd" id="6_3wlrt"]
 [ext_resource type="Script" path="res://Scripts/Components/InteractionComponent.gd" id="7_hjhmt"]
 [ext_resource type="Script" path="res://Scripts/Components/AnimationComponent.gd" id="8_s3oir"]
-[ext_resource type="Script" path="res://Scripts/Components/States/StateMachineComponent.gd" id="9_1l3eh"]
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerIdleState.gd" id="10_scoe8"]
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerRunState.gd" id="11_5bmtk"]
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerJumpState.gd" id="12_3gsbr"]
@@ -207,27 +206,28 @@ radius = 62.0081
 texture_filter = 1
 script = ExtResource("1_5gnik")
 
-[node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player_character")]
-script = ExtResource("9_1l3eh")
-initial_state = NodePath("Idle")
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("player_character", "initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_gtyy5")
 player_character = NodePath("..")
+initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("10_scoe8")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
 
-[node name="Run" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Run" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("11_5bmtk")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
 
-[node name="Jump" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("12_3gsbr")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
 
-[node name="Observe" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Observe" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("6_3wlrt")
 player_character = NodePath("../..")
 animation_component = NodePath("../../AnimationComponent")
@@ -244,12 +244,9 @@ animation = &"run"
 
 [node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("state_machine", "character", "animated_sprite_2D")]
 script = ExtResource("8_s3oir")
-state_machine = NodePath("../StateMachineComponent")
+state_machine = NodePath("../PlayerStateMachine")
 character = NodePath("..")
 animated_sprite_2D = NodePath("../AnimatedSprite2D")
-
-[node name="InputComponent" type="Node2D" parent="."]
-script = ExtResource("5_rc75k")
 
 [node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("label", "interaction_content")]
 script = ExtResource("7_hjhmt")
