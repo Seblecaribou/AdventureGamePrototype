@@ -1,8 +1,8 @@
 class_name PlayerCharacter
 extends CharacterBody2D
 
-@export var input_manager : InputComponent
 @export var game_state_machine : StateMachineComponent
+var input_manager = InputManager
 var current_game_state : String
 
 func _physics_process(delta):

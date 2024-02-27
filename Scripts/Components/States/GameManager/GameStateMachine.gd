@@ -1,7 +1,6 @@
 class_name GameStateMachine
 extends StateMachineComponent
 
-@export var input_manager : InputComponent
 @export var player_character : PlayerCharacter
 
 func transition_state():

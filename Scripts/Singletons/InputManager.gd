@@ -1,4 +1,3 @@
-class_name InputComponent
 extends Node2D
 
 func check_jump_button(function: Callable) -> void:

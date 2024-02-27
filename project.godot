@@ -28,6 +28,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 StaticDataSingleton="*res://Scripts/Singletons/StaticDataSingleton.gd"
+InputManager="*res://Scripts/Singletons/InputManager.gd"
 
 [editor_plugins]
 
