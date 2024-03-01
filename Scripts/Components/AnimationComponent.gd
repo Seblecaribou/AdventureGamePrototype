@@ -1,19 +1,14 @@
 class_name AnimationComponent
 extends Node
 
-@export var state_machine : StateMachineComponent
 @export var character : CharacterBody2D
 @export var animated_sprite_2D : AnimatedSprite2D
 var animation_state : String = "idle"
 
-func _ready():
-	pass
-	#state_machine.newstate.connect(on_state_machine_newstate)
-
 func _physics_process(delta):
 	flip_sprite()
 	
-		
+
 func animate(state : String):
 	match state:
 		"idle":
@@ -27,3 +22,7 @@ func animate(state : String):
 	
 func flip_sprite() -> void:
 	animated_sprite_2D.flip_h = character.velocity.x < 0
+
+
+func _on_player_state_machine_newstate(previous_state, new_state):
+	animation_state = new_state

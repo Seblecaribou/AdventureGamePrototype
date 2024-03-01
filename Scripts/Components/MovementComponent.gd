@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const BASE_SPEED_MULTIPLIER: float = 1.0
 var speed_multiplier: float = 1.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
 
+
 func _physics_process(delta):
 	ground_player(delta)
 
@@ -26,12 +27,10 @@ func ground_player(delta: float) -> void:
 func move(direction: float) -> void:
 	if direction:
 		character.velocity.x = direction * speed * speed_multiplier
-			
 	else:
 		character.velocity.x = move_toward(character.velocity.x, 0, speed)
-		
 	character.move_and_slide()
-
+	
 
 func run(running: bool) -> void:
 	if running:

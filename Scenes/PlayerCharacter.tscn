@@ -242,14 +242,14 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yknqu")
 animation = &"run"
 
-[node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("state_machine", "character", "animated_sprite_2D")]
+[node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "animated_sprite_2D")]
 script = ExtResource("8_s3oir")
-state_machine = NodePath("../PlayerStateMachine")
 character = NodePath("..")
 animated_sprite_2D = NodePath("../AnimatedSprite2D")
 
-[node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("label", "interaction_content")]
+[node name="InteractionComponent" type="Node2D" parent="." node_paths=PackedStringArray("player_character", "label", "interaction_content")]
 script = ExtResource("7_hjhmt")
+player_character = NodePath("..")
 label = NodePath("../Interaction Nodes/InteractionLabel")
 interaction_content = NodePath("../Interaction Nodes/InteractionDescription")
 
@@ -287,5 +287,6 @@ offset_bottom = -67.0
 text = "Lorem ipsum"
 fit_content = true
 
+[connection signal="newstate" from="PlayerStateMachine" to="AnimationComponent" method="_on_player_state_machine_newstate"]
 [connection signal="area_entered" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_exited"]
