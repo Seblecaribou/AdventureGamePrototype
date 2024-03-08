@@ -10,7 +10,10 @@ func transition_state():
 		current_state.transitioned.emit(current_state, "observe")
 	if Input.is_action_just_pressed("journal"):
 		current_state.transitioned.emit(current_state, "journal")
-	if not check_is_in_menu() or (check_is_in_menu() and Input.is_action_just_pressed("return")):
+	#TODO: remplacer par un changement de state si on sort du menu concerné
+	if  check_is_in_menu() and Input.is_action_just_pressed("return"):
+		current_state.transitioned.emit(current_state, "moving")
+	if not check_is_in_menu():
 		current_state.transitioned.emit(current_state, "moving")
 	pass
 

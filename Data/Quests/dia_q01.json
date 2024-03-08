@@ -1,0 +1,36 @@
+{
+	"quets_id":"q01",
+	"dialogues":
+	[
+		{
+			"step_id":"step01",
+			"texts": 
+			[
+				{
+					"dialogue_id" : "01",
+					"character_id" : "cha_chiro",
+					"content" : 
+					[
+						"Hello.", 
+						"My Name is [pause/] Detective Chiro.",
+						"I'm investigating a [bold] very strange case[/bold]!"
+					]
+				},
+				{
+					"dialogue_id" : "02",
+					"character_id" : "cha_golot",
+					"content" : 
+					[
+						"Well, hello Mr Chiro.", 
+						"Welcome to Mysterigolot Hotel!",
+						"I hope you'll stay with us during your investigation!"
+					]
+				}
+			]
+		},
+		{
+
+		}
+	]
+
+}

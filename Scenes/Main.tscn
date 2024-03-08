@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=11 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameStateMachine.gd" id="1_gxh85"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bomv7cngjdhnx" path="res://Free/Terrain/Terrain (16x16).png" id="2_3axcj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameMovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
+[ext_resource type="Script" path="res://Scenes/DialogueComponent.gd" id="4_e7uya"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mvu3"]
@@ -524,6 +525,23 @@ script = ExtResource("2_1q2se")
 
 [node name="Moving" type="Node" parent="GameManager/GameStateMachine"]
 script = ExtResource("3_txr1d")
+
+[node name="DialogueManager" type="Node" parent="GameManager"]
+
+[node name="DialogueFrame" type="Polygon2D" parent="GameManager/DialogueManager"]
+position = Vector2(575.707, 572.213)
+scale = Vector2(1.02788, 1.47541)
+color = Color(0.984314, 0.984314, 0, 1)
+polygon = PackedVector2Array(402, -93, -384, -85, -371, 23, 405, 29)
+script = ExtResource("4_e7uya")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameManager/DialogueManager/DialogueFrame"]
+z_index = 2
+offset_left = -339.0
+offset_top = -75.0
+offset_right = 372.0
+offset_bottom = 7.0
+text = "Ceci est un dialogue"
 
 [node name="BackGround" type="TextureRect" parent="."]
 texture_filter = 1

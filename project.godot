@@ -29,10 +29,11 @@ config/icon="res://icon.svg"
 
 StaticDataSingleton="*res://Scripts/Singletons/StaticDataSingleton.gd"
 InputManager="*res://Scripts/Singletons/InputManager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg")
 
 [input]
 
