@@ -3,12 +3,14 @@ extends Area2D
 
 @export var item_id : String
 var item_data : Node
-
+var character_data : Node
 var interact_type : String
 var interact_label : String
 
 func _ready():
+	interact_type = item_id.get_slice("_", 0)
 	item_data = get_node("./ItemData")
+	character_data = get_node("./CharacterData")
 	if item_data != null:
 		configure_interactable()
 
