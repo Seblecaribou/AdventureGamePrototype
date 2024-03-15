@@ -18,14 +18,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="InteractableItem" type="Area2D"]
+[node name="Interactable" type="Area2D"]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_nglc3")
-item_id = "obs_bathtub_bathroom01"
 
-[node name="ItemData" type="Node" parent="."]
+[node name="InteractableData" type="Node" parent="."]
 script = ExtResource("2_72jsu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
