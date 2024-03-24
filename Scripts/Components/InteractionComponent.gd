@@ -37,7 +37,6 @@ func interact():
 	if interactions :
 		label.text = ""
 		var current_interaction = interactions[0]
-		print("Current interactable: ", current_interaction)
 		match current_interaction.interactable_type:#TODO write function for each match case in INTERACT_TYPE_ENUM
 			"obs":
 				interaction_content.text = current_interaction.interactable_data.interactable_description
@@ -46,4 +45,5 @@ func interact():
 			"act":
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":
-				print(current_interaction.interactable_data.interactable_description)
+				#TODO create a signal to call the DialogueManager and pass it the interactable_data/interactable_id
+				print("char", current_interaction.interactable_data.interactable_description)

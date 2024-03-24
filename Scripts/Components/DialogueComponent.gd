@@ -1,3 +1,5 @@
 class_name DialogueComponent
-extends Polygon2D
+extends Node
+
+#TODO take data from DialogueData and display them
 

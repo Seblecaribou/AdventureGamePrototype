@@ -530,21 +530,24 @@ script = ExtResource("3_txr1d")
 [node name="DialogueManager" type="Node" parent="GameManager"]
 script = ExtResource("4_yumw5")
 
-[node name="DialogueFrame" type="Polygon2D" parent="GameManager/DialogueManager"]
-visible = false
+[node name="DialogueComponent" type="Node" parent="GameManager/DialogueManager"]
+script = ExtResource("4_e7uya")
+
+[node name="DialogueFrame" type="Polygon2D" parent="GameManager/DialogueManager/DialogueComponent"]
 position = Vector2(575.707, 572.213)
 scale = Vector2(1.02788, 1.47541)
 color = Color(0.984314, 0.984314, 0, 1)
 polygon = PackedVector2Array(402, -93, -384, -85, -371, 23, 405, 29)
-script = ExtResource("4_e7uya")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GameManager/DialogueManager/DialogueFrame"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GameManager/DialogueManager/DialogueComponent"]
 z_index = 2
-offset_left = -339.0
-offset_top = -75.0
-offset_right = 372.0
-offset_bottom = 7.0
+offset_left = 227.256
+offset_top = 461.557
+offset_right = 938.256
+offset_bottom = 543.557
 text = "Ceci est un dialogue"
+
+[node name="DialogueData" type="Node" parent="GameManager/DialogueManager"]
 
 [node name="BackGround" type="TextureRect" parent="."]
 texture_filter = 1
