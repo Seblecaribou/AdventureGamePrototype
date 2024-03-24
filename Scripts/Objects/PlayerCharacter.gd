@@ -20,7 +20,7 @@ func _physics_process(delta):
 		InputManager.check_jump_button($MovementComponent.jump)
 	
 	#Interaction
-	if current_game_state == "observe":
+	if current_game_state == "interacting":
 		InputManager.check_interact_button($InteractionComponent.interact)
 
 

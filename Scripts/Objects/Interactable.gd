@@ -1,13 +1,14 @@
 class_name Interactable
 extends Area2D
 
-@export var interactable_id : String
+var interactable_id : String
 var iteractable_data : Node
 var interactable_type : String
 var interact_label : String
 
 func _ready():
-	iteractable_data = get_node("./ItemData")
+	interactable_id = self.get_name().to_lower()
+	iteractable_data = get_node("./InteractableData")
 	if iteractable_data != null:
 		configure_interactable()
 
@@ -22,5 +23,5 @@ func configure_interactable():
 			interact_label = "Pick up"
 		"act":
 			interact_label = "Switch on"
-		"npc":
+		"char":
 			interact_label = "Talk to"

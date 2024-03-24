@@ -1,13 +1,13 @@
 class_name GameStateMachine
 extends StateMachineComponent
 
-var menu_states : Array[String] = ["pause", "journal", "observe"]
+var menu_states : Array[String] = ["pause", "journal", "interacting"]
 
 func transition_state():
 	if Input.is_action_just_pressed("pause"):
 		current_state.transitioned.emit(current_state, "pause")
 	if Input.is_action_just_pressed("interact"):
-		current_state.transitioned.emit(current_state, "observe")
+		current_state.transitioned.emit(current_state, "interacting")
 	if Input.is_action_just_pressed("journal"):
 		current_state.transitioned.emit(current_state, "journal")
 	#TODO: remplacer par un changement de state si on sort du menu concerné

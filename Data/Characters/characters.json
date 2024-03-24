@@ -1,0 +1,32 @@
+{
+	"Character": {
+		"Playable": {
+			"char_chiro": {
+				"id": "char_chiro",
+				"name": "mirror",
+				"room_id": "bathroom01",
+				"description": "",
+				"sprite_id": "",
+				"label": "Mirror"
+			}
+		},
+		"NonPlayable": {
+			"char_golot_backroom": {
+				"id": "char_golot",
+				"name": "marjorie_golot",
+				"description": "People in this village seem to agree on Mlle Golot: she's strong as an oxen, and kind as a cow.[BREAK]I wouldn't take her for a hotel manager though.[BREAK]Apparently she's a tremendous cook",
+				"label": "Marjorie Golot",
+				"room_id": "backroom_bakery",
+				"sprite_id": ""
+			},
+			"char_thierry_entrancehall": {
+				"id": "char_thierry",
+				"name": "lamis_thierry",
+				"description": "She looks grumpy as can be, but is actually helpful and welcoming.[BREAK]Her hotel is well kept and tasteful furnished. She gave me the room with the most gorgeous view.[BREAK]I'm glad I decided to stop here before heading to the Kazhtet orphanage.",
+				"label": "Lamis 'Miss' Thierry",
+				"room_id": "entrance_hall",
+				"sprite_id": ""
+			}
+		}
+	}
+}

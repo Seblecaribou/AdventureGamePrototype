@@ -1,1 +1,42 @@
-{"Item":{"Observable":{"obs_bathtub_bathroom01":{"id":"obs_bathtub_bathroom01","name":"bathtub","room_id":"room_bathroom01","description":"This is quite the luxurious bathtub.","sprite_id":"","label":"Luxurious bathtub"},"obs_towel_bathroom01":{"id":"obs_towel_bathroom01","name":"towel","room_id":"bathroom01","description":"What a fine terrycloth.[BREAK]Could be silk with how smooth it is!","sprite_id":"","label":"Towel"},"obs_mirror_bathroom01":{"id":"obs_mirror_bathroom01","name":"mirror","room_id":"bathroom01","description":"What a handsome bat![BREAK]Even better looking framed by this golden mirror.","sprite_id":"","label":"Mirror"}},"Pickable":{"pic_footprints_bathroom01":{"id":"pic_footprints_bathroom01","name":"footprints","description":"Muddy footprints. Judging by the looks, they were made by some sort of gardening boots.","label":"Muddy footprints","room_id":"bathroom01","sprite_id":""}},"Actionable":{},"Character":{}}}
+{
+  "Item": {
+	"Observable": {
+	  "obs_bathtub_bathroom01": {
+		"id": "obs_bathtub_bathroom01",
+		"name": "bathtub",
+		"room_id": "room_bathroom01",
+		"description": "This is quite the luxurious bathtub.",
+		"sprite_id": "",
+		"label": "Luxurious bathtub"
+	  },
+	  "obs_towel_bathroom01": {
+		"id": "obs_towel_bathroom01",
+		"name": "towel",
+		"room_id": "bathroom01",
+		"description": "What a fine terrycloth.[BREAK]Could be silk with how smooth it is!",
+		"sprite_id": "",
+		"label": "Towel"
+	  },
+	  "obs_mirror_bathroom01": {
+		"id": "obs_mirror_bathroom01",
+		"name": "mirror",
+		"room_id": "bathroom01",
+		"description": "What a handsome bat![BREAK]Even better looking framed by this golden mirror.",
+		"sprite_id": "",
+		"label": "Mirror"
+	  }
+	},
+	"Pickable": {
+	  "pic_footprints_bathroom01": {
+		"id": "pic_footprints_bathroom01",
+		"name": "footprints",
+		"description": "Muddy footprints. Judging by the looks, they were made by some sort of gardening boots.",
+		"label": "Muddy footprints",
+		"room_id": "bathroom01",
+		"sprite_id": ""
+	  }
+	},
+	"Actionable": {},
+	"Character": {}
+  }
+}

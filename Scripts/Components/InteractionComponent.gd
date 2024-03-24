@@ -37,12 +37,13 @@ func interact():
 	if interactions :
 		label.text = ""
 		var current_interaction = interactions[0]
-		match current_interaction.interact_type:#TODO write function for each match case in INTERACT_TYPE_ENUM
+		print("Current interactable: ", current_interaction)
+		match current_interaction.interactable_type:#TODO write function for each match case in INTERACT_TYPE_ENUM
 			"obs":
-				interaction_content.text = current_interaction.item_data.item_description
+				interaction_content.text = current_interaction.interactable_data.interactable_description
 			"pic":
-				print(current_interaction.item_data.item_description)
+				print(current_interaction.interactable_data.interactable_description)
 			"act":
-				print(current_interaction.item_data.item_description)				
-			"npc":
-				print(current_interaction.item_data.item_description)
+				print(current_interaction.interactable_data.interactable_description)				
+			"char":
+				print(current_interaction.interactable_data.interactable_description)

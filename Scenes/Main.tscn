@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=12 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameStateMachine.gd" id="1_gxh85"]
@@ -6,10 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bomv7cngjdhnx" path="res://Free/Terrain/Terrain (16x16).png" id="2_3axcj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameMovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
-[ext_resource type="Script" path="res://Scenes/DialogueComponent.gd" id="4_e7uya"]
-[ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/InteractableItem.tscn" id="4_hs0my"]
-[ext_resource type="Script" path="res://Scenes/DialogueManager.gd" id="4_yumw5"]
-[ext_resource type="PackedScene" uid="uid://8v4d7nxcnd4m" path="res://Scenes/InteractableCharacter.tscn" id="10_62jgg"]
+[ext_resource type="Script" path="res://Scripts/Components/DialogueComponent.gd" id="4_e7uya"]
+[ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
+[ext_resource type="Script" path="res://Scripts/Singletons/DialogueManager.gd" id="4_yumw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mvu3"]
 texture = ExtResource("2_3axcj")
@@ -522,7 +521,7 @@ sources/0 = SubResource("TileSetAtlasSource_5mvu3")
 script = ExtResource("1_gxh85")
 initial_state = NodePath("Moving")
 
-[node name="Observe" type="Node" parent="GameManager/GameStateMachine"]
+[node name="Interacting" type="Node" parent="GameManager/GameStateMachine"]
 script = ExtResource("2_1q2se")
 
 [node name="Moving" type="Node" parent="GameManager/GameStateMachine"]
@@ -532,6 +531,7 @@ script = ExtResource("3_txr1d")
 script = ExtResource("4_yumw5")
 
 [node name="DialogueFrame" type="Polygon2D" parent="GameManager/DialogueManager"]
+visible = false
 position = Vector2(575.707, 572.213)
 scale = Vector2(1.02788, 1.47541)
 color = Color(0.984314, 0.984314, 0, 1)
@@ -564,17 +564,15 @@ layer_0/tile_data = PackedInt32Array(23, 0, 6, 65559, 0, 5, 131095, 0, 5, 196631
 position = Vector2(150, 523)
 
 [node name="obs_bathtub_bathroom01" parent="." instance=ExtResource("4_hs0my")]
-position = Vector2(359, 547)
+position = Vector2(540, 454)
 
 [node name="obs_towel_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(234, 547)
-item_id = "obs_towel_bathroom01"
 
 [node name="pic_footprints_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(78, 544)
-item_id = "pic_footprints_bathroom01"
 
-[node name="Interactable" parent="." instance=ExtResource("10_62jgg")]
-position = Vector2(359, 547)
+[node name="char_golot_backroom" parent="." instance=ExtResource("4_hs0my")]
+position = Vector2(362, 545)
 
 [connection signal="newstate" from="GameManager/GameStateMachine" to="PlayerCharacter" method="_on_game_state_machine_newstate"]
