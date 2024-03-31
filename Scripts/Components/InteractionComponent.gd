@@ -5,6 +5,7 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
+signal interacted(interaction : Interactable, interaction_type : String)
 
 func _ready():
 	update_interact_label()
@@ -16,7 +17,6 @@ func _physics_process(delta):
 func _on_interaction_area_area_entered(area):
 	interactions.insert(0, area)
 	update_interact_label()
-
 
 func _on_interaction_area_area_exited(area):
 	interactions.erase(area)
@@ -37,13 +37,22 @@ func interact():
 	if interactions :
 		label.text = ""
 		var current_interaction = interactions[0]
-		match current_interaction.interactable_type:#TODO write function for each match case in INTERACT_TYPE_ENUM
+		match current_interaction.interactable_type:
 			"obs":
+				interacted.emit(current_interaction, "obs")				
 				interaction_content.text = current_interaction.interactable_data.interactable_description
 			"pic":
+				#TODO
+				interacted.emit(current_interaction, "pic")
+				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)
 			"act":
+				#TODO change current_interaction.interactable_activated
+				interacted.emit(current_interaction, "act")
+				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":
-				#TODO create a signal to call the DialogueManager and pass it the interactable_data/interactable_id
+				#TODO signal 
+				interacted.emit(current_interaction, "char")
+				#DEBUG
 				print("char", current_interaction.interactable_data.interactable_description)

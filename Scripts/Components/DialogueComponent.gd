@@ -1,5 +1,7 @@
 class_name DialogueComponent
-extends Node
+extends Node2D
 
-#TODO take data from DialogueData and display, animate and change them
+@export var dialogue_frame : Polygon2D
+@export var dialogue_text : RichTextLabel
 
+#TODO take string to display, animate and change them

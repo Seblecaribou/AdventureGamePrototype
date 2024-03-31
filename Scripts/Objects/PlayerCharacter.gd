@@ -26,3 +26,4 @@ func _physics_process(delta):
 
 func _on_game_state_machine_newstate(previous_state, new_state):
 	current_game_state = new_state
+
