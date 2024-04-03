@@ -11,7 +11,7 @@
 			}
 		},
 		"NonPlayable": {
-			"char_golot_backroom": {
+			"char_golot": {
 				"id": "char_golot",
 				"name": "marjorie_golot",
 				"description": "People in this village seem to agree on Mlle Golot: she's strong as an oxen, and kind as a cow.[BREAK]I wouldn't take her for a hotel manager though.[BREAK]Apparently she's a tremendous cook",
@@ -19,7 +19,7 @@
 				"room_id": "backroom_bakery",
 				"sprite_id": ""
 			},
-			"char_thierry_entrancehall": {
+			"char_thierry": {
 				"id": "char_thierry",
 				"name": "lamis_thierry",
 				"description": "She looks grumpy as can be, but is actually helpful and welcoming.[BREAK]Her hotel is well kept and tasteful furnished. She gave me the room with the most gorgeous view.[BREAK]I'm glad I decided to stop here before heading to the Kazhtet orphanage.",

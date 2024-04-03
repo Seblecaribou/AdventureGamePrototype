@@ -14,7 +14,10 @@ var non_playable_characters : Dictionary = {}
 var characters_json_filepath : String = "res://Data/Characters/characters.json"
 
 #TODO Quests
+
 #TODO Dialogues
+var all_dialogues_data : Dictionary = {}
+
 
 func _ready():
 	all_items_data = load_json_file(items_json_filepath)["Item"]
