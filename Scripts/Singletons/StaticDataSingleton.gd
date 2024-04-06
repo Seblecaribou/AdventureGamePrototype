@@ -17,16 +17,21 @@ var characters_json_filepath : String = "res://Data/Characters/characters.json"
 
 #TODO Dialogues
 var all_dialogues_data : Dictionary = {}
+var dialogues_json_filepath : String = "res://Data/Quests/dia_q01.json"
 
 
 func _ready():
+	#Items
 	all_items_data = load_json_file(items_json_filepath)["Item"]
-	all_characters_data = load_json_file(characters_json_filepath)["Character"]
-	playable_characters = all_characters_data["Playable"]
-	non_playable_characters = all_characters_data["NonPlayable"]
 	observable_items = all_items_data["Observable"]
 	pickable_items = all_items_data["Pickable"]
 	actionable_items = all_items_data["Actionable"]
+	#Characters
+	all_characters_data = load_json_file(characters_json_filepath)["Character"]
+	playable_characters = all_characters_data["Playable"]
+	non_playable_characters = all_characters_data["NonPlayable"]
+	#Dialogues
+	all_dialogues_data = load_json_file(dialogues_json_filepath)["Dialogues"]
 
 
 func load_json_file(filepath : String):

@@ -8,6 +8,7 @@ extends Node2D
 ## Displays full dialogue
 func display_dialogue(dialogue: String) -> void:
 	type_dialogue(dialogue)
+	self.visible = true
 
 ## Displays dialogue following a typewriter animation
 func type_dialogue(dialogue : String) -> void:
