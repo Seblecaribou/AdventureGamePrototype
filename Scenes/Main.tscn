@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameStateMachine.gd" id="1_gxh85"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameManager/ObserveState.gd" id="2_1q2se"]
+[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
+[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/ObserveState.gd" id="2_1q2se"]
 [ext_resource type="Texture2D" uid="uid://bomv7cngjdhnx" path="res://Free/Terrain/Terrain (16x16).png" id="2_3axcj"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameManager/GameMovingState.gd" id="3_txr1d"]
+[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameMovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
 [ext_resource type="Script" path="res://Scripts/Components/DialogueComponent.gd" id="4_e7uya"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
-[ext_resource type="Script" path="res://Scripts/Singletons/DialogueManager.gd" id="4_yumw5"]
+[ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
 [ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mvu3"]
@@ -571,6 +571,7 @@ unique_name_in_owner = true
 script = ExtResource("6_q7uve")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
+unique_name_in_owner = true
 position = Vector2(150, 523)
 
 [node name="obs_bathtub_bathroom01" parent="." instance=ExtResource("4_hs0my")]
@@ -582,7 +583,7 @@ position = Vector2(234, 547)
 [node name="pic_footprints_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(78, 544)
 
-[node name="char_golot_backroom" parent="." instance=ExtResource("4_hs0my")]
+[node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(362, 545)
 
 [connection signal="newstate" from="GameManager/GameStateMachine" to="PlayerCharacter" method="_on_game_state_machine_newstate"]

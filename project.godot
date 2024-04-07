@@ -27,8 +27,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+UtilsSingleton="*res://Scripts/Singletons/UtilsSingleton.gd"
+InputManager="*res://Scripts/Singletons/InputSingleton.gd"
 StaticDataSingleton="*res://Scripts/Singletons/StaticDataSingleton.gd"
-InputManager="*res://Scripts/Singletons/InputManager.gd"
 DialogueManager="res://addons/dialogue_manager/dialogue_manager.gd"
 
 [editor_plugins]

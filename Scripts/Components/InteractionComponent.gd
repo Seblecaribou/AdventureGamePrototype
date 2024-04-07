@@ -5,7 +5,7 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
-signal interacted(interaction : Interactable, interaction_type : String)
+signal interacted(interaction_data : InteractableData, interaction_type : String)
 
 func _ready():
 	update_interact_label()
@@ -20,7 +20,7 @@ func _on_interaction_area_area_entered(area):
 
 func _on_interaction_area_area_exited(area):
 	interactions.erase(area)
-	update_interact_label()	
+	update_interact_label()
 
 func update_interact_label():
 	if interactions:
@@ -33,26 +33,28 @@ func reset_interaction_ui():
 		interaction_content.text = ""
 		pass
 
+
 func interact():
 	if interactions :
+		#We empty the label that serves to prompt the interaction
 		label.text = ""
 		var current_interaction = interactions[0]
 		match current_interaction.interactable_type:
 			"obs":
-				interacted.emit(current_interaction, "obs")				
+				interacted.emit(current_interaction.interactable_data, "obs")				
 				interaction_content.text = current_interaction.interactable_data.interactable_description
 			"pic":
 				#TODO
-				interacted.emit(current_interaction, "pic")
+				interacted.emit(current_interaction.interactable_data, "pic")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)
 			"act":
 				#TODO change current_interaction.interactable_activated
-				interacted.emit(current_interaction, "act")
+				interacted.emit(current_interaction.interactable_data, "act")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":
 				#TODO signal 
-				interacted.emit(current_interaction, "char")
+				interacted.emit(current_interaction.interactable_data, "char")
 				#DEBUG
 				print("char", current_interaction.interactable_data.interactable_description)

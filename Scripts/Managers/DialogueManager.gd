@@ -4,6 +4,7 @@ extends Node
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
 @export var player_character : PlayerCharacter
+var player_interaction_component : InteractionComponent
 var current_quests_steps : Array[String]
 var current_dialogue : String
 var current_character : Interactable
@@ -17,6 +18,7 @@ func _ready():
 
 #TODO create a signal that can be listened to and that changes the content of current_quests_steps
 func _on_player_character_interacted():
+	print("Receiving a signal")
 	if dialogue_data != null:
 		configure_dialogue()
 	dialogue_component.visible = true
