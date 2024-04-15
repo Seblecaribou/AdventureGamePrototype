@@ -1,10 +1,10 @@
 {
-	"quest_id":"q01",
+	"quest_id":"q00",
 	"Dialogues":
 	[
 		{
-			"step_id":"step01",
-			"char_golot": 
+			"step_id":"ste_001",
+			"char_thierry": 
 			[
 				{
 					"dialogue_id" : "dia_q01_step01_01",
@@ -18,7 +18,7 @@
 				},
 				{
 					"dialogue_id" : "dia_q01_step01_02",
-					"character_id" : "char_golot",
+					"character_id" : "char_thierry",
 					"content" : 
 					[
 						"Good morning, Monsieur...Chiro.", 
@@ -27,11 +27,11 @@
 					]
 				}
 			],
-			"char_thierry": 
+			"char_golot": 
 			[
 				{
 					"dialogue_id" : "dia_q01_step01_01",
-					"character_id" : "char_thierry",
+					"character_id" : "char_golot",
 					"content" : 
 					[
 						"You' the new apprentice?",
