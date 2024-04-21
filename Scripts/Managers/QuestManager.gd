@@ -1,6 +1,13 @@
 class_name QuestManager
 extends Node
 
-@onready var active_quests : Dictionary
-@onready var finished_quests : Dictionary
+var active_quests : Array[QuestResource]
+var finished_quests : Array[QuestResource]
 
+func _ready():
+	pass
+	
+func load_quests():
+	print("Active quests: ")
+	print("FinishedQuests: ")
+	pass
