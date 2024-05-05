@@ -1,3 +1,4 @@
+#InputSingleton.gd
 extends Node2D
 
 func check_jump_button(function: Callable) -> void:

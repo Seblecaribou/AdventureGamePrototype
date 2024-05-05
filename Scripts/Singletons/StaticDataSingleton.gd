@@ -1,3 +1,4 @@
+#StaticDataSingleton.gd
 extends Node
 
 #Items
@@ -12,8 +13,6 @@ var all_characters_data : Dictionary = {}
 var playable_characters : Dictionary = {}
 var non_playable_characters : Dictionary = {}
 var characters_json_filepath : String = "res://Data/Characters/characters.json"
-
-#TODO Quests
 
 #TODO Dialogues
 var all_dialogues_data : Array
