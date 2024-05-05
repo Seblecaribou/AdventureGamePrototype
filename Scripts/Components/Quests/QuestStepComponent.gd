@@ -1,6 +1,6 @@
 class_name QuestStepComponent
 extends Node
 
-var id : String
-var description : String
-var objectives : Array[QuestObjectiveComponent]
+@export var id : String
+@export var description : String
+@export var objectives : Array[QuestObjectiveComponent]

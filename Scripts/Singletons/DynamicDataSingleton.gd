@@ -4,7 +4,7 @@ var save_path : String
 
 func load_quests() -> void:
 	if ResourceSaver.exists(save_path):
-		
+		return load(save_path)
 		pass
 
 func save_quests(quests : Array[QuestResource]) -> void:
