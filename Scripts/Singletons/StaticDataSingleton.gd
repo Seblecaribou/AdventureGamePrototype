@@ -18,7 +18,6 @@ var characters_json_filepath : String = "res://Data/Characters/characters.json"
 var all_dialogues_data : Array
 var dialogues_json_filepath : String = "res://Data/Quests/dia_q01.json"
 
-
 func _ready():
 	#Items
 	all_items_data = UtilsSingleton.load_json_file(items_json_filepath)["Item"]
