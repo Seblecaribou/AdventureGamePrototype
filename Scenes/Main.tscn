@@ -593,5 +593,3 @@ position = Vector2(78, 544)
 
 [node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(362, 545)
-
-[connection signal="newstate" from="GameManagers/GameStateMachine" to="PlayerCharacter" method="_on_game_state_machine_newstate"]

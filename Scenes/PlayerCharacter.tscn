@@ -287,6 +287,5 @@ offset_bottom = -67.0
 text = "Lorem ipsum"
 fit_content = true
 
-[connection signal="newstate" from="PlayerStateMachine" to="AnimationComponent" method="_on_player_state_machine_newstate"]
 [connection signal="area_entered" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Nodes/InteractionArea" to="InteractionComponent" method="_on_interaction_area_area_exited"]

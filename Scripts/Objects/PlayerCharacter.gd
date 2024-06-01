@@ -3,8 +3,10 @@ extends CharacterBody2D
 
 var current_game_state : String
 
-func _physics_process(delta):
+func _ready():
+	SignalBusSingleton.newstate.connect(set_current_state)
 
+func _physics_process(delta):
 	#Pause
 	#TODO create pause menu
 	#$InputComponent.check_pause_button()
@@ -23,6 +25,6 @@ func _physics_process(delta):
 	if current_game_state == "interacting":
 		InputManager.check_interact_button($InteractionComponent.interact)
 
-
-func _on_game_state_machine_newstate(previous_state, new_state):
+func set_current_state(previous_state : String, new_state : String):
 	current_game_state = new_state
+	pass

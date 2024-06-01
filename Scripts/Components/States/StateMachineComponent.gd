@@ -4,7 +4,6 @@ extends Node
 @export var initial_state : StateComponent
 var current_state : StateComponent
 var states : Dictionary = {}
-signal newstate(previous_state : String, new_state : String)
 
 func _ready():
 	for child in get_children():
@@ -36,7 +35,7 @@ func on_state_transition(state : StateComponent, new_state_name : String):
 		current_state.exit()
 	new_state.enter()
 	current_state = new_state
-	newstate.emit(current_state_name, new_state_name)
+	SignalBusSingleton.newstate.emit(current_state_name, new_state_name)
 
 func transition_state():
 	pass

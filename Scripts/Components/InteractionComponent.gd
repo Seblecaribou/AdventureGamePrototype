@@ -5,7 +5,6 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
-signal interacted(interaction_data : InteractableData, interaction_type : String)
 
 func _ready():
 	update_interact_label()
@@ -41,20 +40,20 @@ func interact():
 		var current_interaction = interactions[0]
 		match current_interaction.interactable_type:
 			"obs":
-				interacted.emit(current_interaction.interactable_data, "obs")				
+				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "obs")				
 				interaction_content.text = current_interaction.interactable_data.interactable_description
 			"pic":
 				#TODO
-				interacted.emit(current_interaction.interactable_data, "pic")
+				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "pic")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)
 			"act":
 				#TODO change current_interaction.interactable_activated
-				interacted.emit(current_interaction.interactable_data, "act")
+				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "act")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":
 				#TODO signal 
-				interacted.emit(current_interaction.interactable_data, "char")
+				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "char")
 				#DEBUG
 				print("char", current_interaction.interactable_data.interactable_description)

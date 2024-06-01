@@ -30,7 +30,7 @@ config/icon="res://icon.svg"
 UtilsSingleton="*res://Scripts/Singletons/UtilsSingleton.gd"
 InputManager="*res://Scripts/Singletons/InputSingleton.gd"
 StaticDataSingleton="*res://Scripts/Singletons/StaticDataSingleton.gd"
-DialogueManager="res://addons/dialogue_manager/dialogue_manager.gd"
+SignalBusSingleton="*res://Scripts/Singletons/SignalBusSingleton.gd"
 
 [editor_plugins]
 
