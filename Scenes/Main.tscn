@@ -550,6 +550,7 @@ dialogue_component = NodePath("DialogueComponent")
 player_character = NodePath("../../PlayerCharacter")
 
 [node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager"]
+visible = false
 script = ExtResource("4_e7uya")
 
 [node name="DialogueFrame" type="Polygon2D" parent="GameManagers/DialogueManager/DialogueComponent"]

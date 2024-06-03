@@ -23,7 +23,7 @@ func _physics_process(delta):
 	
 	#Interaction
 	if current_game_state == "interacting":
-		InputManager.check_interact_button($InteractionComponent.interact)
+		InputManager.check_interact_button($"Interaction Nodes/InteractionComponent".interact)
 
 func set_current_state(previous_state : String, new_state : String):
 	current_game_state = new_state

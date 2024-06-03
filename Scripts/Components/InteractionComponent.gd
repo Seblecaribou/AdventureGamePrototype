@@ -28,6 +28,7 @@ func update_interact_label():
 		label.text = ""
 
 func reset_interaction_ui():
+	print("player.current_state", player_character.current_game_state)
 	if player_character.current_game_state == "moving":
 		interaction_content.text = ""
 		pass
@@ -40,8 +41,11 @@ func interact():
 		var current_interaction = interactions[0]
 		match current_interaction.interactable_type:
 			"obs":
-				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "obs")				
+				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "obs")
+				interaction_content.clear()
 				interaction_content.text = current_interaction.interactable_data.interactable_description
+				#DEBUG
+				print(current_interaction.interactable_data.interactable_description)
 			"pic":
 				#TODO
 				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "pic")
@@ -57,3 +61,6 @@ func interact():
 				SignalBusSingleton.interacted.emit(self, current_interaction.interactable_data, "char")
 				#DEBUG
 				print("char", current_interaction.interactable_data.interactable_description)
+
+func set_current_game_state():
+	pass

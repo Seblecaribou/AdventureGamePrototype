@@ -1,8 +1,8 @@
 class_name QuestManager
 extends Node
 
-var active_quests : Array[QuestResource]
-var finished_quests : Array[QuestResource]
+var active_quests : Array[QuestData]
+var finished_quests : Array[QuestData]
 
 func _ready():
 	pass
@@ -12,8 +12,8 @@ func load_quests():
 	print("FinishedQuests: ")
 	pass
 
-func save_quests(quests : Array[QuestResource]) -> void:
+func save_quests(quests : Array[QuestData]) -> void:
 	for quest in quests:
-		var quest_resource : QuestResource
+		var quest_resource : QuestData
 		quest_resource = quest
 	pass

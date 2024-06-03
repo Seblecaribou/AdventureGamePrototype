@@ -1,5 +1,5 @@
-class_name QuestResource
-extends Resource
+class_name QuestData
+extends Node
 
 var id : String
 var title : String 
