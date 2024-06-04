@@ -28,7 +28,6 @@ func update_interact_label():
 		label.text = ""
 
 func reset_interaction_ui():
-	print("player.current_state", player_character.current_game_state)
 	if player_character.current_game_state == "moving":
 		interaction_content.text = ""
 		pass

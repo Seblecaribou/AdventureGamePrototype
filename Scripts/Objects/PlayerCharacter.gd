@@ -4,7 +4,7 @@ extends CharacterBody2D
 var current_game_state : String
 
 func _ready():
-	SignalBusSingleton.newstate.connect(set_current_state)
+	SignalBusSingleton.newstate.connect(set_current_game_state)
 
 func _physics_process(delta):
 	#Pause
@@ -25,6 +25,7 @@ func _physics_process(delta):
 	if current_game_state == "interacting":
 		InputManager.check_interact_button($"Interaction Nodes/InteractionComponent".interact)
 
-func set_current_state(previous_state : String, new_state : String):
-	current_game_state = new_state
-	pass
+
+func set_current_game_state(emitter : Node, previous_state : String, new_state : String):
+	if emitter.get_name().to_lower() == 'gamestatemachine':
+		current_game_state = new_state

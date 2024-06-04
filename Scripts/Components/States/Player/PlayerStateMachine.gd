@@ -9,4 +9,3 @@ func transition_state():
 		current_state.transitioned.emit(current_state, "run")
 	elif not player_character.is_on_floor():
 		current_state.transitioned.emit(current_state, "jump")
-	pass

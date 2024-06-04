@@ -35,7 +35,7 @@ func on_state_transition(state : StateComponent, new_state_name : String):
 		current_state.exit()
 	new_state.enter()
 	current_state = new_state
-	SignalBusSingleton.newstate.emit(current_state_name, new_state_name)
+	SignalBusSingleton.newstate.emit(self, current_state_name, new_state_name)
 
 func transition_state():
 	pass

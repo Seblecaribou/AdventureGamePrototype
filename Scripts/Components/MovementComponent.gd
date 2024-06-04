@@ -14,7 +14,7 @@ func _physics_process(delta):
 	ground_player(delta)
 
 
-##Adds jump_volocity (a negative float) to a CharacterBody2D's velocity.y 
+##Adds jump_velocity (a negative float) to a CharacterBody2D's velocity.y 
 func jump() -> void:
 	if character.is_on_floor():
 		character.velocity.y = jump_velocity
