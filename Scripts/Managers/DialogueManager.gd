@@ -1,6 +1,7 @@
 class_name DialogueManager
 extends Node
 
+@export var quest_manager : QuestManager
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
 @export var player_character : PlayerCharacter
@@ -11,17 +12,18 @@ var current_character : Interactable
 
 
 func _ready():
+	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	#TODO get the current quest step from the quest manager signal
-	if dialogue_data != null:
-		configure_dialogue()
-
+	
 
 #TODO create a signal that can be listened to and that changes the content of current_quests_steps
-func _on_player_character_interacted():
-	print("Receiving a signal")
+func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
+	if interaction_type == "char":
+		current_character = interactable
+		print(current_character)
 	if dialogue_data != null:
 		configure_dialogue()
-	dialogue_component.visible = true
+	#dialogue_component.display_dialogue()
 	pass
 
 func display_dialogue() -> void:
@@ -36,5 +38,5 @@ func load_dialogue() -> void:
 	pass
 
 func configure_dialogue():
-	#TODO loads dialogue based of current_quests_steps and current_character
+	#TODO loads dialogues based of current_quests_steps and current_character
 	pass

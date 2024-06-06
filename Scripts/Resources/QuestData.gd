@@ -5,5 +5,5 @@ var id : String
 var title : String 
 var description : String
 var steps : Array[QuestStepComponent]
-var results : Array[String]
+var rewards : Array[String]
 var active : bool

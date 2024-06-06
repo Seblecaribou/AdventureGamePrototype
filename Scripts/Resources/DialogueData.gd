@@ -5,11 +5,15 @@ extends Node
 var dialogue_id : String
 var interactable_label : String
 
+func _ready():
+	
+	pass
+
 ##Takes an NPC id and loads the NPC data
 func load_interactable_data(id : String):
 	if id:
 		# Use the StaticDataSingleton to retrieve NPC data using id
-		#and assign it to interactable_data
+		# and assign it to interactable_data
 		pass
 	else:
 		#DEBUG

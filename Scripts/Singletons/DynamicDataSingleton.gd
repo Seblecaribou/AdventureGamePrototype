@@ -17,12 +17,16 @@ var characters_save : Dictionary
 var characters_file_name : String = "characters_save"
 
 func _ready():
-	#Load all the default data if no save files
-	pass
+	quest_save = load_save(quest_save, quest_file_name)
+	#TODO Load all the default data if no save files
+	#inventory_save
+	#rooms_save
+	#characters_save
 
 func load_save(save : Dictionary, save_file_name: String) -> Dictionary:
-	#TODO define savefile name then load data and return as Dictionary
-	save = UtilsSingleton.load_json_file(base_path + save_file_name + ".json")
-	if save == null:
+	var file_path : String = base_path + save_file_name + ".json"
+	if FileAccess.file_exists(file_path):
+		save = UtilsSingleton.load_json_file(file_path)
+	else:
 		save = UtilsSingleton.load_json_file(base_path + "default_" + save_file_name + ".json")
 	return save

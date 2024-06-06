@@ -10,7 +10,7 @@ func load_json_file(file_path : String):
 		
 		if parsed_data is Dictionary:
 			return parsed_data
-		else: 
+		else:
 			print("An error occured while reading the file. Check the file format or the file at " + file_path)
 	else: 
 		print("The file does not exists. Check either the filepath or the file at " + file_path)

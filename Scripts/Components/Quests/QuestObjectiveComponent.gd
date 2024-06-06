@@ -3,6 +3,6 @@ extends Node
 
 var title : String
 var description : String
-var results : Array[String]
+var rewards : Array[String]
 var mandatory : bool
 var success : bool

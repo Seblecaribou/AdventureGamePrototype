@@ -1,6 +1,17 @@
 #SignalBusSingleton.gd
 extends Node
 
-signal updated_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData])
-signal interacted(emitter : Node, interaction_data : InteractableData, interaction_type : String)
+#QuestManager
+##Emitters: QuestManager 
+##Connected: DialogueManager
+signal update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData])
+
+##Emitters: PlayerCharacter/InteractNodes/InteractionComponent 
+##Connected: DialogueManager
+signal update_one_quest(emitter : Node, objective_id : String)
+
+#Interaction
+signal interacted(emitter : Node, interactable : Interactable, interaction_type : String)
+
+#StateMachine
 signal newstate(emitter : Node, previous_state : String, new_state : String)
