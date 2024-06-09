@@ -14,9 +14,13 @@ var playable_characters : Dictionary = {}
 var non_playable_characters : Dictionary = {}
 var characters_json_filepath : String = "res://Data/Characters/characters.json"
 
-#TODO Dialogues
-var all_dialogues_data : Dictionary
-var dialogues_json_filepaths : Array[String] = ["res://Data/Quests/dia_q01.json"]
+#Quests
+var all_quests_data : Dictionary = {}
+var quests_json_filepaths : Array[String] = ["res://Data/Quests/q00.json", "res://Data/Quests/q00.json"]
+
+#Dialogues
+var all_dialogues_data : Dictionary = {}
+var dialogues_json_filepaths : Array[String] = ["res://Data/Quests/dia_q00.json"]
 
 func _ready():
 	#Items
@@ -28,6 +32,9 @@ func _ready():
 	all_characters_data = UtilsSingleton.load_json_file(characters_json_filepath)["Character"]
 	playable_characters = all_characters_data["Playable"]
 	non_playable_characters = all_characters_data["NonPlayable"]
+	#Quests
+	for file_path in quests_json_filepaths:
+		all_quests_data.merge( UtilsSingleton.load_json_file(file_path))
 	#Dialogues
 	for file_path in dialogues_json_filepaths:
 		all_dialogues_data.merge( UtilsSingleton.load_json_file(file_path))

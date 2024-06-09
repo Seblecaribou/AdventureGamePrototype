@@ -35,7 +35,7 @@
 			"objectives":[
 				{
 					"title":"Accept the case.",
-					"description":"I could accept the tenant's case, if I want more.",
+					"description":"I could accept the tenant's case, if I want more information about Château Quastête before leaving.",
 					"results":["suc_q00_ste_002_a","unl_sq01"],
 					"mandatory": false,
 					"success" : false

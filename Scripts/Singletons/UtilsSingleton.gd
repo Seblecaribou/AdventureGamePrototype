@@ -16,7 +16,7 @@ func load_json_file(file_path : String):
 		print("The file does not exists. Check either the filepath or the file at " + file_path)
 
 
-func save_json_file(file_name : String, data_to_parse):
+func save_json_file(file_name : String, data_to_parse : Dictionary):
 	var json = JSON.new()
 	var file_path : String = "user://" + file_name + ".json"
 
@@ -24,3 +24,11 @@ func save_json_file(file_name : String, data_to_parse):
 	save_file.store_string(json.stringify(data_to_parse))
 	save_file.close()
 	save_file = null
+
+func log_data(emitter : Node, label : String, data):
+	print(emitter, " : ")
+	print(label, " : ", data)
+	
+func log_error(emitter : Node, label : String, message : String):
+	print_rich("[red]", emitter, " : ", "[red]")
+	print_rich("[red]", label, " : ", message, "[red]")

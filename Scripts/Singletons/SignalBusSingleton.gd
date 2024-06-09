@@ -7,8 +7,12 @@ extends Node
 signal update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData])
 
 ##Emitters: PlayerCharacter/InteractNodes/InteractionComponent 
-##Connected: DialogueManager
+##Connected: QuestManager
 signal update_one_quest(emitter : Node, objective_id : String)
+
+##Emitters: PlayerCharacter/InteractNodes/InteractionComponent
+##Connected: QuestManager
+signal unlock_quest(emitter : Node, quest_id : String)
 
 #Interaction
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String)

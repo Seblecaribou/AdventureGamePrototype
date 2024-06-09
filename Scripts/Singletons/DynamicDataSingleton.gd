@@ -30,3 +30,7 @@ func load_save(save : Dictionary, save_file_name: String) -> Dictionary:
 	else:
 		save = UtilsSingleton.load_json_file(base_path + "default_" + save_file_name + ".json")
 	return save
+	
+func save(save_file_name : String, save_dictionary : Dictionary):
+	var file_path : String = base_path + save_file_name + ".json"
+	UtilsSingleton.save_json_file(save_file_name, save_dictionary)

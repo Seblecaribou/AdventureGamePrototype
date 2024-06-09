@@ -1,0 +1,48 @@
+{
+	"id":"q01",
+	"title":"A bakery kitchen-sink drama",
+	"description":"Miss Thiery, owner and manager of Hotel Misterygolot, suspects her partner Miss Golot, also owner and chef for the hotel, to be on a left-handed honeymoon with the village's baker. Not exactly the type of case I would take anymore, but Miss Thiery promised some crusty information about my next destination, Château Quastête. Also I might get the brunch free of charge.",
+	"steps": [
+		{
+			"id":"ste_001",
+			"description":".",
+			"objectives":[
+				{
+					"title":"Check in",
+					"description":"Talk to the receptionist to get a room for tonight.",
+					"results":["suc_q00_ste_001","pic_room101key"],
+					"mandatory": true,
+					"success" : false
+				}
+			]
+		},
+		{
+			"id":"ste_002",
+			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
+			"objectives":[
+				{
+					"title":"Accept the case.",
+					"description":"I could accept the tenant's case, if I want more.",
+					"results":["suc_q00_ste_002","unl_sq01"],
+					"mandatory": false,
+					"success" : false
+				}
+			]
+		},
+		{
+			"id":"ste_003",
+			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
+			"objectives":[
+				{
+					"title":"Accept the case.",
+					"description":"I could accept the tenant's case, if I want more.",
+					"results":["suc_q00_ste_002_a","unl_sq01"],
+					"mandatory": false,
+					"success" : false
+				}
+			]
+		}	
+	],
+	"results" : [ "" ],
+	"active" : true
+}
