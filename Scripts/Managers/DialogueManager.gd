@@ -42,4 +42,5 @@ func on_player_character_interacted(emitter : Node, interactable : Interactable,
 
 func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
 	#TODO implement recuperation of data active/finished quest
+	
 	pass

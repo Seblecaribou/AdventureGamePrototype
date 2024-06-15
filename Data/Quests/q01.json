@@ -14,7 +14,8 @@
 					"mandatory": true,
 					"success" : false
 				}
-			]
+			],
+			"active" : true
 		},
 		{
 			"id":"ste_002",
@@ -27,7 +28,8 @@
 					"mandatory": false,
 					"success" : false
 				}
-			]
+			],
+			"active" : false
 		},
 		{
 			"id":"ste_003",
@@ -40,7 +42,8 @@
 					"mandatory": false,
 					"success" : false
 				}
-			]
+			],
+			"active" : true
 		}	
 	],
 	"results" : [ "" ],

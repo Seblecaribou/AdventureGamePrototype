@@ -568,6 +568,10 @@ offset_bottom = 543.557
 bbcode_enabled = true
 text = "[shake][color=black]Ceci est un dialogue[/color][/shake]"
 
+[node name="PortraitLeft" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
+
+[node name="PortraitRight" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
+
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")

@@ -1,8 +1,10 @@
 class_name QuestObjectiveComponent
 extends Node
 
+var id : String
 var title : String
 var description : String
+var characters : Array[String]
 var results : Array[String]
 var mandatory : bool
 var success : bool

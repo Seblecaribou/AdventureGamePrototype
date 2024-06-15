@@ -14,7 +14,13 @@ signal update_one_quest(emitter : Node, objective_id : String)
 ##Connected: QuestManager
 signal unlock_quest(emitter : Node, quest_id : String)
 
+##Emitters: QuestManager
+##Connected: DialogueManager
+signal objectives(emitter : Node, objectives : Array[String])
+
 #Interaction
+##Emitters: InteractionComponent
+##Connected: DialogueManager
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String)
 
 #StateMachine

@@ -4,43 +4,70 @@
 	"description":"A week ago, I received a strange letter from my high school biology teacher, formerly Mademoiselle Catherine Brindherbe, now known as Madame Quastête. Now living in the hospice in the small coastal village of Charadeville, in Nourmandie, she asked me to visit her, regarding the disappearance of her son. After a long day traversing the gorgeous Francia’s countryside, from my office in Parisie to Nourmandie, I need a good night’s sleep before I visit her.",
 	"steps": [
 		{
-			"id":"ste_001",
+			"id":"ste001",
 			"description":"Well, if I believe the Croutard Guide, Mysterigolot is the only hotel in the 20km radius, but is well kept and has great summer ragout. I might as well check in.",
 			"objectives":[
 				{
+					"id": "obj01",
 					"title":"Check in",
+					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"Talk to the receptionist to get a room for tonight.",
-					"results":["suc_q00_ste_001","pic_room101key"],
+					"results":["pic_room101key", "cut_givekey"],
 					"mandatory": true,
 					"success" : false
+				},
+				{
+					"id": "obj02",
+					"title":"Room 101",
+					"characters": ["char_golot", "char_thierry", "char_biquievre"],
+					"description":"Enter room 101",
+					"results": ["roo_room101"],
+					"mandatory":true,
+					"success": false
+				},
+				{
+					"id": "obj03",
+					"title":"Get a good night sleep",
+					"characters": ["char_golot", "char_thierry", "char_biquievre"],
+					"description": "Get into bed",
+					"results":["cut_wakeup"],
+					"mandatory": true,
+					"success": false
 				}
-			]
+			],
+			"active" : true
 		},
 		{
-			"id":"ste_002",
+			"id":"ste002",
 			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
 			"objectives":[
 				{
+					"id": "obj01",
 					"title":"Accept the case.",
+					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"I could accept the tenant's case, if I want more.",
 					"results":["suc_q00_ste_002","unl_sq01"],
 					"mandatory": false,
 					"success" : false
 				}
-			]
+			],
+			"active" : false
 		},
 		{
-			"id":"ste_003",
+			"id":"ste003",
 			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
 			"objectives":[
 				{
+					"id": "obj01",
 					"title":"Accept the case.",
+					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"I could accept the tenant's case, if I want more information about Château Quastête before leaving.",
 					"results":["suc_q00_ste_002_a","unl_sq01"],
 					"mandatory": false,
 					"success" : false
 				}
-			]
+			],
+			"active" : false
 		}	
 	],
 	"results" : [ "" ],

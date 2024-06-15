@@ -1,20 +1,28 @@
 class_name DialogueData
 extends Node
 
-#TODO look at InteractableData script as a template to make this one
 var dialogue_id : String
 var interactable_label : String
+var interactable_portraits : Array[String]
+var quests_objectives : Array[String]
 
-func _ready():
-	
-	pass
+var objectives : Array[String]
+
 
 ##Takes an NPC id and loads the NPC data
-func load_interactable_data(id : String):
-	if id:
-		# Use the StaticDataSingleton to retrieve NPC data using id
-		# and assign it to interactable_data
-		pass
+func load_interactable_data(interactable : Interactable):
+	if interactable.interactable_id != null:
+		interactable_label = interactable.interactable_data.interactable_label
+		interactable_portraits = interactable.interactable_data.interactable_portraits
 	else:
 		#DEBUG
-		print("Error while loading the dialogue data: no dialogue_data was provided.")
+		UtilsSingleton.log_error(self, "load_interactable_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
+
+func load_objectives_data(objectives : Array[String]):
+	if !objectives.is_empty():
+		quests_objectives = objectives
+	else:
+		UtilsSingleton.log_error(self, "load_objectives_data","Error while loading the dialogue objectives data: no objectives in the provided array.")
+
+func load_dialogues(dialogue_id):
+	pass

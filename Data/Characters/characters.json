@@ -3,11 +3,12 @@
 		"Playable": {
 			"char_chiro": {
 				"id": "char_chiro",
-				"name": "mirror",
-				"room_id": "bathroom01",
+				"name": "detective_chiro",
 				"description": "",
-				"sprite_id": "",
-				"label": "Mirror"
+				"label": "Detective Chiro",
+				"room_id": "",
+				"sprites": ["chiro_idle", "chiro_run", "chiro_walk", "chiro_jump", "chiro_turn", "chiro_examine"],
+				"portraits": ["chiro_portrait_idle", "chiro_portrait_surprised", "chiro_portrait_explain", "chiro_portrait_think", "chiro_angry", "chiro_portrait_jaccuse"]
 			}
 		},
 		"NonPlayable": {
@@ -16,16 +17,27 @@
 				"name": "marjorie_golot",
 				"description": "People in this village seem to agree on Mlle Golot: she's strong as an oxen, and kind as a cow.[BREAK]I wouldn't take her for a hotel manager though.[BREAK]Apparently she's a tremendous cook",
 				"label": "Marjorie Golot",
-				"room_id": "backroom_bakery",
-				"sprite_id": ""
+				"room_id": "bakery_kitchen",
+				"sprites": ["godot_idle"],
+				"portraits": ["godot_portrait_idle", "godot_portrait_surprised", "godot_portrait_angry"]
 			},
 			"char_thierry": {
 				"id": "char_thierry",
 				"name": "lamis_thierry",
-				"description": "She looks grumpy as can be, but is actually helpful and welcoming.[BREAK]Her hotel is well kept and tasteful furnished. She gave me the room with the most gorgeous view.[BREAK]I'm glad I decided to stop here before heading to the Kazhtet orphanage.",
+				"description": "She looks grumpy as can be, but is actually helpful and welcoming.[BREAK]Her hotel is well kept and tastefully furnished. She gave me the room with the most gorgeous view.[BREAK]I'm glad I decided to stop here before heading to the Charadeville hospice.",
 				"label": "Lamis 'Miss' Thierry",
 				"room_id": "entrance_hall",
-				"sprite_id": ""
+				"sprites": ["thierry_idle"],
+				"portraits": ["thierry_portrait_idle", "thierry_portrait_surprised", "thierry_portrait_angry"]
+			},
+			"char_biquievre": {
+				"id": "char_biquievre",
+				"name": "adele_biquievre",
+				"description": "",
+				"label": "Adèle Biquievre",
+				"room_id": "bakery_shop",
+				"sprites": ["biquievre_idle"],
+				"portraits": ["biquievre_portrait_idle", "biquievre_portrait_surprised", "biquievre_portrait_angry"]
 			}
 		}
 	}
