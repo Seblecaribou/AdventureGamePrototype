@@ -33,7 +33,7 @@
 			"char_biquievre": {
 				"id": "char_biquievre",
 				"name": "adele_biquievre",
-				"description": "",
+				"description": "Suprisingly fit and tough for her age. She seems to have two a long standing loves: motorcycling and baking...",
 				"label": "Adèle Biquievre",
 				"room_id": "bakery_shop",
 				"sprites": ["biquievre_idle"],

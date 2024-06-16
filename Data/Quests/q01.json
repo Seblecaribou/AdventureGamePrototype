@@ -8,6 +8,7 @@
 			"description":".",
 			"objectives":[
 				{
+					"id":"obj01",
 					"title":"Check in",
 					"description":"Talk to the receptionist to get a room for tonight.",
 					"results":["suc_q00_ste_001","pic_room101key"],

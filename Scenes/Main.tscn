@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=14 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
 [ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
 [ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
-[ext_resource type="Script" path="res://Scripts/Resources/QuestData.gd" id="10_4g13y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mvu3"]
 texture = ExtResource("2_3axcj")
@@ -578,16 +577,6 @@ script = ExtResource("6_q7uve")
 
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")
-
-[node name="ActiveQuests" type="Node" parent="GameManagers/QuestManager"]
-unique_name_in_owner = true
-
-[node name="FinishedQuests" type="Node" parent="GameManagers/QuestManager"]
-unique_name_in_owner = true
-
-[node name="QuestData" type="Node" parent="GameManagers/QuestManager"]
-unique_name_in_owner = true
-script = ExtResource("10_4g13y")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true

@@ -15,7 +15,6 @@ func load_interactable_data(interactable : Interactable):
 		interactable_label = interactable.interactable_data.interactable_label
 		interactable_portraits = interactable.interactable_data.interactable_portraits
 	else:
-		#DEBUG
 		UtilsSingleton.log_error(self, "load_interactable_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
 
 func load_objectives_data(objectives : Array[String]):

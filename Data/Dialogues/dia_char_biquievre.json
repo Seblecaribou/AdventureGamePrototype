@@ -1,0 +1,22 @@
+{
+	"quest_id":"q00",
+	"steps":
+	[
+		{
+			"step_id":"ste_001",
+			"objectives": 
+			[
+				{
+					"objective_id" : "obj01",
+					"character_id" : "char_biquievre",
+					"content" : 
+					[
+						"Hello, sir.", 
+						"What can I do for you?"
+					]
+				}
+			]
+		}
+	]
+
+}

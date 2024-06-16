@@ -1,0 +1,32 @@
+{
+	"quest_id":"q00",
+	"steps":
+	[
+		{
+			"step_id":"ste_001",
+			"char_thierry": 
+			[
+				{
+					"objective_id" : "obj01",
+					"character_id" : "char_chiro",
+					"content" : 
+					[
+						"Hello.", 
+						"My Name is Detective Chiro.",
+						"I'm investigating a [bold]very strange case[/bold]!"
+					]
+				},
+				{
+					"objective_id" : "obj01",
+					"character_id" : "char_thierry",
+					"content" : 
+					[
+						"Good morning, Monsieur...Chiro.", 
+						"And welcome to Hotel Misterygolot.",
+						"How long will you stay with us?"
+					]
+				}
+			]
+		}
+	]
+}

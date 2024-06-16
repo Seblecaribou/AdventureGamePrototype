@@ -10,7 +10,7 @@
 				{
 					"id": "obj01",
 					"title":"Check in",
-					"characters": ["char_golot", "char_thierry", "char_biquievre"],
+					"characters": ["char_thierry"],
 					"description":"Talk to the receptionist to get a room for tonight.",
 					"results":["pic_room101key", "cut_givekey"],
 					"mandatory": true,

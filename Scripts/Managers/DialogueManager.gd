@@ -5,7 +5,7 @@ extends Node
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
 var current_quests_steps : Array[String]
-var current_dialogue : String
+var current_dialogues : String
 var current_character : Interactable
 
 
@@ -17,7 +17,8 @@ func _ready():
 
 func display_dialogue() -> void:
 	#TODO make dialogue appear in DialogueFrame if Interaction calls it
-	dialogue_component.type_dialogue(current_dialogue)
+	for dialogue in current_dialogues:
+		dialogue_component.type_dialogue(dialogue)
 	
 func hide_dialogue() -> void:
 	dialogue_component.visible = false
@@ -34,7 +35,6 @@ func configure_dialogue():
 func on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
 	if interaction_type == "char":
 		current_character = interactable
-		print("DialogueManager : ", current_character)
 	if dialogue_data != null:
 		configure_dialogue()
 	#dialogue_component.display_dialogue()
