@@ -543,8 +543,9 @@ script = ExtResource("2_1q2se")
 [node name="Moving" type="Node" parent="GameManagers/GameStateMachine"]
 script = ExtResource("3_txr1d")
 
-[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("dialogue_data", "dialogue_component")]
+[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("quest_manager", "dialogue_data", "dialogue_component")]
 script = ExtResource("4_yumw5")
+quest_manager = NodePath("../QuestManager")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
 

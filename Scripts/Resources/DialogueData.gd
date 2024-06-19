@@ -4,10 +4,7 @@ extends Node
 var dialogue_id : String
 var interactable_label : String
 var interactable_portraits : Array[String]
-var quests_objectives : Array[String]
-
-var objectives : Array[String]
-
+var dialogues_data : Dictionary
 
 ##Takes an NPC id and loads the NPC data
 func load_interactable_data(interactable : Interactable):
@@ -17,11 +14,8 @@ func load_interactable_data(interactable : Interactable):
 	else:
 		UtilsSingleton.log_error(self, "load_interactable_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
 
-func load_objectives_data(objectives : Array[String]):
-	if !objectives.is_empty():
-		quests_objectives = objectives
-	else:
-		UtilsSingleton.log_error(self, "load_objectives_data","Error while loading the dialogue objectives data: no objectives in the provided array.")
-
-func load_dialogues(dialogue_id):
-	pass
+##Loads dialogues based of an NPC's id
+func load_dialogues_data(interactable_id : String):
+	var dialogue_file_path = 'dia_' + interactable_id
+	if interactable_id != null:
+		dialogues_data = UtilsSingleton.load_json_file(dialogue_file_path)
