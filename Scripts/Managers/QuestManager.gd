@@ -16,7 +16,7 @@ func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
 	if default:
 		save_file_name = "default_" + save_file_name
-	quest_dictionary = DynamicDataSingleton.load_save(quest_dictionary, save_file_name)
+	quest_dictionary = DynamicDataSingleton.load_save(quest_dictionary, save_file_name, false)
 	if quest_dictionary[dictionary_id].size() > 0:
 		for quest in quest_dictionary[dictionary_id]:
 			var new_quest_data = QuestData.new()

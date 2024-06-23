@@ -2,6 +2,7 @@
 extends Node
 
 var base_path : String = "user://"
+var base_default_path : String = "res://"
 
 #Save files to load
 var quest_save : Dictionary
@@ -17,18 +18,18 @@ var characters_save : Dictionary
 var characters_file_name : String = "characters_save"
 
 func _ready():
-	quest_save = load_save(quest_save, quest_file_name)
+	quest_save = load_save(quest_save, quest_file_name, true)
 	#TODO Load all the default data if no save files
 	#inventory_save
 	#rooms_save
 	#characters_save
 
-func load_save(save : Dictionary, save_file_name: String) -> Dictionary:
+func load_save(save : Dictionary, save_file_name: String, default : bool) -> Dictionary:
 	var file_path : String = base_path + save_file_name + ".json"
-	if FileAccess.file_exists(file_path):
-		save = UtilsSingleton.load_json_file(file_path)
+	if default || !FileAccess.file_exists(file_path):
+		save = UtilsSingleton.load_json_file(base_default_path + "default_" + save_file_name + ".json")
 	else:
-		save = UtilsSingleton.load_json_file(base_path + "default_" + save_file_name + ".json")
+		save = UtilsSingleton.load_json_file(file_path)
 	return save
 	
 func save(save_file_name : String, save_dictionary : Dictionary):
