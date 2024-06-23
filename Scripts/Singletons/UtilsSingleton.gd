@@ -4,7 +4,7 @@ extends Node
 func load_json_file(file_path : String):
 	if FileAccess.file_exists(file_path):
 		var data : FileAccess = FileAccess.open(file_path, FileAccess.READ)
-		var parsed_data  = JSON.parse_string(data.get_as_text())
+		var parsed_data = JSON.parse_string(data.get_as_text())
 		data.close()
 		data = null
 		

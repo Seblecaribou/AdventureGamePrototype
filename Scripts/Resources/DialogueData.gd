@@ -15,7 +15,15 @@ func load_interactable_data(interactable : Interactable):
 		UtilsSingleton.log_error(self, "load_interactable_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
 
 ##Loads dialogues based of an NPC's id
-func load_dialogues_data(interactable_id : String):
+func load_dialogues_data(interactable_id : String, objectives : Array[String]):
 	var dialogue_file_path = 'dia_' + interactable_id
+	var all_interactable_dialogues_data : Dictionary
 	if interactable_id != null:
-		dialogues_data = UtilsSingleton.load_json_file(dialogue_file_path)
+		all_interactable_dialogues_data = UtilsSingleton.load_json_file(dialogue_file_path)
+		if objectives.length > 0:
+			for objective in objectives:
+				#TODO cut objective into quest_id, step_id and objective_id
+				pass
+			pass
+	else:
+		UtilsSingleton.log_error(self, "load_dialogues_data", "Error: no interactable_id was provided.")

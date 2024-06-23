@@ -7,6 +7,7 @@ var finished_quests : Array[QuestData]
 func _ready():
 	load_quests_from_save_file(true, "active_quests")
 	load_quests_from_save_file(true, "finished_quests")
+	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
 	SignalBusSingleton.update_one_quest.connect(on_update_one_quest)
 	SignalBusSingleton.unlock_quest.connect(on_unlock_quest)
 	pass
@@ -14,9 +15,9 @@ func _ready():
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 	var quest_dictionary : Dictionary = {}
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
+	var save_directory_name : String = DynamicDataSingleton.quest_default_save_directory
 	if default:
-		save_file_name = "default_" + save_file_name
-	quest_dictionary = DynamicDataSingleton.load_save(quest_dictionary, save_file_name, false)
+		quest_dictionary = DynamicDataSingleton.load_save(quest_dictionary, save_file_name, save_directory_name, true)
 	if quest_dictionary[dictionary_id].size() > 0:
 		for quest in quest_dictionary[dictionary_id]:
 			var new_quest_data = QuestData.new()
@@ -45,7 +46,6 @@ func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 				new_quest_data.quest_results.append(res)
 			new_quest_data.quest_active = quest["active"]
 			active_quests.append(new_quest_data)
-		SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
 	else:
 		UtilsSingleton.log_data(self, "load_quests_from_save_file", "No quest found in '" + dictionary_id +"'.")
 

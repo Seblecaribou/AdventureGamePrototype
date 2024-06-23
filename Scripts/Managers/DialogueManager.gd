@@ -24,6 +24,9 @@ func hide_dialogue() -> void:
 
 func configure_dialogue():
 	#TODO loads dialogues based of current_quests_steps and current_character
+	for objective in current_quests_objectives:
+		#TODO 
+		pass 
 	pass
 
 #TODO create a signal that can be listened to and that changes the content of current_quests_steps
@@ -32,6 +35,8 @@ func on_player_character_interacted(emitter : Node, interactable : Interactable,
 		dialogue_data.load_interactable_data(interactable)
 	if dialogue_data != null:
 		configure_dialogue()
+	UtilsSingleton.log_data(self, "on_player_character_interacted", current_quests_objectives)
+
 	#dialogue_component.display_dialogue()
 
 func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
@@ -40,5 +45,6 @@ func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fini
 		for step in quest.quest_steps:
 			for objective in step.objectives:
 				if !objective.success:
-					var dialogue_id : String = step.id + objective.id
+					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
+	UtilsSingleton.log_data(self, "on_update_all_quests", current_quests_objectives)
