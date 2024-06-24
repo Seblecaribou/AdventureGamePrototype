@@ -5,7 +5,7 @@ extends Node
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
 var current_quests_objectives : Array[String]
-var current_dialogues : String
+var current_dialogues : Array[String]
 
 
 func _ready():
@@ -22,19 +22,16 @@ func display_dialogue() -> void:
 func hide_dialogue() -> void:
 	dialogue_component.visible = false
 
-func configure_dialogue():
+func configure_dialogue(interactable : ):
 	#TODO loads dialogues based of current_quests_steps and current_character
 	for objective in current_quests_objectives:
-		#TODO 
 		pass 
 	pass
 
 #TODO create a signal that can be listened to and that changes the content of current_quests_steps
 func on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
 	if interaction_type == "char":
-		dialogue_data.load_interactable_data(interactable)
-	if dialogue_data != null:
-		configure_dialogue()
+		dialogue_data.load_dialogue_data(interactable)
 	UtilsSingleton.log_data(self, "on_player_character_interacted", current_quests_objectives)
 
 	#dialogue_component.display_dialogue()

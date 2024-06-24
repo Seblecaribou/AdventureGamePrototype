@@ -1,29 +1,17 @@
 class_name DialogueData
 extends Node
 
-var dialogue_id : String
+var interactable_id : String
 var interactable_label : String
 var interactable_portraits : Array[String]
 var dialogues_data : Dictionary
 
-##Takes an NPC id and loads the NPC data
-func load_interactable_data(interactable : Interactable):
+##Takes an NPC object and loads the NPC parameters and dialogues in DialogueData
+func load_dialogue_data(interactable : Interactable):
 	if interactable.interactable_id != null:
+		interactable_id = interactable.interactable_id
 		interactable_label = interactable.interactable_data.interactable_label
 		interactable_portraits = interactable.interactable_data.interactable_portraits
+		dialogues_data = UtilsSingleton.load_json_file('dia_' + interactable_id + '.json')
 	else:
-		UtilsSingleton.log_error(self, "load_interactable_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
-
-##Loads dialogues based of an NPC's id
-func load_dialogues_data(interactable_id : String, objectives : Array[String]):
-	var dialogue_file_path = 'dia_' + interactable_id
-	var all_interactable_dialogues_data : Dictionary
-	if interactable_id != null:
-		all_interactable_dialogues_data = UtilsSingleton.load_json_file(dialogue_file_path)
-		if objectives.length > 0:
-			for objective in objectives:
-				#TODO cut objective into quest_id, step_id and objective_id
-				pass
-			pass
-	else:
-		UtilsSingleton.log_error(self, "load_dialogues_data", "Error: no interactable_id was provided.")
+		UtilsSingleton.log_error(self, "load_dialogues_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
