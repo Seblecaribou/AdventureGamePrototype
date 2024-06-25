@@ -1,5 +1,5 @@
 class_name QuestObjectiveComponent
-extends Node
+extends RefCounted
 
 var id : String
 var title : String

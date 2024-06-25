@@ -28,16 +28,16 @@ func configure_dialogue(interactable : ):
 		var quest_id = objective.get_slice("_", 0)
 		var step_id = objective.get_slice("_", 1)
 		var objective_id = objective.get_slice("_", 2)
-		for dialogue in dialogue_data.dialogue_dictionary:
+		for dialogue in dialogue_data.dialogues:
 			pass
 		pass 
 	pass
 
-#TODO create a signal that can be listened to and that changes the content of current_quests_steps
+
+#Signal callback functions
 func on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
 	if interaction_type == "char":
 		dialogue_data.load_dialogue_data(interactable)
-	UtilsSingleton.log_data(self, "on_player_character_interacted", current_quests_objectives)
 	configure_dialogue(interactable)
 	#dialogue_component.display_dialogue()
 
@@ -49,4 +49,3 @@ func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fini
 				if !objective.success:
 					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
-	UtilsSingleton.log_data(self, "on_update_all_quests", current_quests_objectives)

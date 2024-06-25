@@ -1,29 +1,34 @@
 {
-	"quest_id":"q00",
-	"steps":
+	"dialogues":
 	[
 		{
-			"step_id":"ste_001",
-			"char_thierry": 
+			"quest_id":"q00",
+			"steps":
 			[
 				{
-					"objective_id" : "obj01",
-					"character_id" : "char_chiro",
-					"content" : 
+					"step_id":"ste001",
+					"objectives": 
 					[
-						"Hello.", 
-						"My Name is Detective Chiro.",
-						"I'm investigating a [bold]very strange case[/bold]!"
-					]
-				},
-				{
-					"objective_id" : "obj01",
-					"character_id" : "char_thierry",
-					"content" : 
-					[
-						"Good morning, Monsieur...Chiro.", 
-						"And welcome to Hotel Misterygolot.",
-						"How long will you stay with us?"
+						{
+							"objective_id" : "obj01",
+							"character_id" : "char_chiro",
+							"content" : 
+							[
+								"Hello.", 
+								"My Name is Detective Chiro.",
+								"I'm investigating a [bold]very strange case[/bold]!"
+							]
+						},
+						{
+							"objective_id" : "obj01",
+							"character_id" : "char_thierry",
+							"content" : 
+							[
+								"Good morning, Monsieur...Chiro.", 
+								"And welcome to Hotel Misterygolot.",
+								"How long will you stay with us?"
+							]
+						}
 					]
 				}
 			]

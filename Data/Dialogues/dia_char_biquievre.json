@@ -1,18 +1,23 @@
 {
-	"quest_id":"q00",
-	"steps":
+	"dialogues":
 	[
 		{
-			"step_id":"ste_001",
-			"objectives": 
+			"quest_id":"q00",
+			"steps":
 			[
 				{
-					"objective_id" : "obj01",
-					"character_id" : "char_biquievre",
-					"content" : 
+					"step_id":"ste001",
+					"objectives": 
 					[
-						"Hello, sir.", 
-						"What can I do for you?"
+						{
+							"objective_id" : "obj01",
+							"character_id" : "char_biquievre",
+							"content" : 
+							[
+								"Hello, sir.", 
+								"What can I do for you?"
+							]
+						}
 					]
 				}
 			]

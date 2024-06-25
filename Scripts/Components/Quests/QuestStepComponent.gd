@@ -1,5 +1,5 @@
 class_name QuestStepComponent
-extends Node
+extends RefCounted
 
 var id : String
 var description : String
