@@ -25,6 +25,11 @@ func hide_dialogue() -> void:
 func configure_dialogue(interactable : ):
 	#TODO loads dialogues based of current_quests_steps and current_character
 	for objective in current_quests_objectives:
+		var quest_id = objective.get_slice("_", 0)
+		var step_id = objective.get_slice("_", 1)
+		var objective_id = objective.get_slice("_", 2)
+		for dialogue in dialogue_data.dialogue_dictionary:
+			pass
 		pass 
 	pass
 
@@ -33,7 +38,7 @@ func on_player_character_interacted(emitter : Node, interactable : Interactable,
 	if interaction_type == "char":
 		dialogue_data.load_dialogue_data(interactable)
 	UtilsSingleton.log_data(self, "on_player_character_interacted", current_quests_objectives)
-
+	configure_dialogue(interactable)
 	#dialogue_component.display_dialogue()
 
 func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):

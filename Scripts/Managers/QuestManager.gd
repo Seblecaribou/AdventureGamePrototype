@@ -15,7 +15,7 @@ func _ready():
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 	var quest_dictionary : Dictionary = {}
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
-	var save_directory_name : String = DynamicDataSingleton.quest_default_save_directory
+	var save_directory_name : String = AppSettingsSingleton.quests_data_folder_path
 	if default:
 		quest_dictionary = DynamicDataSingleton.load_save(quest_dictionary, save_file_name, save_directory_name, true)
 	if quest_dictionary[dictionary_id].size() > 0:
