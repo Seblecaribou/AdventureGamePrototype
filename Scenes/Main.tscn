@@ -549,9 +549,13 @@ quest_manager = NodePath("../QuestManager")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
 
-[node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager"]
+[node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "portrait_right", "portrait_left")]
 visible = false
 script = ExtResource("4_e7uya")
+dialogue_frame = NodePath("DialogueFrame")
+dialogue_text = NodePath("DialogueText")
+portrait_right = NodePath("PortraitRight")
+portrait_left = NodePath("PortraitLeft")
 
 [node name="DialogueFrame" type="Polygon2D" parent="GameManagers/DialogueManager/DialogueComponent"]
 position = Vector2(575.707, 572.213)
@@ -566,7 +570,6 @@ offset_top = 461.557
 offset_right = 938.256
 offset_bottom = 543.557
 bbcode_enabled = true
-text = "[shake][color=black]Ceci est un dialogue[/color][/shake]"
 
 [node name="PortraitLeft" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
 
