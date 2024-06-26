@@ -45,3 +45,5 @@ func change_portrait(portrait_id : String, portrait_sprite_id : String):
 		pass
 	else:
 		pass
+
+
