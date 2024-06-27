@@ -12,12 +12,7 @@ func _ready():
 	SignalBusSingleton.newstate.connect(_on_new_state)
 	SignalBusSingleton.interacted.connect(on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(on_update_all_quests)
-	#TODO get the current quest step from the quest manager signal
-	
 
-func hide_dialogue() -> void:
-	#TODO unload everything in the DialogueData + DialogueComponent to save on memory
-	dialogue_component.visible = false
 
 func configure_dialogue(interactable : ):
 	for objective in current_quests_objectives:
@@ -31,6 +26,15 @@ func configure_dialogue(interactable : ):
 						for dialogue_objective in dialogue_step.objectives:
 							if dialogue_objective.objective_id == objective_id:
 								current_dialogues.append(dialogue_objective)
+
+func reset_dialogue_system() -> void:
+	#TODO unload everything in the DialogueData + DialogueComponent to save on memory
+	for dialogue in current_dialogues:
+		dialogue = null
+	current_dialogues.clear()
+	dialogue_data.clear_dialogue_data()
+	dialogue_component.visible = false
+
 
 #Signals callback functions
 func on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
@@ -54,4 +58,4 @@ func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fini
 func _on_new_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
 		if new_state == "moving" and new_state != previous_state:
-			hide_dialogue()
+			reset_dialogue_system()

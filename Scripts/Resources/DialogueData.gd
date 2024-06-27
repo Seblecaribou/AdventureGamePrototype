@@ -34,6 +34,16 @@ func load_dialogue_data(interactable : Interactable):
 	else:
 		UtilsSingleton.log_error(self, "load_dialogues_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
 
+func clear_dialogue_data():
+	interactable_id = ""
+	interactable_label = ""
+	for portrait in interactable_portraits:
+		portrait = ""
+	interactable_portraits.clear()
+	for dialogue in dialogues:
+		dialogue = null
+	dialogues.clear()
+
 class DialogueQuestData:
 	extends RefCounted
 	var quest_id : String
