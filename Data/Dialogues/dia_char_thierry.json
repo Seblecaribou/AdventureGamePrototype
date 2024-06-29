@@ -11,7 +11,8 @@
 					[
 						{
 							"objective_id" : "obj01",
-							"character_id" : "char_chiro",
+							"character_id" : "char_biquievre",
+							"character_speaker_id" : "char_chiro",
 							"content" : 
 							[
 								"Hello.", 
@@ -22,6 +23,7 @@
 						{
 							"objective_id" : "obj01",
 							"character_id" : "char_thierry",
+							"character_speaker_id" : "char_thierry",
 							"content" : 
 							[
 								"Good morning, Monsieur...Chiro.", 

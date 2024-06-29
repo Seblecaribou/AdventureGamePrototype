@@ -42,8 +42,9 @@ func on_player_character_interacted(emitter : Node, interactable : Interactable,
 		dialogue_data.load_dialogue_data(interactable)
 	configure_dialogue(interactable)
 	for dialogue in current_dialogues:
-		for content in dialogue.content:
-			dialogue_component.display_dialogue(content)
+		#TODO Load the menu with the dialogue data to have one button per objective/dialogue
+		UtilsSingleton.log_data(self, "on_player_character_interacted", dialogue)
+
 
 func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
 	#TODO implement recuperation of data active/finished quest

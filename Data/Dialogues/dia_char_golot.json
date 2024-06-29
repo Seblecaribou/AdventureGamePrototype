@@ -12,6 +12,7 @@
 						{
 							"objective_id" : "obj01",
 							"character_id" : "char_golot",
+							"character_speaker_id": "char_golot",
 							"content" : 
 							[
 								"You' the new apprentice?",
@@ -21,7 +22,8 @@
 						},
 						{
 							"objective_id" : "obj01",
-							"character_id" : "char_chiro",
+							"character_id" : "char_golot",
+							"character_speaker_id": "char_chiro",
 							"content" : 
 							[
 								"No, hmmm. I am Detective Chiro.", 

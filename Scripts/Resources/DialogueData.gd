@@ -25,6 +25,7 @@ func load_dialogue_data(interactable : Interactable):
 						var dialogue_objective = DialogueObjectiveData.new()
 						dialogue_objective.objective_id = objective["objective_id"]
 						dialogue_objective.character_id = objective["character_id"]
+						dialogue_objective.character_speaker_id = objective["character_speaker_id"]
 						for string in objective["content"]:
 							dialogue_objective.content.append(string)
 						dialogue_step.objectives.append(dialogue_objective)
@@ -58,4 +59,5 @@ class DialogueObjectiveData:
 	extends RefCounted
 	var objective_id : String
 	var character_id : String
+	var character_speaker_id : String
 	var content : Array[String]
