@@ -4,5 +4,5 @@ extends Button
 var objective_id : String
 var label_content : String
 
-func _button_pressed():
-	
+func _ready():
+	text = label_content

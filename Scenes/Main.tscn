@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
 [ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
 [ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
-[ext_resource type="Script" path="res://Scenes/DialogueMenu.gd" id="9_jnvcw"]
+[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5mvu3"]
 texture = ExtResource("2_3axcj")
@@ -544,9 +544,10 @@ script = ExtResource("2_1q2se")
 [node name="Moving" type="Node" parent="GameManagers/GameStateMachine"]
 script = ExtResource("3_txr1d")
 
-[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("quest_manager", "dialogue_data", "dialogue_component")]
+[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("quest_manager", "dialogue_menu", "dialogue_data", "dialogue_component")]
 script = ExtResource("4_yumw5")
 quest_manager = NodePath("../QuestManager")
+dialogue_menu = NodePath("DialogueMenu")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
 

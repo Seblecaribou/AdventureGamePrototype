@@ -2,6 +2,7 @@ class_name DialogueManager
 extends Node
 
 @export var quest_manager : QuestManager
+@export var dialogue_menu : DialogueMenu
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
 var current_quests_objectives : Array[String]

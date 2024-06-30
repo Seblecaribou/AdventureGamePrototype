@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ht2r5nsnjvvj"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueButtonComponent.gd" id="1_q0tdy"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_q0tdy")
