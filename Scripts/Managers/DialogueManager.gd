@@ -11,8 +11,8 @@ var current_dialogues : Array[DialogueData.DialogueObjectiveData]
 
 func _ready():
 	SignalBusSingleton.newstate.connect(_on_new_state)
-	SignalBusSingleton.interacted.connect(on_player_character_interacted)
-	SignalBusSingleton.update_all_quests.connect(on_update_all_quests)
+	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
+	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
 
 
 func configure_dialogue(interactable : ):
@@ -38,24 +38,25 @@ func reset_dialogue_system() -> void:
 
 
 #Signals callback functions
-func on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
+func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
 	if interaction_type == "char":
 		dialogue_data.load_dialogue_data(interactable)
 	configure_dialogue(interactable)
 	for dialogue in current_dialogues:
-		#TODO Load the menu with the dialogue data to have one button per objective/dialogue
+		dialogue_menu.add_button(dialogue.objective_id, dialogue.dialogue_button_label)
 		UtilsSingleton.log_data(self, "on_player_character_interacted", dialogue)
 
+func _on_button_pressed(objective_id : String):
+	#TODO start the dialogue
+	pass
 
-func on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
-	#TODO implement recuperation of data active/finished quest
+func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
 	for quest in active_quests:
 		for step in quest.quest_steps:
 			for objective in step.objectives:
 				if !objective.success:
 					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
-
 
 func _on_new_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
