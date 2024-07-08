@@ -38,12 +38,14 @@ func reset_dialogue_system() -> void:
 
 
 #Signals callback functions
-func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String):
+func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2):
 	if interaction_type == "char":
 		dialogue_data.load_dialogue_data(interactable)
 	configure_dialogue(interactable)
-	for dialogue in current_dialogues:
-		dialogue_menu.add_button(dialogue.objective_id, dialogue.dialogue_button_label)
+	for index in range(current_dialogues.size()):
+		dialogue_menu.global_position = player_position + AppSettingsSingleton.dialogue_menu_offset
+		var dialogue = current_dialogues[index]
+		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 		UtilsSingleton.log_data(self, "on_player_character_interacted", dialogue)
 
 func _on_button_pressed(objective_id : String):

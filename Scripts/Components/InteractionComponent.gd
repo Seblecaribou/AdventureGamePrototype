@@ -39,7 +39,7 @@ func interact():
 		label.text = ""
 		var current_interaction = interactions[0]
 		var current_interaction_type : String = current_interaction.interactable_type
-		SignalBusSingleton.interacted.emit(self, current_interaction, current_interaction_type)
+		SignalBusSingleton.interacted.emit(self, current_interaction, current_interaction_type, player_character.global_position)
 		match current_interaction_type:
 			"obs":
 				interaction_content.clear()

@@ -524,6 +524,7 @@ offset_right = 1155.0
 offset_bottom = 650.0
 texture = ExtResource("1_4fsqj")
 stretch_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -602,3 +603,6 @@ position = Vector2(78, 544)
 
 [node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(362, 545)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 350)

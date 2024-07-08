@@ -31,6 +31,25 @@
 									]
 								}
 							]
+						},
+						{
+							"objective_id" : "obj02",
+							"dialogue_button_label":"Talk about obj02",
+							"content" :
+							[
+								{
+									"character_id" : "char_chiro",
+									"dialogue_lines" : [
+										"Do you know anything about a Diable?"
+									]	
+								},
+								{
+									"character_id": "char_golot",
+									"dialogue_lines" : [
+										"Well...I went to catechism as kid, if that is your question."
+									]
+								}
+							]
 						}
 					]
 				}
