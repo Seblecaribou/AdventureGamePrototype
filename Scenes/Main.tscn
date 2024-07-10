@@ -520,8 +520,9 @@ sources/0 = SubResource("TileSetAtlasSource_5mvu3")
 
 [node name="BackGround" type="TextureRect" parent="."]
 texture_filter = 1
+offset_top = 2.0
 offset_right = 1155.0
-offset_bottom = 650.0
+offset_bottom = 652.0
 texture = ExtResource("1_4fsqj")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
@@ -552,6 +553,11 @@ dialogue_menu = NodePath("DialogueMenu")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
 
+[node name="DialogueMenu" type="Node2D" parent="GameManagers/DialogueManager"]
+visible = false
+z_index = 6
+script = ExtResource("9_jnvcw")
+
 [node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "portrait_right", "portrait_left")]
 visible = false
 script = ExtResource("4_e7uya")
@@ -581,9 +587,6 @@ bbcode_enabled = true
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")
-
-[node name="DialogueMenu" type="Node" parent="GameManagers/DialogueManager"]
-script = ExtResource("9_jnvcw")
 
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")

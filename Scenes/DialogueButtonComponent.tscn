@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueButtonComponent.gd" id="1_q0tdy"]
 
 [node name="Button" type="Button"]
-offset_right = 170.0
-offset_bottom = 38.0
+offset_right = 196.0
+offset_bottom = 37.0
 text = "Test Text"
 script = ExtResource("1_q0tdy")

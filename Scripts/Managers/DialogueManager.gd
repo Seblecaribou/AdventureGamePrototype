@@ -42,14 +42,19 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 	if interaction_type == "char":
 		dialogue_data.load_dialogue_data(interactable)
 	configure_dialogue(interactable)
+	dialogue_menu.global_position = player_position + AppSettingsSingleton.dialogue_menu_offset
+	dialogue_menu.visible = true
 	for index in range(current_dialogues.size()):
-		dialogue_menu.global_position = player_position + AppSettingsSingleton.dialogue_menu_offset
 		var dialogue = current_dialogues[index]
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
-		UtilsSingleton.log_data(self, "on_player_character_interacted", dialogue)
+	dialogue_menu.place_buttons()
+	for button in dialogue_menu.get_children():
+		#TODO connect to the custom "pressed" signal of each button and use _on_button_pressed as the callable of the connect method
+		pass
 
-func _on_button_pressed(objective_id : String):
+func _on_button_pressed(button : DialogueButtonComponent):
 	#TODO start the dialogue
+	UtilsSingleton.log_data(self, "_on_button_pressed", button.objective_id)
 	pass
 
 func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
