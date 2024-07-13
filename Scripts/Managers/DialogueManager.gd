@@ -13,6 +13,7 @@ func _ready():
 	SignalBusSingleton.newstate.connect(_on_new_state)
 	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
+	SignalBusSingleton.pressed.connect(_on_pressed)
 
 
 func configure_dialogue(interactable : ):
@@ -48,14 +49,19 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		var dialogue = current_dialogues[index]
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
-	for button in dialogue_menu.get_children():
-		#TODO connect to the custom "pressed" signal of each button and use _on_button_pressed as the callable of the connect method
-		pass
+	#for button in dialogue_menu.get_children():
+		##TODO connect to the custom "pressed" signal of each button and use _on_button_pressed as the callable of the connect method
+		#
+		#pass
 
-func _on_button_pressed(button : DialogueButtonComponent):
+func _on_pressed(button : Node2D):
 	#TODO start the dialogue
-	UtilsSingleton.log_data(self, "_on_button_pressed", button.objective_id)
-	pass
+	var dialogue_to_display
+	for dialogue in current_dialogues:
+		if button.objective_id == dialogue.objective_id:
+			dialogue_component.display_dialogue(dialogue.content[0].dialogue_lines[0])
+			UtilsSingleton.log_data(self, "_on_button_pressed", "Here is the dialogue : " + dialogue.content[0].dialogue_lines[0])
+	dialogue_component.
 
 func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
 	for quest in active_quests:

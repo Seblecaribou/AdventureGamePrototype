@@ -7,7 +7,7 @@ func add_button(button_index : int, objective_id : String, label : String):
 	var new_button_instance = button_scene.instantiate()
 	new_button_instance.index = button_index
 	new_button_instance.objective_id = objective_id
-	new_button_instance.text = label
+	new_button_instance.button_label.text = label
 	add_child(new_button_instance)
 
 func place_buttons():

@@ -24,4 +24,11 @@ signal objectives(emitter : Node, objectives : Array[String])
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2)
 
 #StateMachine
+##Emitters: StateMachineComponent (emitter), GameStateMachine (inherits emitter)
+##Connected: PlayerCharacter, DialogueManager
 signal newstate(emitter : Node, previous_state : String, new_state : String)
+
+#Dialogues
+##Emitters: DialogueButtonManager
+##Connected: DialogueManager
+signal pressed(emitter : Button)
