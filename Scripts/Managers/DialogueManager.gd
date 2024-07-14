@@ -37,7 +37,6 @@ func reset_dialogue_system() -> void:
 	dialogue_data.clear_dialogue_data()
 	dialogue_component.visible = false
 
-
 #Signals callback functions
 func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2):
 	if interaction_type == "char":
@@ -49,19 +48,14 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		var dialogue = current_dialogues[index]
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
-	#for button in dialogue_menu.get_children():
-		##TODO connect to the custom "pressed" signal of each button and use _on_button_pressed as the callable of the connect method
-		#
-		#pass
 
 func _on_pressed(button : Node2D):
-	#TODO start the dialogue
 	var dialogue_to_display
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
 			dialogue_component.display_dialogue(dialogue.content[0].dialogue_lines[0])
-			UtilsSingleton.log_data(self, "_on_button_pressed", "Here is the dialogue : " + dialogue.content[0].dialogue_lines[0])
-	dialogue_component.
+	dialogue_menu.visible = false
+
 
 func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
 	for quest in active_quests:

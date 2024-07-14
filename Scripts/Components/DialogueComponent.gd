@@ -10,12 +10,15 @@ var current_char_index: int = 0
 var typing_timer: Timer = null
 
 func _ready():
+	start_display_timer()
+
+
+func start_display_timer() -> void:
 	typing_timer = Timer.new()
-	typing_timer.set_wait_time(0.05)  # Adjust the wait time to control typing speed
+	typing_timer.set_wait_time(AppSettingsSingleton.dialogue_display_speed)
 	typing_timer.set_one_shot(false)
 	typing_timer.timeout.connect(_on_timer_timeout)
 	add_child(typing_timer)
-
 
 func _on_timer_timeout() -> void:
 	if current_char_index < full_text.length():
@@ -40,10 +43,11 @@ func type_dialogue(dialogue : String) -> void:
 func manage_bbcode(isEnabled : bool) -> void:
 	dialogue_text.bbcode_enabled = isEnabled
 
-func change_portrait(portrait_id : String, portrait_sprite_id : String):
-	if portrait_id == "right":
-		pass
-	else:
-		pass
+func change_portrait(previous_portrait_id : String, portrait_id : String, portrait_sprite_id : String):
+	if previous_portrait_id != portrait_id:
+		if portrait_id == "right":
+			pass
+		else:
+			pass
 
 

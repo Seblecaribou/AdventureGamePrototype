@@ -16,3 +16,4 @@ var dialogue_menu_offset : Vector2 = Vector2(50 , -10) #Vector2(x_offset, y_offs
 var dialogue_menu_size : Vector2 = Vector2(150 , 250) #Vector2(width, height)
 var dialogue_button_size : Vector2 = Vector2(150 , 44) #Vector2(width, height)
 var dialogue_menu_spacing : int = 10
+var dialogue_display_speed : float = 0.05

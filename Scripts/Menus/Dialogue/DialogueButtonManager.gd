@@ -11,7 +11,6 @@ func _ready():
 	dialogue_button_component.modulate.a = 0
 	dialogue_button_component.pressed.connect(_on_button_pressed)
 	button_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#TODO Add an override signal "pressed" to send "self" in it
 	#TODO Load texture
 	pass
 
