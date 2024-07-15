@@ -11,22 +11,44 @@
 					[
 						{
 							"objective_id" : "obj01",
-							"character_id" : "char_golot",
-							"content" : 
+							"dialogue_button_label":"Talk about obj01",
+							"content" :
 							[
-								"You' the new apprentice?",
-								"Throw some flour on the table and go get me some salt, sweetheart.",
-								"I'm only halfway through the morning batch."
+								{
+									"character_id" : "char_golot",
+									"dialogue_lines" : [
+										"You' the new apprentice?",
+										"Throw some flour on the table and go get me some salt, sweetheart.",
+										"I'm only halfway through the morning batch."
+									]	
+								},
+								{
+									"character_id": "char_chiro",
+									"dialogue_lines" : [
+										"No, hmmm. I am Detective Chiro.", 
+										"I am staying at the next door hotel. You might have heard of it...[bold]Hotel Mysterygolo[/bold].",
+										"..."
+									]
+								}
 							]
 						},
 						{
-							"objective_id" : "obj01",
-							"character_id" : "char_chiro",
-							"content" : 
+							"objective_id" : "obj02",
+							"dialogue_button_label":"Talk about obj02",
+							"content" :
 							[
-								"No, hmmm. I am Detective Chiro.", 
-								"I am staying at the next door hotel. You might have heard of it...[bold]Hotel Mysterygolo[/bold].",
-								""
+								{
+									"character_id" : "char_chiro",
+									"dialogue_lines" : [
+										"Do you know anything about a Diable?"
+									]	
+								},
+								{
+									"character_id": "char_golot",
+									"dialogue_lines" : [
+										"Well...I went to catechism as kid, if that is your question."
+									]
+								}
 							]
 						}
 					]

@@ -573,22 +573,12 @@ color = Color(0.984314, 0.984314, 0, 1)
 polygon = PackedVector2Array(402, -93, -384, -85, -371, 23, 405, 29)
 
 [node name="DialogueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
-self_modulate = Color(0.122185, 0.067379, 0.0128321, 1)
 z_index = 2
-offset_left = 227.0
-offset_top = 462.0
-offset_right = 957.0
-offset_bottom = 575.0
+offset_left = 227.256
+offset_top = 461.557
+offset_right = 938.256
+offset_bottom = 543.557
 bbcode_enabled = true
-
-[node name="DialogueContinueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
-self_modulate = Color(0, 0, 0, 1)
-offset_left = 955.0
-offset_top = 561.0
-offset_right = 1019.0
-offset_bottom = 617.0
-bbcode_enabled = true
-text = "[font_size=30]A[/font_size]"
 
 [node name="PortraitLeft" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
 

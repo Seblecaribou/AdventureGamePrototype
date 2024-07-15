@@ -24,9 +24,13 @@ func load_dialogue_data(interactable : Interactable):
 					for objective in step["objectives"]:
 						var dialogue_objective = DialogueObjectiveData.new()
 						dialogue_objective.objective_id = objective["objective_id"]
-						dialogue_objective.character_id = objective["character_id"]
-						for string in objective["content"]:
-							dialogue_objective.content.append(string)
+						dialogue_objective.dialogue_button_label = objective["dialogue_button_label"]
+						for content in objective["content"]:
+							var dialogue_content = DialogueContentData.new()
+							dialogue_content.character_id = content["character_id"]
+							for line in content["dialogue_lines"]:
+								dialogue_content.dialogue_lines.append(line)
+							dialogue_objective.content.append(dialogue_content)
 						dialogue_step.objectives.append(dialogue_objective)
 					dialogue_data.steps.append(dialogue_step)
 				dialogues.append(dialogue_data)
@@ -34,6 +38,17 @@ func load_dialogue_data(interactable : Interactable):
 	else:
 		UtilsSingleton.log_error(self, "load_dialogues_data","Error while loading the dialogue interactable data: no interatable_id was provided.")
 
+func clear_dialogue_data():
+	interactable_id = ""
+	interactable_label = ""
+	for portrait in interactable_portraits:
+		portrait = ""
+	interactable_portraits.clear()
+	for dialogue in dialogues:
+		dialogue = null
+	dialogues.clear()
+
+#Dialogue classes
 class DialogueQuestData:
 	extends RefCounted
 	var quest_id : String
@@ -47,5 +62,10 @@ class DialogueStepData:
 class DialogueObjectiveData:
 	extends RefCounted
 	var objective_id : String
+	var dialogue_button_label : String
+	var content : Array[DialogueContentData]
+
+class DialogueContentData:
+	extends RefCounted
 	var character_id : String
-	var content : Array[String]
+	var dialogue_lines : Array[String]
