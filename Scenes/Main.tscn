@@ -543,6 +543,12 @@ initial_state = NodePath("Moving")
 [node name="Interacting" type="Node" parent="GameManagers/GameStateMachine"]
 script = ExtResource("2_1q2se")
 
+[node name="SelectingDialogue" type="Node" parent="GameManagers/GameStateMachine"]
+script = ExtResource("2_1q2se")
+
+[node name="Dialoguing" type="Node" parent="GameManagers/GameStateMachine"]
+script = ExtResource("2_1q2se")
+
 [node name="Moving" type="Node" parent="GameManagers/GameStateMachine"]
 script = ExtResource("3_txr1d")
 

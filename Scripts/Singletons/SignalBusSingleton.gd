@@ -20,7 +20,7 @@ signal objectives(emitter : Node, objectives : Array[String])
 
 #Interaction
 ##Emitters: InteractionComponent
-##Connected: DialogueManager
+##Connected: DialogueManager, GameStateManager
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2)
 
 #StateMachine
@@ -30,5 +30,5 @@ signal newstate(emitter : Node, previous_state : String, new_state : String)
 
 #Dialogues
 ##Emitters: DialogueButtonManager
-##Connected: DialogueManager
-signal pressed(emitter : Button)
+##Connected: DialogueManager, GameStateMachine
+signal dialogue_button_pressed(emitter : Button)

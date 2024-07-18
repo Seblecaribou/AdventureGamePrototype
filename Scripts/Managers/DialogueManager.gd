@@ -13,7 +13,7 @@ func _ready():
 	SignalBusSingleton.newstate.connect(_on_new_state)
 	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
-	SignalBusSingleton.pressed.connect(_on_pressed)
+	SignalBusSingleton.dialogue_button_pressed.connect(_on_dialogue_button_pressed)
 
 
 func configure_dialogue(interactable : ):
@@ -49,7 +49,7 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
 
-func _on_pressed(button : Node2D):
+func _on_dialogue_button_pressed(button : Node2D):
 	var dialogue_to_display
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
