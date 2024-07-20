@@ -1,6 +1,13 @@
 #InputSingleton.gd
 extends Node2D
 
+signal pressed_jump
+signal pressed_run
+signal pressed_interact
+signal pressed_return
+signal pressed_pause
+signal pressed_journal
+
 func check_jump_button(function: Callable) -> void:
 	if Input.is_action_just_pressed("jump"):
 		function.call()

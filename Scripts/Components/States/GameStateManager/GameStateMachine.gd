@@ -1,7 +1,7 @@
 class_name GameStateMachine
 extends StateMachineComponent
 
-var menu_states : Array[String] = ["pause", "journal", "interacting"]
+var menu_states : Array[String] = ["pause", "journal", "selectingdialogue", ""]
 
 func _ready():
 	super()
@@ -17,7 +17,7 @@ func transition_state():
 		#current_state.transitioned.emit(current_state, "journal")
 	
 	#TODO: remplacer par un changement de state si on sort du menu concerné
-	if  check_is_in_menu() and Input.is_action_just_pressed("return"):
+	if  current_state.get_name().to_lower() != "moving" and Input.is_action_just_pressed("return"):
 		current_state.transitioned.emit(current_state, "moving")
 	if not check_is_in_menu():
 		current_state.transitioned.emit(current_state, "moving")
