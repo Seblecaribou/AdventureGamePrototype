@@ -202,10 +202,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdd2a"]
 radius = 62.0081
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("interaction_component")]
+[node name="PlayerCharacter" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_5gnik")
-interaction_component = NodePath("Interaction Nodes/InteractionComponent")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("player_character", "initial_state")]
 unique_name_in_owner = true

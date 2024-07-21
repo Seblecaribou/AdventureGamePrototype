@@ -5,6 +5,7 @@ extends Node
 @export var dialogue_menu : DialogueMenu
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
+var current_game_state : String
 var current_quests_objectives : Array[String]
 var current_dialogues : Array[DialogueData.DialogueObjectiveData]
 
@@ -14,6 +15,8 @@ func _ready():
 	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
 	SignalBusSingleton.dialogue_button_pressed.connect(_on_dialogue_button_pressed)
+	InputManager.pressed_return.connect(_on_pressed_return)
+	InputManager.pressed_jump.connect(_on_pressed_jump)
 
 
 func configure_dialogue(interactable : ):
@@ -36,6 +39,7 @@ func reset_dialogue_system() -> void:
 	current_dialogues.clear()
 	dialogue_data.clear_dialogue_data()
 	dialogue_component.visible = false
+	dialogue_menu.unload_buttons()
 
 #Signals callback functions
 func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2):
@@ -66,6 +70,16 @@ func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fin
 					current_quests_objectives.append(dialogue_id)
 
 func _on_new_state(emitter : Node, previous_state : String, new_state : String):
-	if emitter.get_name().to_lower() == 'gamestatemachine':
-		if new_state == "moving" and new_state != previous_state:
-			reset_dialogue_system()
+	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
+		current_game_state = new_state
+		#if new_state == "moving" and new_state != previous_state:
+			#reset_dialogue_system()
+			
+func _on_pressed_jump():
+	pass
+	
+func _on_pressed_return():
+	if current_game_state == "selectingdialogue":
+		reset_dialogue_system()
+	
+	
