@@ -28,7 +28,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 UtilsSingleton="*res://Scripts/Singletons/UtilsSingleton.gd"
-InputManager="*res://Scripts/Singletons/InputSingleton.gd"
+InputManager="res://Scripts/Singletons/[OBSOLETE]InputSingleton.gd"
 StaticDataSingleton="*res://Scripts/Singletons/StaticDataSingleton.gd"
 SignalBusSingleton="*res://Scripts/Singletons/SignalBusSingleton.gd"
 DynamicDataSingleton="*res://Scripts/Singletons/DynamicDataSingleton.gd"

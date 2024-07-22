@@ -15,11 +15,12 @@ func _ready():
 	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
 	SignalBusSingleton.dialogue_button_pressed.connect(_on_dialogue_button_pressed)
-	InputManager.pressed_return.connect(_on_pressed_return)
-	InputManager.pressed_jump.connect(_on_pressed_jump)
+
+func _process(delta):
+	check_input()
 
 
-func configure_dialogue(interactable : ):
+func configure_dialogue(interactable : Interactable):
 	for objective in current_quests_objectives:
 		var quest_id = objective.get_slice("_", 0)
 		var step_id = objective.get_slice("_", 1)
@@ -33,13 +34,24 @@ func configure_dialogue(interactable : ):
 								current_dialogues.append(dialogue_objective)
 
 func reset_dialogue_system() -> void:
-	#TODO unload everything in the DialogueData + DialogueComponent to save on memory
 	for dialogue in current_dialogues:
 		dialogue = null
 	current_dialogues.clear()
 	dialogue_data.clear_dialogue_data()
 	dialogue_component.visible = false
 	dialogue_menu.unload_buttons()
+
+
+func check_input():
+	#ReturnButton
+	print(current_game_state)
+	if current_game_state == "selectingdialogue":
+		if Input.is_action_just_pressed("return"):
+			reset_dialogue_system()
+			
+	#Jump/ValidateButton
+	if Input.is_action_just_pressed("jump"):
+		pass
 
 #Signals callback functions
 func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2):
@@ -72,14 +84,3 @@ func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fin
 func _on_new_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
 		current_game_state = new_state
-		#if new_state == "moving" and new_state != previous_state:
-			#reset_dialogue_system()
-			
-func _on_pressed_jump():
-	pass
-	
-func _on_pressed_return():
-	if current_game_state == "selectingdialogue":
-		reset_dialogue_system()
-	
-	
