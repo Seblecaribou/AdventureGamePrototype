@@ -49,5 +49,3 @@ func change_portrait(previous_portrait_id : String, portrait_id : String, portra
 			pass
 		else:
 			pass
-
-

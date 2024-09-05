@@ -16,6 +16,7 @@ func _physics_process(delta):
 
 ##Adds jump_velocity (a negative float) to a CharacterBody2D's velocity.y 
 func jump() -> void:
+	SignalBusSingleton.newstate_query.emit(self, "playerstatemachine", "jump")
 	if character.is_on_floor():
 		character.velocity.y = jump_velocity
 
@@ -26,6 +27,7 @@ func ground_player(delta: float) -> void:
 
 ##Handles a CharacterBody2D left and right movement
 func move(direction: float) -> void:
+	SignalBusSingleton.newstate_query.emit(self, "playerstatemachine", "run")
 	if direction:
 		character.velocity.x = direction * speed * speed_multiplier
 	else:

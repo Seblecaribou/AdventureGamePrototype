@@ -214,25 +214,17 @@ script = ExtResource("2_gtyy5")
 player_character = NodePath("..")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_scoe8")
-player_character = NodePath("../..")
-animation_component = NodePath("../../AnimationComponent")
 
-[node name="Run" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Run" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("11_5bmtk")
-player_character = NodePath("../..")
-animation_component = NodePath("../../AnimationComponent")
 
-[node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_3gsbr")
-player_character = NodePath("../..")
-animation_component = NodePath("../../AnimationComponent")
 
-[node name="Observe" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
+[node name="Observe" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_3wlrt")
-player_character = NodePath("../..")
-animation_component = NodePath("../../AnimationComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

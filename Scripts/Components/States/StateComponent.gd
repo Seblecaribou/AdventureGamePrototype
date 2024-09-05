@@ -1,10 +1,6 @@
 class_name StateComponent
 extends Node
 
-@export var player_character : CharacterBody2D
-@export var animation_component : AnimationComponent
-signal transitioned
-
 func enter():
 	pass
 	

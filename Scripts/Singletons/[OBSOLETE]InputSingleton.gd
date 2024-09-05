@@ -1,5 +1,5 @@
 ##InputSingleton.gd
-#extends Node2D
+extends Node2D
 #
 #signal pressed_jump
 #signal pressed_run

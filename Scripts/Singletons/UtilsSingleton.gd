@@ -17,11 +17,10 @@ func load_json_file(file_path : String):
 
 
 func save_json_file(file_name : String, data_to_parse : Dictionary):
-	var json = JSON.new()
 	var file_path : String = "user://" + file_name + ".json"
 
 	var save_file = FileAccess.open(file_path, FileAccess.WRITE)
-	save_file.store_string(json.stringify(data_to_parse))
+	save_file.store_string(JSON.stringify(data_to_parse))
 	save_file.close()
 	save_file = null
 

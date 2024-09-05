@@ -11,7 +11,7 @@ var current_dialogues : Array[DialogueData.DialogueObjectiveData]
 
 
 func _ready():
-	SignalBusSingleton.newstate.connect(_on_new_state)
+	SignalBusSingleton.newstate.connect(_on_newstate)
 	SignalBusSingleton.interacted.connect(_on_player_character_interacted)
 	SignalBusSingleton.update_all_quests.connect(_on_update_all_quests)
 	SignalBusSingleton.dialogue_button_pressed.connect(_on_dialogue_button_pressed)
@@ -44,7 +44,6 @@ func reset_dialogue_system() -> void:
 
 func check_input():
 	#ReturnButton
-	print(current_game_state)
 	if current_game_state == "selectingdialogue":
 		if Input.is_action_just_pressed("return"):
 			reset_dialogue_system()
@@ -66,6 +65,7 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 	dialogue_menu.place_buttons()
 
 func _on_dialogue_button_pressed(button : Node2D):
+	SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")
 	var dialogue_to_display
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
@@ -81,6 +81,6 @@ func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fin
 					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
 
-func _on_new_state(emitter : Node, previous_state : String, new_state : String):
+func _on_newstate(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
 		current_game_state = new_state
