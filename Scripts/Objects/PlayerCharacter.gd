@@ -8,18 +8,16 @@ var current_game_state : String
 func _ready():
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(on_new_game_state)
-	UtilsSingleton.log_data(self, "current_game_state", current_game_state)
 
 func _physics_process(delta):
 	check_input()
-
 
 func check_input() -> void:
 	if current_game_state == "moving":
 		##Idle
 		if abs(self.velocity.x) < 1 and self.is_on_floor():
 			SignalBusSingleton.newstate_query.emit(self, "playerstatemachine", "idle")
-		
+			
 		##MovementComponent
 		#Direction buttons
 		var direction: float = Input.get_axis("left", "right")
@@ -52,8 +50,5 @@ func check_input() -> void:
 
 
 func on_new_game_state(emitter : Node, previous_state : String, new_state : String):
-	UtilsSingleton.log_data(emitter, "newstate signal", new_state)
 	if emitter.get_name().to_lower() == 'gamestatemachine':
-		current_game_state = new_state
-	UtilsSingleton.log_data(self, "on_new_game_state", current_game_state)
-	
+		current_game_state = new_state	

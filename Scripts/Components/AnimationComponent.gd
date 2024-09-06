@@ -30,5 +30,5 @@ func flip_sprite() -> void:
 
 ##Connects to the signal newstate and changes animation_state accordingly
 func on_newstate(emitter : Node, previous_state : String, new_state : String):
-	UtilsSingleton.log_data(emitter, "on_newstate", new_state)
+	#UtilsSingleton.log_data(emitter, self.name, new_state)
 	animation_state = new_state
