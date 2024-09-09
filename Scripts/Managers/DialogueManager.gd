@@ -42,19 +42,23 @@ func reset_dialogue_system() -> void:
 	dialogue_menu.unload_buttons()
 
 
-func check_input():
+func check_input() -> void:
 	#ReturnButton
-	if current_game_state == "selectingdialogue":
-		if Input.is_action_just_pressed("return"):
+	if Input.is_action_just_pressed("return"):
+		if current_game_state == "selectingdialogue":
+			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 			reset_dialogue_system()
+		if current_game_state == "dialoguing":
+			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
+			dialogue_component.hide_dialogue()
+			dialogue_menu.visible = true
 			
-	#Jump/ValidateButton
-	if Input.is_action_just_pressed("jump"):
-		pass
+	
 
 #Signals callback functions
-func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2):
+func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2) -> void:
 	if interaction_type == "char":
+		SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 		dialogue_data.load_dialogue_data(interactable)
 	configure_dialogue(interactable)
 	dialogue_menu.global_position = player_position + AppSettingsSingleton.dialogue_menu_offset
@@ -64,16 +68,18 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
 
-func _on_dialogue_button_pressed(button : Node2D):
+func _on_dialogue_button_pressed(button : Node2D) -> void:
 	SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")
 	var dialogue_to_display
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
-			dialogue_component.display_dialogue(dialogue.content[0].dialogue_lines[0])
+			for dialogue_content in dialogue.content:
+				dialogue_component.handle_dialogue_content(dialogue_content)
+				if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+					continue
 	dialogue_menu.visible = false
 
-
-func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]):
+func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
 	for quest in active_quests:
 		for step in quest.quest_steps:
 			for objective in step.objectives:
@@ -81,6 +87,6 @@ func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fin
 					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
 
-func _on_newstate(emitter : Node, previous_state : String, new_state : String):
+func _on_newstate(emitter : Node, previous_state : String, new_state : String)-> void :
 	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
 		current_game_state = new_state

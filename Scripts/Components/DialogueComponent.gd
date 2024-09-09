@@ -12,6 +12,36 @@ var typing_timer: Timer = null
 func _ready():
 	start_display_timer()
 
+func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData):
+	#TODO for each content
+	#1 - display the character
+	#2 - send dialogue_lines to display_dialogue
+	for line in dialogue_content.dialogue_lines:
+		display_dialogue(line)
+		await wait_for_input()
+
+func wait_for_input() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			break
+		await get_tree().process_frame
+
+
+## Displays full dialogue
+func display_dialogue(dialogue: String) -> void:
+	type_dialogue(dialogue)
+	self.visible = true
+	
+func hide_dialogue() -> void:
+	self.visible = false
+	dialogue_text.text = ""
+
+## Displays dialogue following a typewriter animation
+func type_dialogue(dialogue : String) -> void:
+	full_text = dialogue
+	current_char_index = 0
+	dialogue_text.text = ""
+	typing_timer.start()
 
 func start_display_timer() -> void:
 	typing_timer = Timer.new()
@@ -27,22 +57,11 @@ func _on_timer_timeout() -> void:
 	else:
 		typing_timer.stop()
 
-## Displays full dialogue
-func display_dialogue(dialogue: String) -> void:
-	type_dialogue(dialogue)
-	self.visible = true
-
-## Displays dialogue following a typewriter animation
-func type_dialogue(dialogue : String) -> void:
-	full_text = dialogue
-	current_char_index = 0
-	dialogue_text.text = ""
-	typing_timer.start()
-
 ## Enables/disables BBcode animations
 func manage_bbcode(isEnabled : bool) -> void:
 	dialogue_text.bbcode_enabled = isEnabled
 
+#Portrait
 func change_portrait(previous_portrait_id : String, portrait_id : String, portrait_sprite_id : String):
 	if previous_portrait_id != portrait_id:
 		if portrait_id == "right":

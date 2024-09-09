@@ -34,5 +34,5 @@ signal newstate(emitter : Node, previous_state : String, new_state : String)
 
 #Dialogues
 ##Emitters: DialogueButtonManager
-##Connected: DialogueManager, GameStateMachine
+##Connected: DialogueManager
 signal dialogue_button_pressed(emitter : Button)

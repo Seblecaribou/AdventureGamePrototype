@@ -51,4 +51,4 @@ func check_input() -> void:
 
 func on_new_game_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
-		current_game_state = new_state	
+		current_game_state = new_state
