@@ -70,14 +70,25 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 
 func _on_dialogue_button_pressed(button : Node2D) -> void:
 	SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")
-	var dialogue_to_display
+	dialogue_menu.visible = false
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
 			for dialogue_content in dialogue.content:
-				dialogue_component.handle_dialogue_content(dialogue_content)
-				if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
-					continue
-	dialogue_menu.visible = false
+				await dialogue_component.handle_dialogue_content(dialogue_content)
+				await get_tree().create_timer(0.1).timeout
+				wait_to_skip()
+
+func wait_to_skip() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			break
+		await get_tree().process_frame
+
+func wait_to_continue() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			continue
+		await get_tree().process_frame
 
 func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
 	for quest in active_quests:

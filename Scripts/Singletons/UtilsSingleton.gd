@@ -31,3 +31,15 @@ func log_data(emitter : Node, label : String, data):
 func log_error(emitter : Node, label : String, message : String):
 	print_rich("[red]", emitter, " : ", "[red]")
 	print_rich("[red]", label, " : ", message, "[red]")
+
+func wait_to_skip() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			break
+		await get_tree().process_frame
+
+func wait_to_continue() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			return
+		await get_tree().process_frame

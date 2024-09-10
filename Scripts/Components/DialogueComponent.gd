@@ -5,27 +5,26 @@ extends Node2D
 @export var dialogue_text : RichTextLabel
 @export var portrait_right : Sprite2D
 @export var portrait_left : Sprite2D
-var full_text: String = ""
-var current_char_index: int = 0
-var typing_timer: Timer = null
+var full_text : String = ""
+var current_char_index : int = 0
+var typing_timer : Timer = null
 
 func _ready():
+	manage_bbcode(AppSettingsSingleton.dialogue_bbcode_enabled)
 	start_display_timer()
 
 func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData):
 	#TODO for each content
 	#1 - display the character
-	#2 - send dialogue_lines to display_dialogue
+	#2 - send dialogue_lines to display_dialogue - DONE
 	for line in dialogue_content.dialogue_lines:
 		display_dialogue(line)
-		await wait_for_input()
-
-func wait_for_input() -> void:
-	while true:
-		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
-			break
-		await get_tree().process_frame
-
+		await get_tree().create_timer(0.1).timeout
+		await UtilsSingleton.wait_to_continue()
+		typing_timer.stop()
+		dialogue_text.text = line
+		await get_tree().create_timer(0.1).timeout
+		await UtilsSingleton.wait_to_skip()
 
 ## Displays full dialogue
 func display_dialogue(dialogue: String) -> void:
