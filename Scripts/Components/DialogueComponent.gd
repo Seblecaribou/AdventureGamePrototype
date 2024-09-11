@@ -12,19 +12,24 @@ var typing_timer : Timer = null
 func _ready():
 	manage_bbcode(AppSettingsSingleton.dialogue_bbcode_enabled)
 	start_display_timer()
+	
 
 func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData):
 	#TODO for each content
 	#1 - display the character
+	
 	#2 - send dialogue_lines to display_dialogue - DONE
 	for line in dialogue_content.dialogue_lines:
 		display_dialogue(line)
 		await get_tree().create_timer(0.1).timeout
+		#Skips animation and display full line
 		await UtilsSingleton.wait_to_continue()
 		typing_timer.stop()
 		dialogue_text.text = line
+		#Goes to next line
 		await get_tree().create_timer(0.1).timeout
-		await UtilsSingleton.wait_to_skip()
+		await UtilsSingleton.wait_to_continue()
+
 
 ## Displays full dialogue
 func display_dialogue(dialogue: String) -> void:

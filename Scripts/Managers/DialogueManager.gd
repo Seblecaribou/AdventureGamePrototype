@@ -52,8 +52,6 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 			dialogue_component.hide_dialogue()
 			dialogue_menu.visible = true
-			
-	
 
 #Signals callback functions
 func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2) -> void:
@@ -69,26 +67,15 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 	dialogue_menu.place_buttons()
 
 func _on_dialogue_button_pressed(button : Node2D) -> void:
-	SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")
-	dialogue_menu.visible = false
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
+			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")
+			dialogue_menu.visible = false
 			for dialogue_content in dialogue.content:
 				await dialogue_component.handle_dialogue_content(dialogue_content)
-				await get_tree().create_timer(0.1).timeout
-				wait_to_skip()
+			dialogue_component.visible = false
+			dialogue_menu.visible = true
 
-func wait_to_skip() -> void:
-	while true:
-		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
-			break
-		await get_tree().process_frame
-
-func wait_to_continue() -> void:
-	while true:
-		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
-			continue
-		await get_tree().process_frame
 
 func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
 	for quest in active_quests:

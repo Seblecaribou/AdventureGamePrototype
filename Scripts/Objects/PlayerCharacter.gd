@@ -47,6 +47,10 @@ func check_input() -> void:
 		#Journal Button
 		if Input.is_action_just_pressed("journal"):
 			pass
+			
+	if current_game_state == "examining":
+		if Input.is_action_just_pressed("return"):
+			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 
 
 func on_new_game_state(emitter : Node, previous_state : String, new_state : String):

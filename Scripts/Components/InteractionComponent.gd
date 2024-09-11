@@ -51,7 +51,7 @@ func interact():
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)
 			"act":
-				SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
+				SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "activating")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":

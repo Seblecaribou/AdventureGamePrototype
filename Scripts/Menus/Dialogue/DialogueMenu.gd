@@ -18,7 +18,7 @@ func place_buttons():
 
 func unload_buttons():
 	for button in get_children():
-		button.queue_free()
+		button.free()
 	if self.get_child_count() > 0:
 		UtilsSingleton.log_error(self, "unload_buttons", "Error while emptying menu: some buttons were not unloaded.")
 	else:
