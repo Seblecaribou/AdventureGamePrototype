@@ -68,4 +68,5 @@ class DialogueObjectiveData:
 class DialogueContentData:
 	extends RefCounted
 	var character_id : String
+	var dialogue_mood : String
 	var dialogue_lines : Array[String]

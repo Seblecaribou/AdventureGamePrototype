@@ -15,10 +15,13 @@ func _ready():
 	
 
 func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData):
-	#TODO for each content
-	#1 - display the character
-	
-	#2 - send dialogue_lines to display_dialogue - DONE
+	#Display the character
+	if dialogue_content.character_id == "char_chiro":
+		load_portrait(portrait_left, AppSettingsSingleton.main_character_id, "happy")
+	else:
+		load_portrait(portrait_right, dialogue_content.character_id, "happy")
+		
+	#Display the dialogue lines
 	for line in dialogue_content.dialogue_lines:
 		display_dialogue(line)
 		await get_tree().create_timer(0.1).timeout
@@ -35,7 +38,8 @@ func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData
 func display_dialogue(dialogue: String) -> void:
 	type_dialogue(dialogue)
 	self.visible = true
-	
+
+##Hide the entire dialogue component and reset text
 func hide_dialogue() -> void:
 	self.visible = false
 	dialogue_text.text = ""
@@ -66,9 +70,6 @@ func manage_bbcode(isEnabled : bool) -> void:
 	dialogue_text.bbcode_enabled = isEnabled
 
 #Portrait
-func change_portrait(previous_portrait_id : String, portrait_id : String, portrait_sprite_id : String):
-	if previous_portrait_id != portrait_id:
-		if portrait_id == "right":
-			pass
-		else:
-			pass
+func load_portrait(portrait : Sprite2D, character_id : String, character_emotion: String) -> void:
+	var image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_" + character_emotion + ".png"
+	portrait.texture = load(image_filepath)

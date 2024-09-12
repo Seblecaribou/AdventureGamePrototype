@@ -290,7 +290,7 @@ portrait_left = NodePath("PortraitLeft")
 position = Vector2(575.707, 572.213)
 scale = Vector2(1.02788, 1.47541)
 color = Color(0.984314, 0.984314, 0, 1)
-polygon = PackedVector2Array(402, -93, -384, -85, -371, 23, 405, 29)
+polygon = PackedVector2Array(402, -93, -384, -85, -377.164, -28.2078, -371, 23, 405, 29)
 
 [node name="DialogueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
 self_modulate = Color(0.122185, 0.067379, 0.0128321, 1)
@@ -311,8 +311,10 @@ bbcode_enabled = true
 text = "[font_size=30]A[/font_size]"
 
 [node name="PortraitLeft" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
+position = Vector2(160, 525)
 
 [node name="PortraitRight" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
+position = Vector2(1014, 518)
 
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true

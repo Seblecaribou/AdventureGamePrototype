@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh5ljwmerytwh"
-path="res://.godot/imported/placeholder_npc.png-6193cff506a107da0a70c777e721c596.ctex"
+uid="uid://dnqjfyyp8j431"
+path="res://.godot/imported/char_chiro_happy.png-33a545d91573a1ece640db38826658a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder_npc.png"
-dest_files=["res://.godot/imported/placeholder_npc.png-6193cff506a107da0a70c777e721c596.ctex"]
+source_file="res://Images/Portraits/char_chiro_happy.png"
+dest_files=["res://.godot/imported/char_chiro_happy.png-33a545d91573a1ece640db38826658a7.ctex"]
 
 [params]
 
