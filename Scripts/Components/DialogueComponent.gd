@@ -17,10 +17,12 @@ func _ready():
 func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData):
 	#Display the character
 	if dialogue_content.character_id == "char_chiro":
-		load_portrait(portrait_left, AppSettingsSingleton.main_character_id, "happy")
+		load_portrait(portrait_left, AppSettingsSingleton.main_character_id, "happy", true)
+		load_portrait(portrait_right, AppSettingsSingleton.main_character_id, "happy", false)
 	else:
-		load_portrait(portrait_right, dialogue_content.character_id, "happy")
-		
+		load_portrait(portrait_left, AppSettingsSingleton.main_character_id, "happy", false)
+		load_portrait(portrait_right, dialogue_content.character_id, "happy", true)
+			
 	#Display the dialogue lines
 	for line in dialogue_content.dialogue_lines:
 		display_dialogue(line)
@@ -70,6 +72,12 @@ func manage_bbcode(isEnabled : bool) -> void:
 	dialogue_text.bbcode_enabled = isEnabled
 
 #Portrait
-func load_portrait(portrait : Sprite2D, character_id : String, character_emotion: String) -> void:
-	var image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_" + character_emotion + ".png"
+func load_portrait(portrait : Sprite2D, character_id : String, character_emotion: String, is_talking : bool) -> void:
+	var image_filepath : String
+	if is_talking:
+		portrait.z_index = 0
+		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_" + character_emotion + ".png"
+	else:
+		portrait.z_index = -1
+		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_neutral_bw.png"
 	portrait.texture = load(image_filepath)
