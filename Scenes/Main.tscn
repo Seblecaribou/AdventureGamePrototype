@@ -287,6 +287,7 @@ portrait_right = NodePath("PortraitRight")
 portrait_left = NodePath("PortraitLeft")
 
 [node name="DialogueFrame" type="Polygon2D" parent="GameManagers/DialogueManager/DialogueComponent"]
+z_index = 1
 position = Vector2(575.707, 572.213)
 scale = Vector2(1.02788, 1.47541)
 color = Color(0.984314, 0.984314, 0, 1)
@@ -315,6 +316,8 @@ position = Vector2(160, 525)
 
 [node name="PortraitRight" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
 position = Vector2(1014, 518)
+
+[node name="DialogueAnimator" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
 
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true

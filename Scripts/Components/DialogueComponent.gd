@@ -3,6 +3,7 @@ extends Node2D
 
 @export var dialogue_frame : Polygon2D
 @export var dialogue_text : RichTextLabel
+@export var dialogue_animator : AnimationPlayer
 @export var portrait_right : Sprite2D
 @export var portrait_left : Sprite2D
 var full_text : String = ""
@@ -75,9 +76,55 @@ func manage_bbcode(isEnabled : bool) -> void:
 func load_portrait(portrait : Sprite2D, character_id : String, character_emotion: String, is_talking : bool) -> void:
 	var image_filepath : String
 	if is_talking:
-		portrait.z_index = 0
+		portrait.z_index = 1
 		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_" + character_emotion + ".png"
 	else:
-		portrait.z_index = -1
+		portrait.z_index = 0
 		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_neutral_bw.png"
 	portrait.texture = load(image_filepath)
+
+func animate_portrait(portrait : Sprite2D, character_emotion : String) -> void:
+	# Stop any previous animation first
+	#dialogue_animator.stop_all()
+#
+	## Create a new animation
+	#var animation = dialogue_animator.get_animation("emotion_animation")
+	#if animation == null:
+		#animation = Animation.new()
+		#dialogue_animator.add_animation("emotion_animation", animation)
+#
+	#animation.clear_tracks()
+	#var path : NodePath = portrait.get_path().as_string()
+	## Add some basic transformations based on the emotion
+	#match character_emotion:
+		#"happy":
+			#animation.add_track(Animation.TYPE_VALUE)
+			#path = portrait.get_path().as_string()
+			#animation.track_set_path(0, path)
+			#animation.track_insert_key(0, 0, Vector2(1, 1))
+			#animation.track_insert_key(0, 0.5, Vector2(1.2, 1.2))
+			#animation.track_insert_key(0, 1, Vector2(1, 1))
+#
+		#"angry":
+			#animation.add_track(Animation.TYPE_VALUE)
+			#animation.track_set_path(0, portrait.get_path() + ":rotation_degrees")
+			#animation.track_insert_key(0, 0, 0)
+			#animation.track_insert_key(0, 0.5, 10)
+			#animation.track_insert_key(0, 1, 0)
+#
+		#"sad":
+			#animation.add_track(Animation.TYPE_VALUE)
+			#animation.track_set_path(0, portrait.get_path() + ":scale")
+			#animation.track_insert_key(0, 0, Vector2(1, 1))
+			#animation.track_insert_key(0, 0.5, Vector2(0.9, 0.9))
+			#animation.track_insert_key(0, 1, Vector2(1, 1))
+#
+		#"surprised":
+			#animation.add_track(Animation.TYPE_VALUE)
+			#animation.track_set_path(0, portrait.get_path() + ":scale")
+			#animation.track_insert_key(0, 0, Vector2(1, 1))
+			#animation.track_insert_key(0, 0.5, Vector2(1.1, 1.1))
+			#animation.track_insert_key(0, 1, Vector2(1, 1))
+	## Play the animation
+	#dialogue_animator.play("emotion_animation")
+	pass
