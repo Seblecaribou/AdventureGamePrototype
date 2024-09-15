@@ -23,7 +23,7 @@ func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData
 	else:
 		load_portrait(portrait_left, AppSettingsSingleton.main_character_id, "happy", false)
 		load_portrait(portrait_right, dialogue_content.character_id, "happy", true)
-			
+
 	#Display the dialogue lines
 	for line in dialogue_content.dialogue_lines:
 		display_dialogue(line)
@@ -78,53 +78,58 @@ func load_portrait(portrait : Sprite2D, character_id : String, character_emotion
 	if is_talking:
 		portrait.z_index = 1
 		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_" + character_emotion + ".png"
+		portrait.texture = load(image_filepath)
+		animate_portrait(portrait, character_emotion)
 	else:
 		portrait.z_index = 0
 		image_filepath = AppSettingsSingleton.images_folder_path + "Portraits/" + character_id + "_neutral_bw.png"
-	portrait.texture = load(image_filepath)
+		portrait.texture = load(image_filepath)
 
 func animate_portrait(portrait : Sprite2D, character_emotion : String) -> void:
 	# Stop any previous animation first
-	#dialogue_animator.stop_all()
-#
-	## Create a new animation
-	#var animation = dialogue_animator.get_animation("emotion_animation")
-	#if animation == null:
-		#animation = Animation.new()
-		#dialogue_animator.add_animation("emotion_animation", animation)
-#
-	#animation.clear_tracks()
-	#var path : NodePath = portrait.get_path().as_string()
-	## Add some basic transformations based on the emotion
-	#match character_emotion:
-		#"happy":
-			#animation.add_track(Animation.TYPE_VALUE)
-			#path = portrait.get_path().as_string()
-			#animation.track_set_path(0, path)
-			#animation.track_insert_key(0, 0, Vector2(1, 1))
-			#animation.track_insert_key(0, 0.5, Vector2(1.2, 1.2))
-			#animation.track_insert_key(0, 1, Vector2(1, 1))
-#
-		#"angry":
-			#animation.add_track(Animation.TYPE_VALUE)
-			#animation.track_set_path(0, portrait.get_path() + ":rotation_degrees")
-			#animation.track_insert_key(0, 0, 0)
-			#animation.track_insert_key(0, 0.5, 10)
-			#animation.track_insert_key(0, 1, 0)
-#
-		#"sad":
-			#animation.add_track(Animation.TYPE_VALUE)
-			#animation.track_set_path(0, portrait.get_path() + ":scale")
-			#animation.track_insert_key(0, 0, Vector2(1, 1))
-			#animation.track_insert_key(0, 0.5, Vector2(0.9, 0.9))
-			#animation.track_insert_key(0, 1, Vector2(1, 1))
-#
-		#"surprised":
-			#animation.add_track(Animation.TYPE_VALUE)
-			#animation.track_set_path(0, portrait.get_path() + ":scale")
-			#animation.track_insert_key(0, 0, Vector2(1, 1))
-			#animation.track_insert_key(0, 0.5, Vector2(1.1, 1.1))
-			#animation.track_insert_key(0, 1, Vector2(1, 1))
-	## Play the animation
-	#dialogue_animator.play("emotion_animation")
+	dialogue_animator.stop()
+
+	# Create a new animation if it doesn't exist
+	var animation = dialogue_animator.get_animation(character_emotion)
+	if animation == null:
+		UtilsSingleton.log_error(self, "animate_portrait", "No animation found for " + character_emotion + ".")
+		return
+	animation.clear()
+	animation.loop_mode = 2
+
+	# Get the path to the portrait's node as a string
+	var portrait_path : String = portrait.get_path()
+	
+	# Add some basic transformations based on the emotion
+	match character_emotion:
+		"happy":
+			animation.add_track(Animation.TYPE_VALUE)
+			animation.track_set_path(0, NodePath(portrait_path + ":scale"))
+			animation.track_insert_key(0, 0, Vector2(1, 1))
+			animation.track_insert_key(0, 0.5, Vector2(1.2, 1.2))
+			animation.track_insert_key(0, 1, Vector2(1, 1))
+
+		"angry":
+			animation.add_track(Animation.TYPE_VALUE)
+			animation.track_set_path(0, NodePath(portrait_path + ":rotation_degrees"))
+			animation.track_insert_key(0, 0, 0)
+			animation.track_insert_key(0, 0.5, 10)
+			animation.track_insert_key(0, 1, 0)
+
+		"sad":
+			animation.add_track(Animation.TYPE_VALUE)
+			animation.track_set_path(0, NodePath(portrait_path + ":scale"))
+			animation.track_insert_key(0, 0, Vector2(1, 1))
+			animation.track_insert_key(0, 0.5, Vector2(0.9, 0.9))
+			animation.track_insert_key(0, 1, Vector2(1, 1))
+
+		"surprised":
+			animation.add_track(Animation.TYPE_VALUE)
+			animation.track_set_path(0, NodePath(portrait_path + ":scale"))
+			animation.track_insert_key(0, 0, Vector2(1, 1))
+			animation.track_insert_key(0, 0.5, Vector2(1.1, 1.1))
+			animation.track_insert_key(0, 1, Vector2(1, 1))
+
+	# Play the animation
+	dialogue_animator.play(character_emotion)
 	pass

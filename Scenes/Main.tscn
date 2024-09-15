@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=24 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
@@ -230,6 +230,34 @@ texture = ExtResource("2_3axcj")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_5mvu3")
 
+[sub_resource type="Animation" id="Animation_mutag"]
+resource_name = "happy"
+
+[sub_resource type="Animation" id="Animation_c4god"]
+resource_name = "sad"
+
+[sub_resource type="Animation" id="Animation_anoue"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_m7pv6"]
+resource_name = "angry"
+
+[sub_resource type="Animation" id="Animation_1v7xi"]
+resource_name = "inquisitive"
+
+[sub_resource type="Animation" id="Animation_15rf8"]
+resource_name = "surprised"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hvta"]
+_data = {
+"angry": SubResource("Animation_m7pv6"),
+"happy": SubResource("Animation_mutag"),
+"idle": SubResource("Animation_anoue"),
+"inquisitive": SubResource("Animation_1v7xi"),
+"sad": SubResource("Animation_c4god"),
+"surprised": SubResource("Animation_15rf8")
+}
+
 [node name="Main" type="Node2D"]
 
 [node name="BackGround" type="TextureRect" parent="."]
@@ -278,11 +306,12 @@ visible = false
 z_index = 6
 script = ExtResource("9_jnvcw")
 
-[node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "portrait_right", "portrait_left")]
+[node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
 visible = false
 script = ExtResource("4_e7uya")
 dialogue_frame = NodePath("DialogueFrame")
 dialogue_text = NodePath("DialogueText")
+dialogue_animator = NodePath("DialogueAnimator")
 portrait_right = NodePath("PortraitRight")
 portrait_left = NodePath("PortraitLeft")
 
@@ -318,6 +347,14 @@ position = Vector2(160, 525)
 position = Vector2(1014, 518)
 
 [node name="DialogueAnimator" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
+libraries = {
+"": SubResource("AnimationLibrary_5hvta")
+}
+
+[node name="DialogueAnimator2" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
+libraries = {
+"": SubResource("AnimationLibrary_5hvta")
+}
 
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true
