@@ -132,4 +132,3 @@ func animate_portrait(portrait : Sprite2D, character_emotion : String) -> void:
 
 	# Play the animation
 	dialogue_animator.play(character_emotion)
-	pass

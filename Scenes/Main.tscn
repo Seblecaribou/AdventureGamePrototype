@@ -351,11 +351,6 @@ libraries = {
 "": SubResource("AnimationLibrary_5hvta")
 }
 
-[node name="DialogueAnimator2" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
-libraries = {
-"": SubResource("AnimationLibrary_5hvta")
-}
-
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")
