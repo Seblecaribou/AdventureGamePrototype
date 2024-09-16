@@ -21,14 +21,14 @@ func _ready():
 	#rooms_save
 	#characters_save
 
-func load_save(save : Dictionary, save_file_name: String, save_default_directory : String = "", default : bool = false) -> Dictionary:
+func load_save(save_dictionary : Dictionary, save_file_name: String, save_default_directory : String = "", default : bool = false) -> Dictionary:
 	var file_path : String = AppSettingsSingleton.base_user_path + save_file_name + ".json"
 	if default || !FileAccess.file_exists(file_path):
 		var default_file_path = AppSettingsSingleton.base_res_path + AppSettingsSingleton.data_folder_path + save_default_directory + "default_" + save_file_name + ".json"
-		save = UtilsSingleton.load_json_file(default_file_path)
+		save_dictionary = UtilsSingleton.load_json_file(default_file_path)
 	else:
-		save = UtilsSingleton.load_json_file(file_path)
-	return save
+		save_dictionary = UtilsSingleton.load_json_file(file_path)
+	return save_dictionary
 	
 func save(save_file_name : String, save_dictionary : Dictionary):
 	var file_path : String = AppSettingsSingleton.base_user_path + save_file_name + ".json"

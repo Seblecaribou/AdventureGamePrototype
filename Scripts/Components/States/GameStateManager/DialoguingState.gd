@@ -1,2 +1,2 @@
-class_name Jump
+class_name Dialoguing
 extends StateComponent

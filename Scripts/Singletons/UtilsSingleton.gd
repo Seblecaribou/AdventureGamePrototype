@@ -17,11 +17,10 @@ func load_json_file(file_path : String):
 
 
 func save_json_file(file_name : String, data_to_parse : Dictionary):
-	var json = JSON.new()
 	var file_path : String = "user://" + file_name + ".json"
 
 	var save_file = FileAccess.open(file_path, FileAccess.WRITE)
-	save_file.store_string(json.stringify(data_to_parse))
+	save_file.store_string(JSON.stringify(data_to_parse))
 	save_file.close()
 	save_file = null
 
@@ -32,3 +31,15 @@ func log_data(emitter : Node, label : String, data):
 func log_error(emitter : Node, label : String, message : String):
 	print_rich("[red]", emitter, " : ", "[red]")
 	print_rich("[red]", label, " : ", message, "[red]")
+
+func wait_to_continue() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			return
+		await get_tree().process_frame
+
+func wait_to_skip() -> void:
+	while true:
+		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("jump"):
+			break
+		await get_tree().process_frame

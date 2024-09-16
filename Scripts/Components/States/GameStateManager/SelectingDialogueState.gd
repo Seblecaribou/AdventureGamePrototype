@@ -1,0 +1,2 @@
+class_name SelectingDialogue
+extends StateComponent

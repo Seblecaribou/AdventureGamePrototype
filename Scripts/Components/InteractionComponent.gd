@@ -42,6 +42,7 @@ func interact():
 		SignalBusSingleton.interacted.emit(self, current_interaction, current_interaction_type, player_character.global_position)
 		match current_interaction_type:
 			"obs":
+				SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "examining")
 				interaction_content.clear()
 				interaction_content.text = current_interaction.interactable_data.interactable_description
 				#DEBUG
@@ -50,10 +51,10 @@ func interact():
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)
 			"act":
-				#TODO change current_interaction.interactable_activated
+				SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "activating")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_description)				
 			"char":
-				#TODO signal 
+				SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 				#DEBUG
 				print(current_interaction.interactable_data.interactable_label, " : ", current_interaction.interactable_data.interactable_description)

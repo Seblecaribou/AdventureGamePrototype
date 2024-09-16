@@ -18,4 +18,4 @@ func set_up_label():
 	button_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	
 func _on_button_pressed():
-	SignalBusSingleton.pressed.emit(self)
+	SignalBusSingleton.dialogue_button_pressed.emit(self)

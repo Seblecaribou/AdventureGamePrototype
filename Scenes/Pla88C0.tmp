@@ -202,11 +202,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdd2a"]
 radius = 62.0081
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("interaction_component", "movement_component")]
+[node name="PlayerCharacter" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_5gnik")
-interaction_component = NodePath("Interaction Nodes/InteractionComponent")
-movement_component = NodePath("MovementComponent")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("player_character", "initial_state")]
 unique_name_in_owner = true
@@ -214,17 +212,25 @@ script = ExtResource("2_gtyy5")
 player_character = NodePath("..")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateMachine"]
+[node name="Idle" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("10_scoe8")
+player_character = NodePath("../..")
+animation_component = NodePath("../../AnimationComponent")
 
-[node name="Run" type="Node" parent="PlayerStateMachine"]
+[node name="Run" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("11_5bmtk")
+player_character = NodePath("../..")
+animation_component = NodePath("../../AnimationComponent")
 
-[node name="Jump" type="Node" parent="PlayerStateMachine"]
+[node name="Jump" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("12_3gsbr")
+player_character = NodePath("../..")
+animation_component = NodePath("../../AnimationComponent")
 
-[node name="Observe" type="Node" parent="PlayerStateMachine"]
+[node name="Observe" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("player_character", "animation_component")]
 script = ExtResource("6_3wlrt")
+player_character = NodePath("../..")
+animation_component = NodePath("../../AnimationComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

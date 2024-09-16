@@ -19,7 +19,6 @@ func load_quest_data(id : String):
 		quest_steps = StaticDataSingleton.all_quests_data[id].steps
 		quest_results = StaticDataSingleton.all_quests_data[id].results
 		quest_active = StaticDataSingleton.all_quests_data[id].active
-	return self
 	UtilsSingleton.log_data(self, "load_quest_data", quest_title)
+	return self
 	
-
