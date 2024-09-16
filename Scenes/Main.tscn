@@ -230,20 +230,20 @@ texture = ExtResource("2_3axcj")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_5mvu3")
 
+[sub_resource type="Animation" id="Animation_m7pv6"]
+resource_name = "angry"
+
 [sub_resource type="Animation" id="Animation_mutag"]
 resource_name = "happy"
-
-[sub_resource type="Animation" id="Animation_c4god"]
-resource_name = "sad"
 
 [sub_resource type="Animation" id="Animation_anoue"]
 resource_name = "idle"
 
-[sub_resource type="Animation" id="Animation_m7pv6"]
-resource_name = "angry"
-
 [sub_resource type="Animation" id="Animation_1v7xi"]
 resource_name = "inquisitive"
+
+[sub_resource type="Animation" id="Animation_c4god"]
+resource_name = "sad"
 
 [sub_resource type="Animation" id="Animation_15rf8"]
 resource_name = "surprised"

@@ -73,6 +73,8 @@ func manage_bbcode(isEnabled : bool) -> void:
 	dialogue_text.bbcode_enabled = isEnabled
 
 #Portrait
+## Loads portrait Sprite2D with an image from Images/Portraits, based of character id and emotion
+## Places portrait on the left if main character, and on the right if NPC
 func load_portrait(portrait : Sprite2D, character_id : String, character_emotion: String, is_talking : bool) -> void:
 	var image_filepath : String
 	if is_talking:
@@ -86,21 +88,18 @@ func load_portrait(portrait : Sprite2D, character_id : String, character_emotion
 		portrait.texture = load(image_filepath)
 
 func animate_portrait(portrait : Sprite2D, character_emotion : String) -> void:
-	# Stop any previous animation first
 	dialogue_animator.stop()
 
-	# Create a new animation if it doesn't exist
 	var animation = dialogue_animator.get_animation(character_emotion)
 	if animation == null:
 		UtilsSingleton.log_error(self, "animate_portrait", "No animation found for " + character_emotion + ".")
 		return
+		
 	animation.clear()
 	animation.loop_mode = 2
-
-	# Get the path to the portrait's node as a string
 	var portrait_path : String = portrait.get_path()
 	
-	# Add some basic transformations based on the emotion
+	#Animates portrait based of emotion
 	match character_emotion:
 		"happy":
 			animation.add_track(Animation.TYPE_VALUE)
@@ -129,6 +128,11 @@ func animate_portrait(portrait : Sprite2D, character_emotion : String) -> void:
 			animation.track_insert_key(0, 0, Vector2(1, 1))
 			animation.track_insert_key(0, 0.5, Vector2(1.1, 1.1))
 			animation.track_insert_key(0, 1, Vector2(1, 1))
+			
+		"inquisitive":
+			pass
 
-	# Play the animation
 	dialogue_animator.play(character_emotion)
+
+#Sounds
+#TODO add sound for each new letter typed in the dialogue
