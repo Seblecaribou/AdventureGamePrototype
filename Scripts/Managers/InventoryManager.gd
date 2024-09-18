@@ -3,6 +3,7 @@ extends Node
 
 var pickables : Array[Interactable]
 var observables : Array[Interactable]
+signal picked_up(interactable_id : String)
 
 func _ready():
 	SignalBusSingleton.interacted.connect(_on_interacted)
@@ -28,3 +29,4 @@ func _on_interacted(emitter : Node, interactable : Interactable, interaction_typ
 					observables.append(interactable)
 				"pic":
 					pickables.append(interactable)
+					interactable.queue_free()
