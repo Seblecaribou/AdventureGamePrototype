@@ -42,3 +42,4 @@ func _ready():
 	##Dialogues
 	#for file_path in dialogues_json_filepaths:
 		#all_dialogues_data.merge( UtilsSingleton.load_json_file(file_path))
+		
