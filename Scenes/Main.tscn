@@ -363,12 +363,13 @@ script = ExtResource("6_q7uve")
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")
 
-[node name="InventoryManager" type="Node" parent="GameManagers"]
+[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu")]
 script = ExtResource("13_7fyol")
+radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
 
 [node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
 
-[node name="RadialMenu" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+[node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
 player_character = NodePath("../../../../PlayerCharacter")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
