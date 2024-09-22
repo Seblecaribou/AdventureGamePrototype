@@ -13,3 +13,4 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ykjcl")
 line_color = Color(0.973535, 0.973535, 0.973535, 1)
+inner_radius = 64

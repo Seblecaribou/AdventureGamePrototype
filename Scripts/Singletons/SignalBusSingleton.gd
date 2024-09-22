@@ -24,12 +24,12 @@ signal objectives(emitter : Node, objectives : Array[String])
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2)
 
 #StateMachine
-##Emitters: PlayerCharacter, DialogueButtonManager
+##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager
 ##Connected: StateMachineComponent
 signal newstate_query(emitter : Node, state_machine_name : String, newstate_query : String)
 
-##Emitters: StateMachineComponent (emitter), GameStateMachine (inherits emitter)
-##Connected: PlayerCharacter, DialogueManager
+##Emitters: StateMachineComponent (emitter), GameStateMachine (inherits emitter), PlayerStateMachine (inherits emitter)
+##Connected: PlayerCharacter, DialogueManager, InventoryManager
 signal newstate(emitter : Node, previous_state : String, new_state : String)
 
 #Dialogues

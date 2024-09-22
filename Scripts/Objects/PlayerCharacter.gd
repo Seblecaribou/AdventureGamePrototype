@@ -10,6 +10,7 @@ func _ready():
 	SignalBusSingleton.newstate.connect(on_new_game_state)
 
 func _physics_process(delta):
+	print(current_game_state)
 	check_input()
 
 func check_input() -> void:

@@ -2,7 +2,8 @@ class_name InventoryManager
 extends Node
 
 @export var radial_menu : RadialMenuComponent
-var player_position : Vector2
+@export var player_character : PlayerCharacter
+var current_game_state_name : String
 var pickables : Array[Interactable]
 var observables : Array[Interactable]
 signal picked_up(interactable_id : String)
@@ -41,13 +42,11 @@ func _on_newstate(emitter : Node, previous_state : String, new_state : String) -
 			"moving":
 				#TODO
 				#1 - Radial menu invisible
-				radial_menu.visible = false
-				print("_on_newstate - radial_menu.visible : ", radial_menu.visible)
+				radial_menu.hide()
 				pass
 			"selectingpickable":
-				radial_menu.visible = true
-				print("_on_newstate - radial_menu.visible : ", radial_menu.visible)
-				radial_menu.global_position = player_position + AppSettingsSingleton.radial_menu_offset
+				radial_menu.show()
+				radial_menu.global_position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
 			_:
 				return
 	

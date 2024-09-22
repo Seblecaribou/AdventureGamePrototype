@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=27 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
 [ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingDialogueState.gd" id="5_c6h1t"]
+[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingPickableState.gd" id="5_vhoqr"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/DialoguingState.gd" id="6_gr1pc"]
 [ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
 [ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
@@ -281,6 +282,7 @@ layer_0/tile_data = PackedInt32Array(23, 0, 6, 65559, 0, 5, 131095, 0, 5, 196631
 [node name="GameManagers" type="Node" parent="."]
 
 [node name="GameStateMachine" type="Node" parent="GameManagers" node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("1_gxh85")
 initial_state = NodePath("Moving")
 
@@ -288,7 +290,7 @@ initial_state = NodePath("Moving")
 script = ExtResource("4_k5fou")
 
 [node name="SelectingPickable" type="Node" parent="GameManagers/GameStateMachine"]
-script = ExtResource("4_k5fou")
+script = ExtResource("5_vhoqr")
 
 [node name="SelectingDialogue" type="Node" parent="GameManagers/GameStateMachine"]
 script = ExtResource("5_c6h1t")
@@ -363,13 +365,15 @@ script = ExtResource("6_q7uve")
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")
 
-[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu")]
+[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu", "player_character")]
 script = ExtResource("13_7fyol")
 radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
+player_character = NodePath("../../PlayerCharacter")
 
 [node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+visible = false
 player_character = NodePath("../../../../PlayerCharacter")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
@@ -384,6 +388,9 @@ position = Vector2(234, 547)
 
 [node name="pic_footprints_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(78, 544)
+
+[node name="pic_room101key" parent="." instance=ExtResource("4_hs0my")]
+position = Vector2(448, 472)
 
 [node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(362, 545)
