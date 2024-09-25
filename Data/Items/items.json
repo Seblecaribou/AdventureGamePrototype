@@ -47,6 +47,15 @@
 		"room_id": "",
 		"sprite_id": "",
 		"used":"false"
+	  },
+	  "pic_hoodie_sewers":{
+		"id": "pic_hoodie_sewers",
+		"name": "hoodie_sewers",
+		"description": "A red hoodie, with some sort of pagan or satanist drawing on the back.",
+		"label": "Red hoodie",
+		"room_id": "",
+		"sprite_id": "",
+		"used":"false"
 	  }
 	},
 	"Actionable": {}

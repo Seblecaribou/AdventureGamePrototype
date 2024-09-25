@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3cv72wntst3o"]
 
-[ext_resource type="Script" path="res://Scripts/Components/RadialMenuComponent.gd" id="1_ykjcl"]
+[ext_resource type="Script" path="res://Scripts/Menus/Radial/RadialMenuComponent.gd" id="1_m05wx"]
 
 [node name="RadialMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +11,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ykjcl")
-line_color = Color(0.973535, 0.973535, 0.973535, 1)
-inner_radius = 64
+script = ExtResource("1_m05wx")
+line_color = Color(1, 1, 1, 1)
+inner_radius = 80
