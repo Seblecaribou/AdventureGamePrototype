@@ -5,7 +5,7 @@ extends Control
 var nb_pickables : int
 
 @export var inner_radius : int = 80
-@export var arc_radius : int = 360
+@export var arc_angle : int = 180
 @export var button_size : Vector2 = Vector2(0.4,0.4)
 
 func load_pickables(pickables : Array[Dictionary]) -> void:
@@ -14,27 +14,26 @@ func load_pickables(pickables : Array[Dictionary]) -> void:
 		var pickable_button : Button = Button.new()
 		var label : String = pickables[pickable_index]["interactable_data"]["label"]
 		pickable_button.text = label
-		#TEST
-		pickable_button.text = ""
-		var icon : Texture2D = load("res://Images/Portraits/char_chiro_happy.png")
+		pickable_button.text = "" #TEST
+		var sprite_path : String =AppSettingsSingleton.base_res_path + AppSettingsSingleton.images_folder_path + "Portraits/" + pickables[pickable_index]["interactable_data"]["sprite_id"]
+		var icon : Texture2D = load(sprite_path)
 		pickable_button.icon = icon
 		pickable_button.scale = button_size
 		pickable_button.z_index = 5
 		add_child(pickable_button)
 		place_pickable(pickable_button, pickable_index)
-		#2 - Create a label and hide it (it will be visible when mouse hover)
-		#3 - Place the pickable on a circle depending on the index of pickable in pickables
 
 ##Places the pickable in an arc around the head of the player character
 func place_pickable(pickable_button : Button, pickable_index : int):
 	#Determines the angle between last button and current one, depending on number of item in inventory
-	var angle_step = arc_radius / nb_pickables
-	var pickable_angle_to_center = angle_step * (pickable_index + 1)
+	#Because we don't use full circle, we divide by nb_pickables - 1
+	var angle_step = arc_angle / (nb_pickables - 1)
+	var pickable_angle_to_first_item = angle_step * (pickable_index)
 	#Determines the Vector2 for the item position
-	var pickable_x = inner_radius * cos(deg_to_rad(pickable_angle_to_center)) * (pickable_index +1)
-	var pickable_y = inner_radius * sin(deg_to_rad(pickable_angle_to_center)) * (pickable_index + 1)
-	#Places the item
-	pickable_button.position = Vector2(pickable_x, pickable_y)
+	var pickable_x = inner_radius * cos(deg_to_rad(pickable_angle_to_first_item))
+	var pickable_y = inner_radius * sin(deg_to_rad(pickable_angle_to_first_item))
+	#Places the item starting on the left of center
+	pickable_button.position = Vector2(- pickable_x, - pickable_y)
 	
 	
 func unload_buttons():
