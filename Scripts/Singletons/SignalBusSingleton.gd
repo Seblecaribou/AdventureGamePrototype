@@ -36,3 +36,8 @@ signal newstate(emitter : Node, previous_state : String, new_state : String)
 ##Emitters: DialogueButtonManager
 ##Connected: DialogueManager
 signal dialogue_button_pressed(emitter : Button)
+
+#Menus
+##Emitters: RadialButtonManager
+##Connected: InventoryManager
+signal radial_button_pressed(emitter : Button)

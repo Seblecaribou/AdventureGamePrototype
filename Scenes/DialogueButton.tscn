@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ht2r5nsnjvvj"]
+[gd_scene load_steps=2 format=3 uid="uid://ht2r5nsnjvvj"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueButtonManager.gd" id="1_8yg4a"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_i7hct"]
 
 [node name="DialogueButtonManager" type="Node2D" node_paths=PackedStringArray("dialogue_button_component", "button_sprite", "button_label")]
 script = ExtResource("1_8yg4a")
@@ -15,8 +13,7 @@ z_index = 3
 offset_right = 165.0
 offset_bottom = 41.0
 
-[node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_i7hct")
+[node name="ButtonSprite" type="Sprite2D" parent="."]
 
 [node name="ButtonLabel" type="RichTextLabel" parent="."]
 offset_right = 163.0

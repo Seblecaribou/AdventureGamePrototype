@@ -11,31 +11,37 @@ var nb_pickables : int
 func load_pickables(pickables : Array[Dictionary]) -> void:
 	nb_pickables = pickables.size()
 	for pickable_index in range(nb_pickables):
-		var pickable_button : Button = Button.new()
 		var label : String = pickables[pickable_index]["interactable_data"]["label"]
-		pickable_button.text = label
-		pickable_button.text = "" #TEST
 		var sprite_path : String =AppSettingsSingleton.base_res_path + AppSettingsSingleton.images_folder_path + "Portraits/" + pickables[pickable_index]["interactable_data"]["sprite_id"]
-		var icon : Texture2D = load(sprite_path)
-		pickable_button.icon = icon
-		pickable_button.scale = button_size
-		pickable_button.z_index = 5
-		add_child(pickable_button)
+		var pickable_button : RadialButtonManager = add_button(pickable_index, sprite_path, label, button_size)
 		place_pickable(pickable_button, pickable_index)
 
+func add_button(button_index : int, sprite_path : String, label : String, button_size : Vector2) -> RadialButtonManager:
+	var new_button_instance = preload("res://Scenes/RadialButton.tscn").instantiate()
+	new_button_instance.index = button_index
+	new_button_instance.button_sprite.texture = load(sprite_path)
+	new_button_instance.button_label.text = label
+	new_button_instance.scale = button_size
+	new_button_instance.z_index = 5
+	add_child(new_button_instance)
+	return new_button_instance
+	
 ##Places the pickable in an arc around the head of the player character
-func place_pickable(pickable_button : Button, pickable_index : int):
-	#Determines the angle between last button and current one, depending on number of item in inventory
-	#Because we don't use full circle, we divide by nb_pickables - 1
-	var angle_step = arc_angle / (nb_pickables - 1)
+func place_pickable(pickable_button : RadialButtonManager, pickable_index : int):
+	var angle_step : float
+	match nb_pickables:
+		0:
+			return
+		1:
+			angle_step = arc_angle
+		_:
+			angle_step = arc_angle / (nb_pickables - 1)
 	var pickable_angle_to_first_item = angle_step * (pickable_index)
-	#Determines the Vector2 for the item position
 	var pickable_x = inner_radius * cos(deg_to_rad(pickable_angle_to_first_item))
 	var pickable_y = inner_radius * sin(deg_to_rad(pickable_angle_to_first_item))
-	#Places the item starting on the left of center
 	pickable_button.position = Vector2(- pickable_x, - pickable_y)
-	
-	
+
+##Empties the menu to stop duplication and free memory
 func unload_buttons():
 	for button in get_children():
 		button.free()

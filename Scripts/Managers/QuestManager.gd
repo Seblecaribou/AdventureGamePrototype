@@ -8,10 +8,11 @@ func _ready():
 	load_quests_from_save_file(true, "active_quests")
 	load_quests_from_save_file(true, "finished_quests")
 	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
-	SignalBusSingleton.update_one_quest.connect(on_update_one_quest)
-	SignalBusSingleton.unlock_quest.connect(on_unlock_quest)
+	SignalBusSingleton.update_one_quest.connect(_on_update_one_quest)
+	SignalBusSingleton.unlock_quest.connect(_on_unlock_quest)
 	pass
-	
+
+#region Methods
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 	var quest_dictionary : Dictionary = {}
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
@@ -55,7 +56,7 @@ func save_quests() -> void:
 	DynamicDataSingleton.save(save_file_name, quests_dictionary)
 
 
-#Quest/Step/Objectives validation
+#Quest/Step/Objectives validation methods
 func validate_objective(quest_id : String, step_id : String, objective_index : int):
 	for quest in active_quests:
 		if quest.id == quest_id:
@@ -112,11 +113,11 @@ func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 			return step
 		else:
 			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
+#endregion
 
 
-
-#Signal callables
-func on_update_one_quest(emitter : Node, objective_id : String):
+#region Signal Callback functions
+func _on_update_one_quest(emitter : Node, objective_id : String):
 	#TODO 
 	#1 Decompose the id to find the correct quest, correct step, then correct objective
 	#2 put it to success = true + manage the results of said objective
@@ -124,10 +125,11 @@ func on_update_one_quest(emitter : Node, objective_id : String):
 	#4 check_quest_success - check if all steps are done: if yes, make quest as success = true and put in finished quests
 	pass
 
-func on_unlock_quest(emitter : Node, quest_id : String):
+func _on_unlock_quest(emitter : Node, quest_id : String):
 	var quest_data : Dictionary = {}
 	quest_data = %QuestData.load_quest_data(quest_id)
 	quest_data.active = true
 	quest_data.steps[0].active = true
 	active_quests.append(quest_data)
 	UtilsSingleton.log_data(self, "on_unlock_quest", active_quests)
+#endregion

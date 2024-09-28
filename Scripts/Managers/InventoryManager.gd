@@ -11,8 +11,10 @@ signal picked_up(interactable_id : String)
 func _ready():
 	SignalBusSingleton.newstate.connect(_on_newstate)
 	SignalBusSingleton.interacted.connect(_on_interacted)
+	SignalBusSingleton.radial_button_pressed.connect(_on_button_pressed)
 	
 
+#region Methods
 func is_in_inventory(interactable_object : Dictionary, interaction_type : String) -> bool:
 	match interaction_type:
 			"obs":
@@ -24,15 +26,25 @@ func is_in_inventory(interactable_object : Dictionary, interaction_type : String
 					if item["interactable_id"] == interactable_object["interactable_id"]:
 						return true
 	return false
-	#match interactable_type:
-		#"obs":
-			#return observables.has(interactable)
-		#"pic":
-			#return pickables.has(interactable)
-	#return false
+#endregion
 
+#region Signals Callback Functions
+func _on_newstate(emitter : Node, previous_state : String, new_state : String) -> void:
+	if emitter.name.to_lower() == "gamestatemachine":
+		match new_state:
+			"moving":
+				#TODO
+				#1 - Radial menu invisible
+				radial_menu.hide()
+				radial_menu.unload_buttons()
+				pass
+			"selectingpickable":
+				radial_menu.global_position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
+				radial_menu.load_pickables(pickables)
+				radial_menu.show()
+			_:
+				return
 
-#Signals Callback Functions
 func _on_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2) -> void:
 	if !(interaction_type == "obs" or interaction_type == "pic"):
 		return
@@ -58,21 +70,8 @@ func _on_interacted(emitter : Node, interactable : Interactable, interaction_typ
 				"pic":
 					pickables.append(interactable_object)
 					interactable.queue_free()
-	
-	
-func _on_newstate(emitter : Node, previous_state : String, new_state : String) -> void:
-	if emitter.name.to_lower() == "gamestatemachine":
-		match new_state:
-			"moving":
-				#TODO
-				#1 - Radial menu invisible
-				radial_menu.hide()
-				radial_menu.unload_buttons()
-				pass
-			"selectingpickable":
-				radial_menu.global_position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
-				radial_menu.load_pickables(pickables)
-				radial_menu.show()
-			_:
-				return
-	
+
+
+func _on_button_pressed(emitter : Button) -> void:
+	pass
+#endregion

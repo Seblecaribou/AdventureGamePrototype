@@ -19,7 +19,7 @@ func _ready():
 func _process(delta):
 	check_input()
 
-
+#region Methods
 func configure_dialogue(interactable : Interactable):
 	for objective in current_quests_objectives:
 		var quest_id = objective.get_slice("_", 0)
@@ -52,8 +52,14 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 			dialogue_component.hide_dialogue()
 			dialogue_menu.visible = true
+#endregion
 
-#Signals callback functions
+
+#region Signals callback functions
+func _on_newstate(emitter : Node, previous_state : String, new_state : String)-> void :
+	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
+		current_game_state = new_state
+
 func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2) -> void:
 	if interaction_type == "char":
 		SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
@@ -66,6 +72,14 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
 
+func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
+	for quest in active_quests:
+		for step in quest.quest_steps:
+			for objective in step.objectives:
+				if !objective.success:
+					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
+					current_quests_objectives.append(dialogue_id)
+
 func _on_dialogue_button_pressed(button : Node2D) -> void:
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
@@ -75,16 +89,4 @@ func _on_dialogue_button_pressed(button : Node2D) -> void:
 				await dialogue_component.handle_dialogue_content(dialogue_content)
 			dialogue_component.visible = false
 			dialogue_menu.visible = true
-
-
-func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
-	for quest in active_quests:
-		for step in quest.quest_steps:
-			for objective in step.objectives:
-				if !objective.success:
-					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
-					current_quests_objectives.append(dialogue_id)
-
-func _on_newstate(emitter : Node, previous_state : String, new_state : String)-> void :
-	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
-		current_game_state = new_state
+#endregion

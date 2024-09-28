@@ -2,7 +2,7 @@ class_name DialogueButtonManager
 extends Node2D
 
 @export var dialogue_button_component : Button
-@export var button_sprite : AnimatedSprite2D
+@export var button_sprite : Sprite2D
 @export var button_label : RichTextLabel
 var index : int
 var objective_id : String
