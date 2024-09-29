@@ -4,6 +4,7 @@ extends Node
 @export var radial_menu : RadialMenuComponent
 @export var player_character : PlayerCharacter
 var current_game_state_name : String
+var current_pickable_id : String
 var pickables : Array[Dictionary]
 var observables : Array[Dictionary]
 signal picked_up(interactable_id : String)
@@ -33,13 +34,11 @@ func _on_newstate(emitter : Node, previous_state : String, new_state : String) -
 	if emitter.name.to_lower() == "gamestatemachine":
 		match new_state:
 			"moving":
-				#TODO
-				#1 - Radial menu invisible
 				radial_menu.hide()
 				radial_menu.unload_buttons()
 				pass
 			"selectingpickable":
-				radial_menu.global_position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
+				radial_menu.position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
 				radial_menu.load_pickables(pickables)
 				radial_menu.show()
 			_:
@@ -71,7 +70,10 @@ func _on_interacted(emitter : Node, interactable : Interactable, interaction_typ
 					pickables.append(interactable_object)
 					interactable.queue_free()
 
-
-func _on_button_pressed(emitter : Button) -> void:
-	pass
+func _on_button_pressed(emitter : RadialButtonManager) -> void:
+	if current_pickable_id != emitter.item_id:
+		current_pickable_id = emitter.item_id
+	else:
+		current_pickable_id = ""
+	SignalBusSingleton.new_selected_item.emit(self, current_pickable_id)
 #endregion

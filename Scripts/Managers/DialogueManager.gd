@@ -80,7 +80,7 @@ func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], Fin
 					var dialogue_id : String = quest.quest_id + "_" + step.id + "_" + objective.id
 					current_quests_objectives.append(dialogue_id)
 
-func _on_dialogue_button_pressed(button : Node2D) -> void:
+func _on_dialogue_button_pressed(button : DialogueButtonManager) -> void:
 	for dialogue in current_dialogues:
 		if button.objective_id == dialogue.objective_id:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "dialoguing")

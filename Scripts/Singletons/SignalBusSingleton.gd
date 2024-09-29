@@ -35,9 +35,14 @@ signal newstate(emitter : Node, previous_state : String, new_state : String)
 #Dialogues
 ##Emitters: DialogueButtonManager
 ##Connected: DialogueManager
-signal dialogue_button_pressed(emitter : Button)
+signal dialogue_button_pressed(emitter : DialogueButtonManager)
 
 #Menus
+#Inventory
 ##Emitters: RadialButtonManager
 ##Connected: InventoryManager
-signal radial_button_pressed(emitter : Button)
+signal radial_button_pressed(emitter : RadialButtonManager)
+
+##Emitters: InventoryManager
+##Connected: PlayerCharacter
+signal new_selected_item(emitter : Node, item_id : String)
