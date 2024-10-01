@@ -373,8 +373,8 @@ player_character = NodePath("../../PlayerCharacter")
 [node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+visible = false
 player_character = NodePath("../../../../PlayerCharacter")
-button_size = Vector2(0.425, 0.45)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
@@ -384,13 +384,10 @@ position = Vector2(150, 523)
 position = Vector2(540, 454)
 
 [node name="obs_towel_bathroom01" parent="." instance=ExtResource("4_hs0my")]
-position = Vector2(369, 311)
+position = Vector2(234, 547)
 
 [node name="obs_mirror_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(361, 546)
-
-[node name="pic_hoodie_sewers" parent="." instance=ExtResource("4_hs0my")]
-position = Vector2(240, 546)
 
 [node name="pic_footprints_bathroom01" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(78, 544)

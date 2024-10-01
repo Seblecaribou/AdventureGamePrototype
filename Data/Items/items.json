@@ -36,7 +36,7 @@
 		"description": "Muddy footprints. Judging by the looks, they were made by some sort of gardening boots.",
 		"label": "Muddy footprints",
 		"room_id": "bathroom01",
-		"sprite_id": "",
+		"sprite_id": "char_golot_happy.png",
 		"used":"false"
 	  },
 	  "pic_room101key":{
@@ -45,7 +45,16 @@
 		"description": "This is a key for my room. It has a little seagull attached to it. Cute.",
 		"label": "Key for room 101",
 		"room_id": "",
-		"sprite_id": "",
+		"sprite_id": "char_chiro_neutral_bw.png",
+		"used":"false"
+	  },
+	  "pic_hoodie_sewers":{
+		"id": "pic_hoodie_sewers",
+		"name": "hoodie_sewers",
+		"description": "A red hoodie, with some sort of pagan or satanist drawing on the back.",
+		"label": "Red hoodie",
+		"room_id": "",
+		"sprite_id": "char_chiro_happy.png",
 		"used":"false"
 	  }
 	},

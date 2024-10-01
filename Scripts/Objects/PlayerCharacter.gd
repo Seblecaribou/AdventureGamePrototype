@@ -36,6 +36,10 @@ func check_input() -> void:
 			interaction_component.interact()
 
 		##Menus
+		#RadialMenu Button
+		if Input.is_action_just_pressed("inventory"):
+			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingpickable")
+		
 		#Return Button
 		if Input.is_action_just_pressed("return"):
 			pass
