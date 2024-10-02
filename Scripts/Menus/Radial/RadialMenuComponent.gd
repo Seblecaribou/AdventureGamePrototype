@@ -2,13 +2,33 @@ class_name RadialMenuComponent
 extends Control
 
 #region Variables
+var is_active : bool = false
 @export var player_character : PlayerCharacter
 var nb_pickables : int
-
+var pointer_direction : Vector2
+var pointer_position : Vector2
 @export var inner_radius : int = 80
 @export var arc_angle : int = 180
-@export var button_size : Vector2 = Vector2(0.4,0.4)
+@export var button_scale : Vector2 = Vector2(0.4,0.4)
 #endregion
+
+#region Ready, Process...
+func _process(delta: float) -> void:
+	if is_active:
+		#Find direction pointed by left Joystick
+		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
+		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
+		print("pointer_x : ", pointer_position.x)
+		print("pointer_y : ", pointer_position.y)
+		if Input.is_action_just_pressed("interact"):
+			for button in get_children():
+				#TODO
+				#if button.position roughly equals pointer_position, then return button.id aka selected item id 
+				pass
+			
+		
+#endregion
+
 
 #region Methods
 func load_pickables(pickables : Array[Dictionary]) -> void:
@@ -17,8 +37,9 @@ func load_pickables(pickables : Array[Dictionary]) -> void:
 		var label : String = pickables[pickable_index]["interactable_data"]["label"]
 		var id : String = pickables[pickable_index]["interactable_id"]
 		var sprite_path : String =AppSettingsSingleton.base_res_path + AppSettingsSingleton.images_folder_path + "Portraits/" + pickables[pickable_index]["interactable_data"]["sprite_id"]
-		var pickable_button : RadialButtonManager = add_button(id, pickable_index, sprite_path, label, button_size)
+		var pickable_button : RadialButtonManager = add_button(id, pickable_index, sprite_path, label, button_scale)
 		place_pickable(pickable_button, pickable_index)
+
 
 func add_button(pickable_id : String, button_index : int, sprite_path : String, label : String, button_size : Vector2) -> RadialButtonManager:
 	var new_button_instance = preload("res://Scenes/RadialButton.tscn").instantiate()

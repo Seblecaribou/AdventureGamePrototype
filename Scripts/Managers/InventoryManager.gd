@@ -13,7 +13,7 @@ func _ready():
 	SignalBusSingleton.newstate.connect(_on_newstate)
 	SignalBusSingleton.interacted.connect(_on_interacted)
 	SignalBusSingleton.radial_button_pressed.connect(_on_button_pressed)
-	
+
 
 #region Methods
 func is_in_inventory(interactable_object : Dictionary, interaction_type : String) -> bool:
@@ -34,10 +34,12 @@ func _on_newstate(emitter : Node, previous_state : String, new_state : String) -
 	if emitter.name.to_lower() == "gamestatemachine":
 		match new_state:
 			"moving":
+				radial_menu.is_active = false
 				radial_menu.hide()
 				radial_menu.unload_buttons()
 				pass
 			"selectingpickable":
+				radial_menu.is_active = true
 				radial_menu.position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
 				radial_menu.load_pickables(pickables)
 				radial_menu.show()
