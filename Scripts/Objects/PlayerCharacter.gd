@@ -6,6 +6,7 @@ extends CharacterBody2D
 var current_game_state : String
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(on_new_game_state)
 

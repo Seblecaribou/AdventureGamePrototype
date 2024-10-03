@@ -374,7 +374,6 @@ player_character = NodePath("../../PlayerCharacter")
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
 player_character = NodePath("../../../../PlayerCharacter")
-button_size = Vector2(0.425, 0.45)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true

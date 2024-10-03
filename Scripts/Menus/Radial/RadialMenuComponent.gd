@@ -14,19 +14,7 @@ var pointer_position : Vector2
 
 #region Ready, Process...
 func _process(delta: float) -> void:
-	if is_active:
-		#Find direction pointed by left Joystick
-		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
-		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
-		print("pointer_x : ", pointer_position.x)
-		print("pointer_y : ", pointer_position.y)
-		if Input.is_action_just_pressed("interact"):
-			for button in get_children():
-				#TODO
-				#if button.position roughly equals pointer_position, then return button.id aka selected item id 
-				pass
-			
-		
+	handle_gamepad_controls()
 #endregion
 
 
@@ -58,7 +46,8 @@ func add_button(pickable_id : String, button_index : int, sprite_path : String, 
 	new_button_instance.z_index = 5
 	add_child(new_button_instance)
 	return new_button_instance
-	
+
+
 ##Places the pickable in an arc around the head of the player character
 func place_pickable(pickable_button : RadialButtonManager, pickable_index : int):
 	var angle_step : float
@@ -74,6 +63,7 @@ func place_pickable(pickable_button : RadialButtonManager, pickable_index : int)
 	var pickable_y = inner_radius * sin(deg_to_rad(pickable_angle_to_first_item))
 	pickable_button.position = Vector2(- pickable_x, - pickable_y)
 
+
 ##Empties the menu to stop duplication and free memory
 func unload_buttons():
 	for button in get_children():
@@ -82,4 +72,18 @@ func unload_buttons():
 		UtilsSingleton.log_error(self, "unload_buttons", "Error while emptying radial menu: some buttons were not unloaded.")
 	else:
 		UtilsSingleton.log_data(self, "unload_buttons", "Radial menu is empty")
+
+
+##Moves the mouse cursor depending on the joystick, and clicks if "interact" button is pressed
+func handle_gamepad_controls() -> void :
+	if is_active:
+		#Finds direction pointed by left Joystick
+		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
+		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
+		#Moves mouse pointer to position
+		warp_mouse(pointer_position)
+		#Handles interact button press
+		if Input.is_action_just_pressed("jump"):
+			Input.is_action_pressed("mouse_left_click")
+
 #endregion
