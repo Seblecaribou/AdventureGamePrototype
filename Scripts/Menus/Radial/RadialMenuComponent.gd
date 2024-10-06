@@ -84,6 +84,6 @@ func handle_gamepad_controls() -> void :
 		warp_mouse(pointer_position)
 		#Handles interact button press
 		if Input.is_action_just_pressed("jump"):
-			Input.is_action_pressed("mouse_left_click")
-
+			var press = InputEventMouseButton.new()
+			press.set_pressed(true)
 #endregion

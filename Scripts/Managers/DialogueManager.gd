@@ -33,6 +33,7 @@ func configure_dialogue(interactable : Interactable):
 							if dialogue_objective.objective_id == objective_id:
 								current_dialogues.append(dialogue_objective)
 
+
 func reset_dialogue_system() -> void:
 	for dialogue in current_dialogues:
 		dialogue = null
@@ -52,6 +53,9 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 			dialogue_component.hide_dialogue()
 			dialogue_menu.visible = true
+			
+func handle_gamepad_controls() -> void :
+	pass
 #endregion
 
 
