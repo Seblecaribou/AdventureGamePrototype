@@ -53,9 +53,7 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 			dialogue_component.hide_dialogue()
 			dialogue_menu.visible = true
-			
-func handle_gamepad_controls() -> void :
-	pass
+			dialogue_menu.is_active = true
 #endregion
 
 
