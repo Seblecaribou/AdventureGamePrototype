@@ -2,13 +2,21 @@ class_name RadialMenuComponent
 extends Control
 
 #region Variables
+var is_active : bool = false
 @export var player_character : PlayerCharacter
 var nb_pickables : int
-
+var pointer_direction : Vector2
+var pointer_position : Vector2
 @export var inner_radius : int = 80
 @export var arc_angle : int = 180
-@export var button_size : Vector2 = Vector2(0.4,0.4)
+@export var button_scale : Vector2 = Vector2(0.4,0.4)
 #endregion
+
+#region Ready, Process...
+func _process(delta: float) -> void:
+	handle_gamepad_controls()
+#endregion
+
 
 #region Methods
 func load_pickables(pickables : Array[Dictionary]) -> void:
@@ -17,8 +25,9 @@ func load_pickables(pickables : Array[Dictionary]) -> void:
 		var label : String = pickables[pickable_index]["interactable_data"]["label"]
 		var id : String = pickables[pickable_index]["interactable_id"]
 		var sprite_path : String =AppSettingsSingleton.base_res_path + AppSettingsSingleton.images_folder_path + "Portraits/" + pickables[pickable_index]["interactable_data"]["sprite_id"]
-		var pickable_button : RadialButtonManager = add_button(id, pickable_index, sprite_path, label, button_size)
+		var pickable_button : RadialButtonManager = add_button(id, pickable_index, sprite_path, label, button_scale)
 		place_pickable(pickable_button, pickable_index)
+
 
 func add_button(pickable_id : String, button_index : int, sprite_path : String, label : String, button_size : Vector2) -> RadialButtonManager:
 	var new_button_instance = preload("res://Scenes/RadialButton.tscn").instantiate()
@@ -37,7 +46,8 @@ func add_button(pickable_id : String, button_index : int, sprite_path : String, 
 	new_button_instance.z_index = 5
 	add_child(new_button_instance)
 	return new_button_instance
-	
+
+
 ##Places the pickable in an arc around the head of the player character
 func place_pickable(pickable_button : RadialButtonManager, pickable_index : int):
 	var angle_step : float
@@ -53,6 +63,7 @@ func place_pickable(pickable_button : RadialButtonManager, pickable_index : int)
 	var pickable_y = inner_radius * sin(deg_to_rad(pickable_angle_to_first_item))
 	pickable_button.position = Vector2(- pickable_x, - pickable_y)
 
+
 ##Empties the menu to stop duplication and free memory
 func unload_buttons():
 	for button in get_children():
@@ -61,4 +72,18 @@ func unload_buttons():
 		UtilsSingleton.log_error(self, "unload_buttons", "Error while emptying radial menu: some buttons were not unloaded.")
 	else:
 		UtilsSingleton.log_data(self, "unload_buttons", "Radial menu is empty")
+
+
+##Moves the mouse cursor depending on the joystick, and clicks if "interact" button is pressed
+func handle_gamepad_controls() -> void :
+	if is_active:
+		#Finds direction pointed by left Joystick
+		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
+		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
+		#Moves mouse pointer to position
+		warp_mouse(pointer_position)
+		#Handles interact button press
+		if Input.is_action_just_pressed("jump"):
+			var press = InputEventMouseButton.new()
+			press.set_pressed(true)
 #endregion

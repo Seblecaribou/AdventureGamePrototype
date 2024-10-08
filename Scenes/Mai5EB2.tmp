@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bomv7cngjdhnx" path="res://Free/Terrain/Terrain (16x16).png" id="2_3axcj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
+[ext_resource type="Script" path="res://Scripts/Components/DialogueComponent.gd" id="4_e7uya"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
 [ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
@@ -14,7 +15,6 @@
 [ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
 [ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
 [ext_resource type="Script" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
 
@@ -315,7 +315,7 @@ script = ExtResource("9_jnvcw")
 
 [node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
 visible = false
-script = ExtResource("11_lwelu")
+script = ExtResource("4_e7uya")
 dialogue_frame = NodePath("DialogueFrame")
 dialogue_text = NodePath("DialogueText")
 dialogue_animator = NodePath("DialogueAnimator")
@@ -374,6 +374,7 @@ player_character = NodePath("../../PlayerCharacter")
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
 player_character = NodePath("../../../../PlayerCharacter")
+button_size = Vector2(0.425, 0.45)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
