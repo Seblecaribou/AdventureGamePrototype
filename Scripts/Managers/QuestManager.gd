@@ -113,14 +113,50 @@ func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 			return step
 		else:
 			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
+			
+func find_objective_by_id(obj_id : String, objectives : Array[QuestObjectiveComponent]):
+	for obj in objectives:
+		if obj.id == obj_id:
+			return obj
+		else : 
+			UtilsSingleton.log_error(self, "find_objective_by_id", "The id " + obj_id + " was not found in the quest's objectives")
+			
+func manage_result(result_id : String) -> void:
+	var result_type : String = result_id.get_slice("_", 0)
+	match result_type:
+		"suc":
+			#Success - Resolves another quest
+			pass
+		"unl":
+			#Unlock - Unlocks a quest
+			pass
+		"tak":
+			#Take - Adds an item to inventory
+			pass
+		"giv":
+			#Give - Gives an item to NPC / Removes item from inventory
+			pass
+		"cut":
+			#Cutscene - Loads a cutscene
+			pass
+	pass
 #endregion
 
 
 #region Signal Callback functions
-func _on_update_one_quest(emitter : Node, objective_id : String):
+func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 	#TODO 
 	#1 Decompose the id to find the correct quest, correct step, then correct objective
-	#2 put it to success = true + manage the results of said objective
+	var quest_id : String = objective_id.get_slice("_",0)
+	var quest : QuestData = find_quest_by_id(quest_id)
+	
+	var step_id : String = objective_id.get_slice("_",1)
+	var step : QuestStepComponent = find_step_by_id(step_id, quest.quest_steps)
+	
+	var obj_id : String = objective_id.get_slice("_",2)
+	var objective : QuestObjectiveComponent = find_objective_by_id(obj_id, step.objectives)
+	#2 put it to success = true
+	objective.success = true
 	#3 check_step_success - check if all objectives are done: if yes, make step as success = true
 	#4 check_quest_success - check if all steps are done: if yes, make quest as success = true and put in finished quests
 	pass
