@@ -65,7 +65,7 @@ func validate_objective(quest_id : String, step_id : String, objective_index : i
 					step.objectives[objective_index].success = true
 					UtilsSingleton.log_data(self, "validate_objective", "Objective '" + step.objectives[objective_index].title + "' has been updated")
 
-func check_step_success(quest_id : String, step_id : String)-> bool:
+func check_step_success(quest_id : String, step_id : String) -> bool:
 	var quest : QuestData = find_quest_by_id(quest_id)
 	if quest != null:
 		var step : QuestStepComponent = find_step_by_id(step_id, quest.quest_steps)
@@ -155,11 +155,22 @@ func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 	
 	var obj_id : String = objective_id.get_slice("_",2)
 	var objective : QuestObjectiveComponent = find_objective_by_id(obj_id, step.objectives)
+	
 	#2 put it to success = true
 	objective.success = true
-	#3 check_step_success - check if all objectives are done: if yes, make step as success = true
-	#4 check_quest_success - check if all steps are done: if yes, make quest as success = true and put in finished quests
-	pass
+	for result in objective.results:
+		manage_result(result)
+	
+	#3 check_step_success - check if all objectives are done: if yes, step becomes inactive, and next step is active
+	step.active = check_step_success(quest_id, step_id)
+	for index in quest.size():
+		if index + 1 != quest.size():
+			if quest.quest_steps[index].id == step_id:
+				quest.quest_steps[index + 1].active = true
+		else :
+			#4 check_quest_success - check if all steps are done: if yes, make quest as success = true and put in finished quests
+			quest.active = !check_quest_success(quest_id)
+
 
 func _on_unlock_quest(emitter : Node, quest_id : String):
 	var quest_data : Dictionary = {}
