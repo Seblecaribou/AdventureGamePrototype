@@ -11,6 +11,7 @@
 					"id":"obj01",
 					"title":"Check in",
 					"description":"Talk to the receptionist to get a room for tonight.",
+					"goal":"tal_char_thierry",
 					"results":["suc_q00_ste_001","pic_room101key"],
 					"mandatory": true,
 					"success" : false
@@ -23,8 +24,10 @@
 			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
 			"objectives":[
 				{
+					"id":"obj01",
 					"title":"Accept the case.",
 					"description":"I could accept the tenant's case, if I want more.",
+					"goal":"tal_char_thierry",
 					"results":["suc_q00_ste_002","unl_sq01"],
 					"mandatory": false,
 					"success" : false
@@ -37,8 +40,10 @@
 			"description":"Mademoiselle Thierry mentioned she worked at Charadeville’s hospice and knows Madame Quastête very well. She’s willing to give me some informations about my case, if I investigate a personal affair for her.",
 			"objectives":[
 				{
+					"id":"obj01",
 					"title":"Accept the case.",
 					"description":"I could accept the tenant's case, if I want more.",
+					"goal":"",
 					"results":["suc_q00_ste_002_a","unl_sq01"],
 					"mandatory": false,
 					"success" : false

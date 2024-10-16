@@ -18,10 +18,14 @@ signal unlock_quest(emitter : Node, quest_id : String)
 ##Connected: DialogueManager
 signal objectives(emitter : Node, objectives : Array[String])
 
+##Emitters: Interactable
+##Connected: QuestManager
+signal goal_validated(emitter : Node, goal_id : String)
+
 #Interaction
 ##Emitters: InteractionComponent
 ##Connected: DialogueManager, GameStateMachine, InventoryManager
-signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2)
+signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String)
 
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager

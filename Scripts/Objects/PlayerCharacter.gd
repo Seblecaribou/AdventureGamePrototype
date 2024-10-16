@@ -4,11 +4,13 @@ extends CharacterBody2D
 @export var interaction_component : InteractionComponent
 @export var movement_component : MovementComponent
 var current_game_state : String
+var current_held_item : String
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(on_new_game_state)
+	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
 
 func _physics_process(delta):
 	check_input()
@@ -34,7 +36,7 @@ func check_input() -> void:
 
 		##InteractionComponent
 		if Input.is_action_just_pressed("interact"):
-			interaction_component.interact()
+			interaction_component.interact(current_held_item)
 
 		##Menus
 		#RadialMenu Button
@@ -61,3 +63,7 @@ func check_input() -> void:
 func on_new_game_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
 		current_game_state = new_state
+		
+func _on_new_selected_item(emitter : Node, item_id : String) -> void:
+	if current_held_item != item_id:
+		current_held_item = item_id
