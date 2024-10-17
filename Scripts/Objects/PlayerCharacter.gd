@@ -7,7 +7,7 @@ var current_game_state : String
 var current_held_item : String
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(on_new_game_state)
 	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
@@ -67,3 +67,4 @@ func on_new_game_state(emitter : Node, previous_state : String, new_state : Stri
 func _on_new_selected_item(emitter : Node, item_id : String) -> void:
 	if current_held_item != item_id:
 		current_held_item = item_id
+		print(current_held_item)

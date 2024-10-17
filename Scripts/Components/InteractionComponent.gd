@@ -34,6 +34,7 @@ func reset_interaction_ui():
 
 ##Generates a goal_id to search in current objectives, based of interactable type, id and item being used
 func generate_goal_id(interaction_type : String, interaction_id : String, item_used : String = "") -> String:
+	print(item_used)
 	var action_type : String
 	match interaction_type:
 			"obs":

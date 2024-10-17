@@ -22,6 +22,7 @@ var dialogue_display_speed : float = 0.05
 
 #UI&MENUS
 var radial_menu_offset : Vector2 = Vector2(0 , -20) #Vector2(x_offset, y_offset)
+var using_controller : bool = true
 
 #DATA
 var main_character_id : String = "char_chiro"

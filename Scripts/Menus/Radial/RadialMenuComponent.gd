@@ -76,7 +76,7 @@ func unload_buttons():
 
 ##Moves the mouse cursor depending on the joystick, and clicks if "interact" button is pressed
 func handle_gamepad_controls() -> void :
-	if is_active:
+	if is_active and AppSettingsSingleton.using_controller:
 		#Finds direction pointed by left Joystick
 		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
 		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
@@ -85,5 +85,8 @@ func handle_gamepad_controls() -> void :
 		#Handles interact button press
 		if Input.is_action_just_pressed("jump"):
 			var press = InputEventMouseButton.new()
+			press.set_button_index(MOUSE_BUTTON_LEFT)
 			press.set_pressed(true)
+			press.position = pointer_position
+			Input.parse_input_event(press)
 #endregion
