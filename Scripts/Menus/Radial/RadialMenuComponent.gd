@@ -83,10 +83,9 @@ func handle_gamepad_controls() -> void :
 		#Moves mouse pointer to position
 		warp_mouse(pointer_position)
 		#Handles interact button press
-		if Input.is_action_just_pressed("jump"):
-			var press = InputEventMouseButton.new()
-			press.set_button_index(MOUSE_BUTTON_LEFT)
-			press.set_pressed(true)
-			press.position = pointer_position
-			Input.parse_input_event(press)
+		for button in get_children():
+			var radial_button : RadialButtonManager = button as RadialButtonManager
+			var button_component = radial_button.radial_button_component
+			if button_component.is_hovered() && Input.is_action_just_pressed("jump"):
+				button_component.pressed.emit()
 #endregion
