@@ -12,7 +12,6 @@ func _ready():
 	SignalBusSingleton.update_one_quest.connect(_on_update_one_quest)
 	SignalBusSingleton.unlock_quest.connect(_on_unlock_quest)
 	SignalBusSingleton.goal_validated.connect(_on_goal_validated)
-	pass
 
 #region Methods
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
@@ -57,6 +56,12 @@ func save_quests() -> void:
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
 	DynamicDataSingleton.save(save_file_name, quests_dictionary)
 
+func find_current_objectives() -> void :
+	for quest in active_quests:
+		for step in quest.quest_steps:
+			for objective in step.objectives:
+				current_objectives.append(objective)
+
 func check_objective_goal(goal_id : String) -> void:
 	for objective in current_objectives:
 		if goal_id == objective.goal:
@@ -84,7 +89,7 @@ func check_step_success(quest_id : String, step_id : String) -> bool:
 					return false
 			return true
 		else:
-			UtilsSingleton.log_error(self, "check_step_success", "No quest found with id " + quest_id)
+			UtilsSingleton.log_error(self, "check_step_success", "No step found with id " + step_id)
 			return false		
 	else:
 		UtilsSingleton.log_error(self, "check_step_success", "No quest found with id " + quest_id)
@@ -134,10 +139,10 @@ func manage_result(result_id : String) -> void:
 	var result_type : String = result_id.get_slice("_", 0)
 	match result_type:
 		"suc":
-			#Success - Resolves another quest
+			#Success - Resolves another quest, step or objective
 			pass
 		"unl":
-			#Unlock - Unlocks a quest
+			check_unlocked_quest(result_id)
 			pass
 		"tak":
 			#Take - Adds an item to inventory
@@ -148,7 +153,22 @@ func manage_result(result_id : String) -> void:
 		"cut":
 			#Cutscene - Loads a cutscene
 			pass
-	pass
+
+func check_unlocked_quest(result_id : String) -> void:
+	match result_id.get_slice_count("_"):
+		2:
+			#Quest - Not super fan of using Signal callbacks for that but it's already doing the job...
+			_on_unlock_quest(self, result_id.get_slice("_", 2))
+		3:
+			#Step
+			pass
+		4:
+			#Objective
+			pass
+		_:
+			UtilsSingleton.log_error(self, "check_unlocked_quest", "The result_id has too few or too much section.")
+	
+
 #endregion
 
 
@@ -172,20 +192,32 @@ func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 	for result in objective.results:
 		manage_result(result)
 	
-	step.active = check_step_success(quest_id, step_id)
+	step.active = !check_step_success(quest_id, step_id) #If a step is successful, deactivates it i.e active = false
 	for index in quest.size():
 		if index + 1 != quest.size():
 			if quest.quest_steps[index].id == step_id:
-				quest.quest_steps[index + 1].active = true
+				quest.quest_steps[index + 1].active = true #Activates the next step if one exist, i.e active = true
 		else :
-			quest.active = !check_quest_success(quest_id)
+			quest.active = !check_quest_success(quest_id) #If no more step in quest, then deactivates quest
 
 
-func _on_unlock_quest(emitter : Node, quest_id : String):
+func _on_unlock_quest(emitter : Node, quest_id : String) -> void:
 	var quest_data : Dictionary = {}
 	quest_data = %QuestData.load_quest_data(quest_id)
 	quest_data.active = true
 	quest_data.steps[0].active = true
 	active_quests.append(quest_data)
 	UtilsSingleton.log_data(self, "on_unlock_quest", active_quests)
+	
+func _on_unlock_step(emitter : Node, full_step_id : String) -> void:
+	var quest_id : String = full_step_id.get_slice("_", 1)
+	var step_id : String = full_step_id.get_slice("_", 2)
+	#TODO go through active quests and active = true for the objective_id
+	
+func _on_unlock_objective(emitter : Node, full_objective_id : String) -> void:
+	var quest_id : String = full_objective_id.get_slice("_", 1)
+	var step_id : String = full_objective_id.get_slice("_", 2)
+	var objective_id : String = full_objective_id.get_slice("_", 3)
+	#TODO go through active quests and active = true for the objective_id
+	
 #endregion
