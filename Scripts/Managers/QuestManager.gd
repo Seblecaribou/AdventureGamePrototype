@@ -3,6 +3,7 @@ extends Node
 
 var active_quests : Array[QuestData]
 var finished_quests : Array[QuestData]
+var current_objectives : Array[QuestObjectiveComponent]
 
 func _ready():
 	load_quests_from_save_file(true, "active_quests")
@@ -10,6 +11,7 @@ func _ready():
 	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
 	SignalBusSingleton.update_one_quest.connect(_on_update_one_quest)
 	SignalBusSingleton.unlock_quest.connect(_on_unlock_quest)
+	SignalBusSingleton.goal_validated.connect(_on_goal_validated)
 	pass
 
 #region Methods
@@ -55,17 +57,24 @@ func save_quests() -> void:
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
 	DynamicDataSingleton.save(save_file_name, quests_dictionary)
 
+func check_objective_goal(goal_id : String) -> void:
+	for objective in current_objectives:
+		if goal_id == objective.goal:
+			validate_objective(objective.id)
 
 #Quest/Step/Objectives validation methods
-func validate_objective(quest_id : String, step_id : String, objective_index : int):
+func validate_objective(objective_id : String) -> void:
 	for quest in active_quests:
-		if quest.id == quest_id:
-			for step in quest.steps:
-				if step.id == step_id:
-					step.objectives[objective_index].success = true
-					UtilsSingleton.log_data(self, "validate_objective", "Objective '" + step.objectives[objective_index].title + "' has been updated")
+		for step in quest.quest_steps:
+				for objective in step.objectives:
+					if objective.id == objective_id:
+						var quest_id = quest.quest_id
+						var step_id = step.id
+						objective.success = true
+						UtilsSingleton.log_data(self, "validate_objective", "Objective '" + objective.title + "' has been updated")
+						check_step_success(quest_id, step_id)
 
-func check_step_success(quest_id : String, step_id : String)-> bool:
+func check_step_success(quest_id : String, step_id : String) -> bool:
 	var quest : QuestData = find_quest_by_id(quest_id)
 	if quest != null:
 		var step : QuestStepComponent = find_step_by_id(step_id, quest.quest_steps)
@@ -80,7 +89,7 @@ func check_step_success(quest_id : String, step_id : String)-> bool:
 	else:
 		UtilsSingleton.log_error(self, "check_step_success", "No quest found with id " + quest_id)
 		return false
-	
+
 func check_quest_success(quest_id : String) -> bool:
 	for quest in active_quests:
 		if quest.id == quest_id:
@@ -113,17 +122,64 @@ func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 			return step
 		else:
 			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
+			
+func find_objective_by_id(obj_id : String, objectives : Array[QuestObjectiveComponent]):
+	for obj in objectives:
+		if obj.id == obj_id:
+			return obj
+		else : 
+			UtilsSingleton.log_error(self, "find_objective_by_id", "The id " + obj_id + " was not found in the quest's objectives")
+			
+func manage_result(result_id : String) -> void:
+	var result_type : String = result_id.get_slice("_", 0)
+	match result_type:
+		"suc":
+			#Success - Resolves another quest
+			pass
+		"unl":
+			#Unlock - Unlocks a quest
+			pass
+		"tak":
+			#Take - Adds an item to inventory
+			pass
+		"giv":
+			#Give - Gives an item to NPC / Removes item from inventory
+			pass
+		"cut":
+			#Cutscene - Loads a cutscene
+			pass
+	pass
 #endregion
 
 
 #region Signal Callback functions
-func _on_update_one_quest(emitter : Node, objective_id : String):
+func _on_goal_validated(emitter : Node, goal_id : String) -> void:
+	check_objective_goal(goal_id)
+
+func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 	#TODO 
 	#1 Decompose the id to find the correct quest, correct step, then correct objective
-	#2 put it to success = true + manage the results of said objective
-	#3 check_step_success - check if all objectives are done: if yes, make step as success = true
-	#4 check_quest_success - check if all steps are done: if yes, make quest as success = true and put in finished quests
-	pass
+	var quest_id : String = objective_id.get_slice("_",0)
+	var quest : QuestData = find_quest_by_id(quest_id)
+	
+	var step_id : String = objective_id.get_slice("_",1)
+	var step : QuestStepComponent = find_step_by_id(step_id, quest.quest_steps)
+	
+	var obj_id : String = objective_id.get_slice("_",2)
+	var objective : QuestObjectiveComponent = find_objective_by_id(obj_id, step.objectives)
+	
+	objective.success = true
+	for result in objective.results:
+		manage_result(result)
+	
+	step.active = check_step_success(quest_id, step_id)
+	for index in quest.size():
+		if index + 1 != quest.size():
+			if quest.quest_steps[index].id == step_id:
+				quest.quest_steps[index + 1].active = true
+		else :
+			quest.active = !check_quest_success(quest_id)
+
 
 func _on_unlock_quest(emitter : Node, quest_id : String):
 	var quest_data : Dictionary = {}

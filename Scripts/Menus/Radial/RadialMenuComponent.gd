@@ -76,14 +76,16 @@ func unload_buttons():
 
 ##Moves the mouse cursor depending on the joystick, and clicks if "interact" button is pressed
 func handle_gamepad_controls() -> void :
-	if is_active:
+	if is_active and AppSettingsSingleton.using_controller:
 		#Finds direction pointed by left Joystick
 		pointer_direction = Input.get_vector("left", "right", "up", "down", 1)
 		pointer_position = Vector2(pointer_direction.x * inner_radius, pointer_direction.y * inner_radius)
 		#Moves mouse pointer to position
 		warp_mouse(pointer_position)
 		#Handles interact button press
-		if Input.is_action_just_pressed("jump"):
-			var press = InputEventMouseButton.new()
-			press.set_pressed(true)
+		for button in get_children():
+			var radial_button : RadialButtonManager = button as RadialButtonManager
+			var button_component = radial_button.radial_button_component
+			if button_component.is_hovered() && Input.is_action_just_pressed("jump"):
+				button_component.pressed.emit()
 #endregion

@@ -12,6 +12,7 @@
 					"title":"Check in",
 					"characters": ["char_thierry"],
 					"description":"Talk to the receptionist to get a room for tonight.",
+					"goal":"",
 					"results":["pic_room101key", "cut_givekey"],
 					"mandatory": true,
 					"success" : false
@@ -21,7 +22,8 @@
 					"title":"Room 101",
 					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"Enter room 101",
-					"results": ["roo_room101"],
+					"goal":"",
+					"results": [],
 					"mandatory":true,
 					"success": false
 				},
@@ -30,6 +32,7 @@
 					"title":"Get a good night sleep",
 					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description": "Get into bed",
+					"goal":"",
 					"results":["cut_wakeup"],
 					"mandatory": true,
 					"success": false
@@ -46,6 +49,7 @@
 					"title":"Accept the case.",
 					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"I could accept the tenant's case, if I want more.",
+					"goal":"",
 					"results":["suc_q00_ste_002","unl_sq01"],
 					"mandatory": false,
 					"success" : false
@@ -62,6 +66,7 @@
 					"title":"Accept the case.",
 					"characters": ["char_golot", "char_thierry", "char_biquievre"],
 					"description":"I could accept the tenant's case, if I want more information about Château Quastête before leaving.",
+					"goal":"",
 					"results":["suc_q00_ste_002_a","unl_sq01"],
 					"mandatory": false,
 					"success" : false
