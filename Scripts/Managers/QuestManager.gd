@@ -208,11 +208,10 @@ func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 			quest.active = !check_quest_success(quest_id) #If no more step in quest, then deactivates quest
 
 func _on_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String) -> void:
-	
 	for objective in current_objectives:
 		print(objective.goal)
 		if objective.goal == goal_id:
-			_on_goal_validated(self, goal_id)
+			check_objective_goal(goal_id)
 
 func _on_unlock_quest(emitter : Node, quest_id : String) -> void:
 	var quest_data : Dictionary = {}
