@@ -12,6 +12,7 @@ func _ready():
 	SignalBusSingleton.update_one_quest.connect(_on_update_one_quest)
 	SignalBusSingleton.unlock_quest.connect(_on_unlock_quest)
 	SignalBusSingleton.goal_validated.connect(_on_goal_validated)
+	SignalBusSingleton.interacted.connect(_on_interacted)
 
 #region Methods
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
@@ -35,6 +36,7 @@ func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 					new_objective_data.id = objective["id"]
 					new_objective_data.title = objective["title"]
 					new_objective_data.description = objective["description"]
+					new_objective_data.goal = objective["goal"]
 					for char in objective["characters"]:
 						new_objective_data.characters.append(char)
 					for res in objective["results"]:
@@ -42,6 +44,7 @@ func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 					new_objective_data.mandatory = objective["mandatory"]
 					new_objective_data.success = objective["success"]
 					new_step_data.objectives.append(new_objective_data)
+					current_objectives.append(new_objective_data)
 				new_step_data.active = step["active"]
 				new_quest_data.quest_steps.append(new_step_data)
 			for res in quest["results"]:
@@ -65,6 +68,7 @@ func find_current_objectives() -> void :
 func check_objective_goal(goal_id : String) -> void:
 	for objective in current_objectives:
 		if goal_id == objective.goal:
+			print("Goal validated")
 			validate_objective(objective.id)
 
 #Quest/Step/Objectives validation methods
@@ -104,16 +108,6 @@ func check_quest_success(quest_id : String) -> bool:
 				return true
 	return false
 
-func find_objectives_ids_by_char_id(character_id : String) -> Array[String]:
-	var objectives_ids : Array[String]
-	for quest in active_quests:
-		for step in quest.steps:
-			for objective in step.objectives:
-				if objective.characters.find(character_id) > -1:
-					objectives_ids.append(quest.quest_id + "_" + step.id + "_" + objective.id)
-					UtilsSingleton.log_error(self, "find_objectives_ids_by_char_id", "'" + objective.id + "' was added to the list of objectives.")
-	return objectives_ids
-
 func find_quest_by_id(quest_id : String):
 	for quest in active_quests:
 		if quest.quest_id == quest_id:
@@ -127,14 +121,24 @@ func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 			return step
 		else:
 			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
-			
+
 func find_objective_by_id(obj_id : String, objectives : Array[QuestObjectiveComponent]):
 	for obj in objectives:
 		if obj.id == obj_id:
 			return obj
 		else : 
 			UtilsSingleton.log_error(self, "find_objective_by_id", "The id " + obj_id + " was not found in the quest's objectives")
-			
+
+func find_objectives_ids_by_char_id(character_id : String) -> Array[String]:
+	var objectives_ids : Array[String]
+	for quest in active_quests:
+		for step in quest.steps:
+			for objective in step.objectives:
+				if objective.characters.find(character_id) > -1:
+					objectives_ids.append(quest.quest_id + "_" + step.id + "_" + objective.id)
+					UtilsSingleton.log_error(self, "find_objectives_ids_by_char_id", "'" + objective.id + "' was added to the list of objectives.")
+	return objectives_ids
+
 func manage_result(result_id : String) -> void:
 	var result_type : String = result_id.get_slice("_", 0)
 	match result_type:
@@ -161,13 +165,16 @@ func check_unlocked_quest(result_id : String) -> void:
 			_on_unlock_quest(self, result_id.get_slice("_", 2))
 		3:
 			#Step
+			var full_step_id = result_id.get_slice("_", 2) + result_id.get_slice("_", 3)
+			_on_unlock_step(self, full_step_id)
 			pass
 		4:
 			#Objective
+			var full_objective_id = result_id.get_slice("_", 2) + result_id.get_slice("_", 3) + result_id.get_slice("_", 4)
+			_on_unlock_step(self, full_objective_id)
 			pass
 		_:
 			UtilsSingleton.log_error(self, "check_unlocked_quest", "The result_id has too few or too much section.")
-	
 
 #endregion
 
@@ -200,6 +207,12 @@ func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 		else :
 			quest.active = !check_quest_success(quest_id) #If no more step in quest, then deactivates quest
 
+func _on_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String) -> void:
+	
+	for objective in current_objectives:
+		print(objective.goal)
+		if objective.goal == goal_id:
+			_on_goal_validated(self, goal_id)
 
 func _on_unlock_quest(emitter : Node, quest_id : String) -> void:
 	var quest_data : Dictionary = {}
@@ -219,5 +232,5 @@ func _on_unlock_objective(emitter : Node, full_objective_id : String) -> void:
 	var step_id : String = full_objective_id.get_slice("_", 2)
 	var objective_id : String = full_objective_id.get_slice("_", 3)
 	#TODO go through active quests and active = true for the objective_id
-	
+
 #endregion
