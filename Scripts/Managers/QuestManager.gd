@@ -117,7 +117,7 @@ func find_quest_by_id(quest_id : String):
 
 func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 	for step in steps:
-		if step.step_id == step_id:
+		if step.id == step_id:
 			return step
 		else:
 			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
@@ -184,7 +184,6 @@ func _on_goal_validated(emitter : Node, goal_id : String) -> void:
 	check_objective_goal(goal_id)
 
 func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
-	#TODO 
 	#1 Decompose the id to find the correct quest, correct step, then correct objective
 	var quest_id : String = objective_id.get_slice("_",0)
 	var quest : QuestData = find_quest_by_id(quest_id)
