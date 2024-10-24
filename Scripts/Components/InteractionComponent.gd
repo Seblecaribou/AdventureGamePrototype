@@ -48,7 +48,6 @@ func generate_goal_id(interaction_type : String, interaction_id : String, item_u
 	var goal_id = action_type + "_" + interaction_id
 	if item_used != "":
 		goal_id += "_" + item_used
-	UtilsSingleton.log_data(self, "generate_goal_id", goal_id)
 	return goal_id
 
 

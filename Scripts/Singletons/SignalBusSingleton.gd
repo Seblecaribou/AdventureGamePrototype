@@ -24,7 +24,7 @@ signal goal_validated(emitter : Node, goal_id : String)
 
 #Interaction
 ##Emitters: InteractionComponent
-##Connected: DialogueManager, GameStateMachine, InventoryManager
+##Connected: DialogueManager, GameStateMachine, InventoryManager, QuestManager
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String)
 
 #StateMachine

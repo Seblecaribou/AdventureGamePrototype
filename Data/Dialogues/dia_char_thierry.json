@@ -11,24 +11,24 @@
 					[
 						{
 							"objective_id" : "obj01",
-							"character_id" : "char_thierry",
-							"character_speaker_id" : "char_chiro",
-							"content" : 
+							"dialogue_button_label":"Talk about obj01",
+							"content" :
 							[
-								"Hello.", 
-								"My Name is Detective Chiro.",
-								"I'm investigating a [bold]very strange case[/bold]!"
-							]
-						},
-						{
-							"objective_id" : "obj01",
-							"character_id" : "char_thierry",
-							"character_speaker_id" : "char_thierry",
-							"content" : 
-							[
-								"Good morning, Monsieur...Chiro.", 
-								"And welcome to Hotel Misterygolot.",
-								"How long will you stay with us?"
+								{
+									"character_id" : "char_thierry",
+									"dialogue_lines" : [
+										"Welcome to Hotel Mysterigolot!",
+										"Here are your keys to room 101."
+									]	
+								},
+								{
+									"character_id": "char_chiro",
+									"dialogue_lines" : [
+										"That is a lovely village and a lovely hotel.", 
+										"I am sure I'll have the most restful night!",
+										"Thank you Madame Thierry."
+									]
+								},
 							]
 						}
 					]

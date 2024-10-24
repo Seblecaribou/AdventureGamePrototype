@@ -14,27 +14,33 @@
 							"title":"Check in",
 							"characters": ["char_thierry"],
 							"description":"Talk to the receptionist to get a room for tonight.",
-							"results":["pic_room101key", "cut_givekey"],
+							"goal":"tal_char_thierry",
+							"results":["pic_room101key", "cut_givekey", "unl_q00_ste001_obj02"],
 							"mandatory": true,
-							"success" : false
+							"success" : false,
+							"active" : true,
 						},
 						{
 							"id": "obj02",
 							"title":"Room 101",
 							"characters": ["char_golot", "char_thierry", "char_biquievre"],
 							"description":"Enter room 101",
-							"results": ["roo_room101"],
+							"goal":"ent_room101",
+							"results": ["unl_q00_ste001_obj03"],
 							"mandatory":true,
-							"success": false
+							"success": false,
+							"active" :false
 						},
 						{
 							"id": "obj03",
 							"title":"Get a good night sleep",
 							"characters": ["char_golot", "char_thierry", "char_biquievre"],
 							"description": "Get into bed",
-							"results":["cut_wakeup"],
+							"goal":"exa_obs_bed_room101",
+							"results":["cut_wakeup", "unl_q00_ste002"],
 							"mandatory": true,
-							"success": false
+							"success": false,
+							"active": false
 						}
 					],
 					"active" : true
@@ -48,9 +54,11 @@
 							"title":"Accept the case.",
 							"characters": ["char_golot", "char_thierry", "char_biquievre"],
 							"description":"I could accept the tenant's case, if I want more.",
-							"results":["suc_q00_ste_002","unl_sq01"],
+							"goal":"",
+							"results":["unl_sq01"],
 							"mandatory": false,
-							"success" : false
+							"success" : false,
+							"active" : true
 						}
 					],
 					"active" : false
@@ -64,9 +72,11 @@
 							"title":"Accept the case.",
 							"characters": ["char_golot", "char_thierry", "char_biquievre"],
 							"description":"I could accept the tenant's case, if I want more information about Château Quastête before leaving.",
+							"goal":"",
 							"results":["suc_q00_ste_002_a","unl_sq01"],
 							"mandatory": false,
-							"success" : false
+							"success" : false,
+							"active" : true
 						}
 					],
 					"active" : false
