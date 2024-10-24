@@ -25,12 +25,12 @@ func save_json_file(file_name : String, data_to_parse : Dictionary):
 	save_file = null
 
 func log_data(emitter : Node, label : String, data):
-	print(emitter, " : ")
-	print(label, " : ", data)
+	print_rich("[color=green]", emitter, " : ", "[/color]")
+	print_rich("[color=green]", label, " : ", data, "[/color]")
 	
 func log_error(emitter : Node, label : String, message : String):
-	print_rich("[red]", emitter, " : ", "[red]")
-	print_rich("[red]", label, " : ", message, "[red]")
+	print_rich("[color=red]", emitter, " : ", "[/color]")
+	print_rich("[color=red]", label, " : ", message, "[/color]")
 
 func wait_to_continue() -> void:
 	while true:
