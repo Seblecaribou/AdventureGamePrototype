@@ -111,23 +111,22 @@ func check_quest_success(quest_id : String) -> bool:
 func find_quest_by_id(quest_id : String):
 	for quest in active_quests:
 		if quest.quest_id == quest_id:
+			UtilsSingleton.log_data(self, "find_quest_by_id", quest_id)
 			return quest
-		else:
-			UtilsSingleton.log_error(self, "find_quest_by_id", "The id " + quest_id + " was not found in the active quests")
+	UtilsSingleton.log_error(self, "find_quest_by_id", "The id " + quest_id + " was not found in the active quests")
 
 func find_step_by_id(step_id : String, steps : Array[QuestStepComponent]):
 	for step in steps:
 		if step.id == step_id:
+			UtilsSingleton.log_data(self, "find_quest_by_id", step.id)
 			return step
-		else:
-			UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
+	UtilsSingleton.log_error(self, "find_step_by_id", "The id " + step_id + " was not found in the quest's steps")
 
 func find_objective_by_id(obj_id : String, objectives : Array[QuestObjectiveComponent]):
 	for obj in objectives:
 		if obj.id == obj_id:
 			return obj
-		else : 
-			UtilsSingleton.log_error(self, "find_objective_by_id", "The id " + obj_id + " was not found in the quest's objectives")
+	UtilsSingleton.log_error(self, "find_objective_by_id", "The id " + obj_id + " was not found in the quest's objectives")
 
 func find_objectives_ids_by_char_id(character_id : String) -> Array[String]:
 	var objectives_ids : Array[String]
@@ -208,8 +207,8 @@ func _on_update_one_quest(emitter : Node, objective_id : String) -> void:
 
 func _on_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String) -> void:
 	for objective in current_objectives:
-		print(objective.goal)
 		if objective.goal == goal_id:
+			UtilsSingleton.log_data(self, "_on_interacted", "Goal " + goal_id + " attained")
 			check_objective_goal(goal_id)
 
 func _on_unlock_quest(emitter : Node, quest_id : String) -> void:

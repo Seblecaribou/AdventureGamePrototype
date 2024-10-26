@@ -4,6 +4,7 @@ extends Node
 #PATHS
 var base_user_path : String = "user://"
 var base_res_path : String = "res://"
+
 #DATA
 var data_folder_path : String = "Data/"
 var characters_data_folder_path : String = "Characters/"
@@ -11,6 +12,7 @@ var dialogues_data_folder_path : String = "Dialogues/"
 var items_data_folder_path : String = "Items/"
 var quests_data_folder_path : String = "Quests/"
 var images_folder_path : String = "Images/"
+var main_character_id : String = "char_chiro"
 
 #DIALOGUES
 var dialogue_bbcode_enabled : bool = true
@@ -24,5 +26,5 @@ var dialogue_display_speed : float = 0.05
 var radial_menu_offset : Vector2 = Vector2(0 , -20) #Vector2(x_offset, y_offset)
 var using_controller : bool = true
 
-#DATA
-var main_character_id : String = "char_chiro"
+#CAMERA
+var camera_y_offset : int = -270 
