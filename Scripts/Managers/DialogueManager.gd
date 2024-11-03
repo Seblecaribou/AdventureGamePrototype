@@ -62,7 +62,7 @@ func _on_newstate(emitter : Node, previous_state : String, new_state : String)->
 	if emitter.get_name().to_lower() == 'gamestatemachine' and new_state != current_game_state:
 		current_game_state = new_state
 
-func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2) -> void:
+func _on_player_character_interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String) -> void:
 	if interaction_type == "char":
 		SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "selectingdialogue")
 		dialogue_data.load_dialogue_data(interactable)

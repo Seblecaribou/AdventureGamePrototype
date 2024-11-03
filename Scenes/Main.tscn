@@ -405,7 +405,7 @@ position = Vector2(78, 544)
 position = Vector2(448, 472)
 
 [node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
-position = Vector2(220, 208)
+position = Vector2(198, 410)
 
 [node name="char_thierry" parent="." instance=ExtResource("4_hs0my")]
 position = Vector2(359, 546)
