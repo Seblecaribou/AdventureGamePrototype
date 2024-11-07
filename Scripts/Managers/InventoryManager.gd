@@ -1,6 +1,7 @@
 class_name InventoryManager
 extends Node
 
+@export var radial_menu_canvas : CanvasLayer
 @export var radial_menu : RadialMenuComponent
 @export var player_character : PlayerCharacter
 var current_game_state_name : String
@@ -40,7 +41,7 @@ func _on_newstate(emitter : Node, previous_state : String, new_state : String) -
 				pass
 			"selectingpickable":
 				radial_menu.is_active = true
-				radial_menu.position = player_character.global_position + AppSettingsSingleton.radial_menu_offset
+				radial_menu.global_position = player_character.global_position + player_character.get_canvas_transform().origin + AppSettingsSingleton.radial_menu_offset
 				radial_menu.load_pickables(pickables)
 				radial_menu.show()
 			_:

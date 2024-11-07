@@ -372,8 +372,9 @@ libraries = {
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")
 
-[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu", "player_character")]
+[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu_canvas", "radial_menu", "player_character")]
 script = ExtResource("13_7fyol")
+radial_menu_canvas = NodePath("RadialMenuCanvas")
 radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
 player_character = NodePath("../../PlayerCharacter")
 

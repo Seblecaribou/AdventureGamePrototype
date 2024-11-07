@@ -34,6 +34,12 @@ SignalBusSingleton="*res://Scripts/Singletons/SignalBusSingleton.gd"
 DynamicDataSingleton="*res://Scripts/Singletons/DynamicDataSingleton.gd"
 AppSettingsSingleton="*res://Scripts/Singletons/AppSettingsSingleton.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/borderless=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")

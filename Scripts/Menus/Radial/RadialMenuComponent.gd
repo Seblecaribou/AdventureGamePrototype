@@ -42,7 +42,6 @@ func add_button(pickable_id : String, button_index : int, sprite_path : String, 
 
 	var sprite_size = new_button_instance.button_sprite.texture.get_size()
 	new_button_instance.radial_button_component.size = sprite_size
-	print("Button size : ", new_button_instance.radial_button_component.size)
 	new_button_instance.z_index = 5
 	add_child(new_button_instance)
 	return new_button_instance
