@@ -28,7 +28,11 @@ func place_buttons() -> void:
 	link_buttons()
 
 func link_buttons() -> void:
-	if get_child_count() > 0:
+	#If there's only one button, stops
+	if !get_child_count() > 1:
+		return
+	#If there's more than 1 button, connects them
+	else:
 		var buttons : Array[Node] = get_children()
 		var max_button_index : int = buttons.size() -1
 		var top_neighbor_button_path : String

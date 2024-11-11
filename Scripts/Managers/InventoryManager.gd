@@ -15,7 +15,6 @@ func _ready():
 	SignalBusSingleton.interacted.connect(_on_interacted)
 	SignalBusSingleton.radial_button_pressed.connect(_on_button_pressed)
 
-
 #region Methods
 func is_in_inventory(interactable_object : Dictionary, interaction_type : String) -> bool:
 	match interaction_type:
