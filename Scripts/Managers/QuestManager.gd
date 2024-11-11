@@ -8,12 +8,13 @@ var current_objectives : Array[QuestObjectiveComponent]
 func _ready():
 	load_quests_from_save_file(true, "active_quests")
 	load_quests_from_save_file(true, "finished_quests")
-	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
 	SignalBusSingleton.update_one_quest.connect(_on_update_one_quest)
 	SignalBusSingleton.unlock_quest.connect(_on_unlock_quest)
 	SignalBusSingleton.goal_validated.connect(_on_goal_validated)
 	SignalBusSingleton.interacted.connect(_on_interacted)
-
+	
+	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
+	
 #region Methods
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 	var quest_dictionary : Dictionary = {}
@@ -37,14 +38,15 @@ func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
 					new_objective_data.title = objective["title"]
 					new_objective_data.description = objective["description"]
 					new_objective_data.goal = objective["goal"]
-					for char in objective["characters"]:
-						new_objective_data.characters.append(char)
+					for character in objective["characters"]:
+						new_objective_data.characters.append(character)
 					for res in objective["results"]:
 						new_objective_data.results.append(res)
 					new_objective_data.mandatory = objective["mandatory"]
 					new_objective_data.success = objective["success"]
 					new_step_data.objectives.append(new_objective_data)
-					current_objectives.append(new_objective_data)
+					if !current_objectives.has(new_objective_data):
+						current_objectives.append(new_objective_data)
 				new_step_data.active = step["active"]
 				new_quest_data.quest_steps.append(new_step_data)
 			for res in quest["results"]:

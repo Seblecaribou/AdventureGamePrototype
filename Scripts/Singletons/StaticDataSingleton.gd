@@ -23,7 +23,7 @@ var quests_folder_path : String = "Quests/"
 
 #Dialogues
 var all_dialogues_data : Dictionary = {}
-var dialogues_json_filepaths : Array[String] = ["res://Data/Dialogues/dia_char_golot.json"]
+var dialogues_json_filepaths : Array[String] = ["res://Data/Dialogues/dia_char_golot.json", "res://Data/Dialogues/dia_char_thierry.json", "res://Data/Dialogues/dia_char_biquiviere.json"]
 var dialogues_folder_path : String = "Dialogues/"
 
 func _ready():

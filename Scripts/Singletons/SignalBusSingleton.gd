@@ -4,7 +4,7 @@ extends Node
 #QuestManager
 ##Emitters: QuestManager 
 ##Connected: DialogueManager
-signal update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData])
+signal update_all_quests(emitter : Node, active_quests : Array[QuestData], finished_quests : Array[QuestData])
 
 ##Emitters: PlayerCharacter/InteractNodes/InteractionComponent 
 ##Connected: QuestManager

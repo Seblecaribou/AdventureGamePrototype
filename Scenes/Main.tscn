@@ -311,9 +311,19 @@ script = ExtResource("18_qqulp")
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")
 
-[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("quest_manager", "dialogue_menu", "dialogue_data", "dialogue_component")]
+[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu_canvas", "radial_menu", "player_character")]
+script = ExtResource("13_7fyol")
+radial_menu_canvas = NodePath("RadialMenuCanvas")
+radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
+player_character = NodePath("../../PlayerCharacter")
+
+[node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
+
+[node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+player_character = NodePath("../../../../PlayerCharacter")
+
+[node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("dialogue_menu", "dialogue_data", "dialogue_component")]
 script = ExtResource("4_yumw5")
-quest_manager = NodePath("../QuestManager")
 dialogue_menu = NodePath("DialogueMenu")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
@@ -371,17 +381,6 @@ libraries = {
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")
-
-[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu_canvas", "radial_menu", "player_character")]
-script = ExtResource("13_7fyol")
-radial_menu_canvas = NodePath("RadialMenuCanvas")
-radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
-player_character = NodePath("../../PlayerCharacter")
-
-[node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
-
-[node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
-player_character = NodePath("../../../../PlayerCharacter")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
