@@ -13,6 +13,7 @@ func _ready():
 	SignalBusSingleton.goal_validated.connect(_on_goal_validated)
 	SignalBusSingleton.interacted.connect(_on_interacted)
 	
+	#Waits for other tree to connect to update_all_quests signal
 	await get_tree().process_frame
 	SignalBusSingleton.update_all_quests.emit(self, active_quests, finished_quests)
 	
