@@ -4,10 +4,10 @@ extends Node
 @export var character: CharacterBody2D
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
-@export var max_speed_multiplier: float = 1.75
+@export var max_speed_multiplier: float = 3.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-const BASE_SPEED_MULTIPLIER: float = 1.0
-var speed_multiplier: float = 1.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
+const BASE_SPEED_MULTIPLIER: float = 2.0
+var speed_multiplier: float = 2.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
 
 
 func _physics_process(delta):
