@@ -19,7 +19,6 @@ func _ready():
 	
 #region Methods
 func load_quests_from_save_file(default : bool, dictionary_id : String) -> void:
-	print("Checkpoint 1")
 	var quest_dictionary : Dictionary = {}
 	var save_file_name : String = DynamicDataSingleton.quest_file_name
 	var save_directory_name : String = AppSettingsSingleton.quests_data_folder_path

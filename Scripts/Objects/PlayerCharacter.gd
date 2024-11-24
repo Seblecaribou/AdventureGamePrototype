@@ -31,7 +31,7 @@ func check_input() -> void:
 			movement_component.jump()
 
 		#Run Button
-		if Input.is_action_just_pressed("run"):
+		if Input.is_action_pressed("run"):
 			movement_component.run(true)
 
 		##InteractionComponent

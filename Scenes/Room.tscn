@@ -1,17 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=3 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://c6bclqbht70i1" path="res://Images/Rooms/bakery.jpg" id="1_8jse6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
+size = Vector2(1917.5, 72)
+
 [node name="Room" type="Node2D"]
+z_index = -5
 
 [node name="Background" type="TextureRect" parent="."]
+offset_left = 3.05176e-05
+offset_top = 253.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 1333.0
+scale = Vector2(0.74, 0.74)
 texture = ExtResource("1_8jse6")
 expand_mode = 3
+flip_h = true
 
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Foreground" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1915.0
+offset_bottom = 1081.0
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(31.0001, 570)
+rotation = 3.14159
+scale = Vector2(0.030856, -13.3524)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Roof" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(961, 75)
+scale = Vector2(1, 2.08)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="RightWall" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1889, 559)
+rotation = 3.14159
+scale = Vector2(0.030856, -13.3524)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Floor" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(961.25, 1043)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)

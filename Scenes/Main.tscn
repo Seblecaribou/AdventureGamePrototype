@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=27 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
 [ext_resource type="Script" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
+[ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Room.tscn" id="18_cehyh"]
 [ext_resource type="Script" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oo0u4"]
@@ -51,6 +52,7 @@ _data = {
 [node name="Main" type="Node2D"]
 
 [node name="BackGround" type="TextureRect" parent="."]
+z_index = -100
 texture_filter = 1
 offset_left = -1163.0
 offset_top = -289.0
@@ -62,7 +64,7 @@ stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="WorldBoundaryDown" type="StaticBody2D" parent="."]
-position = Vector2(0, 577)
+position = Vector2(0, 1047)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryDown"]
 shape = SubResource("WorldBoundaryShape2D_oo0u4")
@@ -90,7 +92,7 @@ script = ExtResource("6_gr1pc")
 script = ExtResource("3_txr1d")
 
 [node name="CameraManager" type="Camera2D" parent="GameManagers"]
-position = Vector2(157, 517)
+position = Vector2(888, 285)
 script = ExtResource("18_qqulp")
 
 [node name="QuestManager" type="Node" parent="GameManagers"]
@@ -169,29 +171,36 @@ script = ExtResource("6_q7uve")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
-position = Vector2(150, 523)
+position = Vector2(843, 512)
 scale = Vector2(1, 0.98911)
 
-[node name="obs_bathtub_bathroom01" parent="." instance=ExtResource("4_hs0my")]
+[node name="Room" parent="." instance=ExtResource("18_cehyh")]
+z_index = -1
+position = Vector2(-70, -259)
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="obs_bathtub_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(582, 448)
 
-[node name="obs_towel_bathroom01" parent="." instance=ExtResource("4_hs0my")]
+[node name="obs_towel_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(369, 311)
 
-[node name="obs_mirror_bathroom01" parent="." instance=ExtResource("4_hs0my")]
+[node name="obs_mirror_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(96, 299)
 
-[node name="pic_hoodie_sewers" parent="." instance=ExtResource("4_hs0my")]
+[node name="pic_hoodie_sewers" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(240, 546)
 
-[node name="pic_footprints_bathroom01" parent="." instance=ExtResource("4_hs0my")]
+[node name="pic_footprints_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(78, 544)
 
-[node name="pic_room101key" parent="." instance=ExtResource("4_hs0my")]
+[node name="pic_room101key" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(448, 472)
 
-[node name="char_golot" parent="." instance=ExtResource("4_hs0my")]
+[node name="char_golot" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(198, 410)
 
-[node name="char_thierry" parent="." instance=ExtResource("4_hs0my")]
+[node name="char_thierry" parent="Node2D" instance=ExtResource("4_hs0my")]
 position = Vector2(359, 546)

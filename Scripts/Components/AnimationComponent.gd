@@ -17,8 +17,12 @@ func animate(state : String):
 	match state:
 		"idle":
 			animated_sprite_2D.animation = "idle"
+		"jump_start":
+			animated_sprite_2D.play("jump_start")
 		"jump":
 			animated_sprite_2D.play("jump")
+		"jump_end":
+			animated_sprite_2D.play("jump_end")
 		"run":
 			animated_sprite_2D.play("run")
 		"observe":

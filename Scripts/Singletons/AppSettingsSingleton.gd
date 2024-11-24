@@ -27,4 +27,4 @@ var radial_menu_offset : Vector2 = Vector2(0 , -20) #Vector2(x_offset, y_offset)
 var using_controller : bool = true
 
 #CAMERA
-var camera_y_offset : int = -270 
+var camera_y_offset : int = 0 

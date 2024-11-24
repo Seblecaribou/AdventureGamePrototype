@@ -116,3 +116,7 @@ inventory={
 [layer_names]
 
 2d_physics/layer_2="ineraction_layer"
+
+[physics]
+
+2d/default_gravity=1350.0

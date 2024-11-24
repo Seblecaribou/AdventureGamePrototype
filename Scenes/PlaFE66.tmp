@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d3h8d2gmlpihi"]
+[gd_scene load_steps=37 format=3 uid="uid://d3h8d2gmlpihi"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerStateMachine.gd" id="2_gtyy5"]
@@ -29,13 +29,17 @@ region = Rect2(1940, 0, 970, 970)
 atlas = ExtResource("8_8gjbw")
 region = Rect2(0, 970, 970, 970)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ra3n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhio5"]
 atlas = ExtResource("8_8gjbw")
-region = Rect2(1940, 2910, 970, 970)
+region = Rect2(0, 0, 970, 970)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ijny"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocpph"]
 atlas = ExtResource("8_8gjbw")
 region = Rect2(970, 0, 970, 970)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7fqy"]
+atlas = ExtResource("8_8gjbw")
+region = Rect2(1940, 2910, 970, 970)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvlax"]
 atlas = ExtResource("9_m5xnf")
@@ -120,10 +124,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ra3n")
+"texture": SubResource("AtlasTexture_dhio5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ra3n")
+"texture": SubResource("AtlasTexture_ocpph")
 }],
 "loop": true,
 "name": &"jump_end",
@@ -131,10 +135,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1ijny")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ijny")
+"texture": SubResource("AtlasTexture_n7fqy")
 }],
 "loop": true,
 "name": &"jump_start",
@@ -227,10 +228,9 @@ shape = SubResource("CapsuleShape2D_ywadu")
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_yknqu")
-animation = &"jump_end"
+animation = &"jump_start"
 
 [node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "animated_sprite_2D")]
-unique_name_in_owner = true
 script = ExtResource("8_s3oir")
 character = NodePath("..")
 animated_sprite_2D = NodePath("../AnimatedSprite2D")
