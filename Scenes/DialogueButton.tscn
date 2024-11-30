@@ -2,19 +2,23 @@
 
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueButtonManager.gd" id="1_8yg4a"]
 
-[node name="DialogueButtonManager" type="Node2D" node_paths=PackedStringArray("dialogue_button_component", "button_sprite", "button_label")]
+[node name="DialogueButtonManager" type="Control" node_paths=PackedStringArray("dialogue_button_component", "button_sprite", "button_label")]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_8yg4a")
 dialogue_button_component = NodePath("DialogueButtonComponent")
 button_sprite = NodePath("ButtonSprite")
 button_label = NodePath("ButtonLabel")
 
 [node name="DialogueButtonComponent" type="Button" parent="."]
-z_index = 3
+layout_mode = 0
 offset_right = 165.0
 offset_bottom = 41.0
+action_mode = 0
 
 [node name="ButtonSprite" type="Sprite2D" parent="."]
 
 [node name="ButtonLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_right = 163.0
 offset_bottom = 39.0

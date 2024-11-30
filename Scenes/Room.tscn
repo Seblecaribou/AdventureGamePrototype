@@ -1,35 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=5 format=3 uid="uid://dtdrjth3yf3wh"]
 
-[ext_resource type="Texture2D" uid="uid://c6bclqbht70i1" path="res://Images/Rooms/bakery.jpg" id="1_8jse6"]
+[ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
+[ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
+[ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Control"]
 z_index = -5
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_xoees")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_left = 3.05176e-05
-offset_top = 253.0
-offset_right = 1920.0
-offset_bottom = 1333.0
-scale = Vector2(0.74, 0.74)
-texture = ExtResource("1_8jse6")
-expand_mode = 3
-flip_h = true
+offset_left = 114.0
+offset_top = 86.0
+offset_right = 2034.0
+offset_bottom = 1166.0
+scale = Vector2(0.89, 0.89)
+mouse_filter = 2
+texture = ExtResource("1_hieij")
 
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Foreground" type="TextureRect" parent="."]
 offset_right = 1915.0
 offset_bottom = 1081.0
+mouse_filter = 2
+
+[node name="char_thierry" parent="." instance=ExtResource("2_unmnm")]
+visible = false
+position = Vector2(1544, 756)
+scale = Vector2(5.50463, 7.14542)
 
 [node name="Boundaries" type="StaticBody2D" parent="."]
 
 [node name="LeftWall" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2(31.0001, 570)
 rotation = 3.14159
-scale = Vector2(0.030856, -13.3524)
+scale = Vector2(0.127224, -13.3524)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
@@ -40,9 +51,9 @@ shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="RightWall" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(1889, 559)
+position = Vector2(1632, 568)
 rotation = 3.14159
-scale = Vector2(0.030856, -13.3524)
+scale = Vector2(0.222761, -13.0222)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 

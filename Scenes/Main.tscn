@@ -98,30 +98,22 @@ script = ExtResource("18_qqulp")
 [node name="QuestManager" type="Node" parent="GameManagers"]
 script = ExtResource("9_24dc1")
 
-[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu_canvas", "radial_menu", "player_character")]
-script = ExtResource("13_7fyol")
-radial_menu_canvas = NodePath("RadialMenuCanvas")
-radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
-player_character = NodePath("../../PlayerCharacter")
-
-[node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
-
-[node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
-player_character = NodePath("../../../../PlayerCharacter")
-
 [node name="DialogueManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("dialogue_menu", "dialogue_data", "dialogue_component")]
 script = ExtResource("4_yumw5")
 dialogue_menu = NodePath("DialogueMenu")
 dialogue_data = NodePath("DialogueData")
 dialogue_component = NodePath("DialogueComponent")
 
-[node name="DialogueMenu" type="Node2D" parent="GameManagers/DialogueManager"]
+[node name="DialogueMenu" type="Control" parent="GameManagers/DialogueManager"]
 visible = false
-z_index = 6
+z_index = 50
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("9_jnvcw")
 
 [node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
 visible = false
+z_index = 20
 script = ExtResource("11_lwelu")
 dialogue_frame = NodePath("DialogueFrame")
 dialogue_text = NodePath("DialogueText")
@@ -169,38 +161,49 @@ libraries = {
 unique_name_in_owner = true
 script = ExtResource("6_q7uve")
 
+[node name="InventoryManager" type="Node" parent="GameManagers" node_paths=PackedStringArray("radial_menu_canvas", "radial_menu", "player_character")]
+script = ExtResource("13_7fyol")
+radial_menu_canvas = NodePath("RadialMenuCanvas")
+radial_menu = NodePath("RadialMenuCanvas/RadialMenuComponent")
+player_character = NodePath("../../PlayerCharacter")
+
+[node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
+
+[node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+player_character = NodePath("../../../../PlayerCharacter")
+
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
 position = Vector2(843, 512)
 scale = Vector2(1, 0.98911)
 
-[node name="Room" parent="." instance=ExtResource("18_cehyh")]
+[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
 z_index = -1
 position = Vector2(-70, -259)
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
+[node name="TestObjects" type="Node2D" parent="."]
+position = Vector2(-1030, -31)
 
-[node name="obs_bathtub_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(582, 448)
+[node name="obs_bathtub_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(382, 190)
 
-[node name="obs_towel_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(369, 311)
+[node name="obs_towel_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(381, 85)
 
-[node name="obs_mirror_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(96, 299)
+[node name="obs_mirror_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(392, 308)
 
-[node name="pic_hoodie_sewers" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(240, 546)
+[node name="pic_hoodie_sewers" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(541, 97)
 
-[node name="pic_footprints_bathroom01" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(78, 544)
+[node name="pic_footprints_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(548, 307)
 
-[node name="pic_room101key" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(448, 472)
+[node name="pic_room101key" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(544, 193)
 
-[node name="char_golot" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(198, 410)
+[node name="char_golot" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(91, 95)
 
-[node name="char_thierry" parent="Node2D" instance=ExtResource("4_hs0my")]
-position = Vector2(359, 546)
+[node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
+position = Vector2(90, 202)

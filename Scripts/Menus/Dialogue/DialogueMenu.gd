@@ -1,8 +1,8 @@
 class_name DialogueMenu
-extends Node2D
+extends Control
 
 #region Variables
-var is_active : bool = false
+var is_active : bool = true
 var button_nodes : Array[Button] = []
 #endregion
 

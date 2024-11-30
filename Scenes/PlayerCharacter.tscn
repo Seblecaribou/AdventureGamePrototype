@@ -253,10 +253,10 @@ debug_color = Color(0.901961, 0.137255, 0.690196, 0.419608)
 
 [node name="InteractionLabel" type="Label" parent="Interaction Nodes"]
 z_index = 1
-offset_left = -40.0
-offset_top = -71.0
-offset_right = 40.0
-offset_bottom = -25.0
+offset_left = -35.0
+offset_top = -281.0
+offset_right = 45.0
+offset_bottom = -235.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
