@@ -9,6 +9,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const BASE_SPEED_MULTIPLIER: float = 2.0
 var speed_multiplier: float = 2.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
 
+func _ready():
+	character.floor_snap_length = 50.0
 
 func _physics_process(delta):
 	ground_player(delta)

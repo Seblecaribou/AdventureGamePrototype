@@ -8,7 +8,7 @@
 size = Vector2(1917.5, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4u1u0"]
-size = Vector2(112.5, 1094)
+size = Vector2(112.5, 1150)
 
 [node name="Room" type="Control"]
 z_index = -5
@@ -86,7 +86,7 @@ collision_mask = 4
 polygon = PackedVector2Array(347, 849, 801.877, 835.093, 1119, 572, 1312, 381, 1541, 370, 1531, 919, 343, 919)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBackground1"]
-position = Vector2(288.75, 353)
+position = Vector2(288.75, 381)
 shape = SubResource("RectangleShape2D_4u1u0")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground1"]
