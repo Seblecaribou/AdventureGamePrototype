@@ -176,10 +176,14 @@ player_character = NodePath("../../../../PlayerCharacter")
 unique_name_in_owner = true
 position = Vector2(843, 512)
 scale = Vector2(1, 0.98911)
+collision_layer = 3
 
 [node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
 z_index = -1
-position = Vector2(-70, -259)
+offset_left = -70.0
+offset_top = -259.0
+offset_right = -70.0
+offset_bottom = -259.0
 
 [node name="TestObjects" type="Node2D" parent="."]
 position = Vector2(-1030, -31)

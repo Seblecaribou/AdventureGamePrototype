@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=6 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u1u0"]
+size = Vector2(112.5, 1094)
 
 [node name="Room" type="Control"]
 z_index = -5
@@ -15,6 +18,7 @@ mouse_filter = 2
 script = ExtResource("1_xoees")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 86.0
 offset_right = 2034.0
@@ -26,6 +30,7 @@ texture = ExtResource("1_hieij")
 [node name="Interactables" type="Node" parent="."]
 
 [node name="Foreground" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1915.0
 offset_bottom = 1081.0
 mouse_filter = 2
@@ -35,29 +40,59 @@ visible = false
 position = Vector2(1544, 756)
 scale = Vector2(5.50463, 7.14542)
 
-[node name="Boundaries" type="StaticBody2D" parent="."]
+[node name="CollisionMain" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
-[node name="LeftWall" type="CollisionShape2D" parent="Boundaries"]
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionMain"]
 position = Vector2(31.0001, 570)
 rotation = 3.14159
 scale = Vector2(0.127224, -13.3524)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="Roof" type="CollisionShape2D" parent="Boundaries"]
+[node name="Roof" type="CollisionShape2D" parent="CollisionMain"]
 position = Vector2(961, 75)
 scale = Vector2(1, 2.08)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="RightWall" type="CollisionShape2D" parent="Boundaries"]
+[node name="RightWall" type="CollisionShape2D" parent="CollisionMain"]
 position = Vector2(1632, 568)
 rotation = 3.14159
 scale = Vector2(0.222761, -13.0222)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="Floor" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(961.25, 1043)
+[node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(941, 1044)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="EntranceBackground1" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground1"]
+modulate = Color(0.967466, 1, 0.500017, 1)
+polygon = PackedVector2Array(329, 919, 223, 1025, 706, 1015, 704, 909)
+
+[node name="CollisionBackground1" type="StaticBody2D" parent="."]
+position = Vector2(-97, 89)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Front" type="CollisionPolygon2D" parent="CollisionBackground1"]
+polygon = PackedVector2Array(347, 849, 801.877, 835.093, 1119, 572, 1312, 381, 1541, 370, 1531, 919, 343, 919)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBackground1"]
+position = Vector2(288.75, 353)
+shape = SubResource("RectangleShape2D_4u1u0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground1"]
+position = Vector2(1572, 510)
+shape = SubResource("RectangleShape2D_4u1u0")
+
+[node name="EntranceBackground2" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 6

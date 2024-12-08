@@ -116,7 +116,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -188,7 +188,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 17.0
+"speed": 18.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdd2a"]
@@ -196,6 +196,8 @@ radius = 174.141
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("interaction_component", "movement_component")]
 texture_filter = 1
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_5gnik")
 interaction_component = NodePath("Interaction Nodes/InteractionComponent")
 movement_component = NodePath("MovementComponent")
@@ -227,7 +229,8 @@ shape = SubResource("CapsuleShape2D_ywadu")
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_yknqu")
-animation = &"jump_end"
+animation = &"jump"
+frame_progress = 0.447229
 
 [node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "animated_sprite_2D")]
 unique_name_in_owner = true
