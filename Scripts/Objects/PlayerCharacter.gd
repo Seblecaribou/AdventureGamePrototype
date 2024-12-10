@@ -26,6 +26,15 @@ func check_input() -> void:
 		var direction: float = Input.get_axis("left", "right")
 		movement_component.move(direction)
 		
+		#UP Button
+		if Input.is_action_just_pressed("up"):
+			movement_component.change_collision_layer("up")
+			
+		#DOWN Button
+		if Input.is_action_just_pressed("down"):
+			movement_component.change_collision_layer("down")
+
+		
 		#Jump Button
 		if Input.is_action_just_pressed("jump"):
 			movement_component.jump()

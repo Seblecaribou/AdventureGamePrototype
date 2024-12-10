@@ -45,3 +45,14 @@ func run(running: bool) -> void:
 		speed_multiplier = max_speed_multiplier
 	else:
 		speed_multiplier = BASE_SPEED_MULTIPLIER
+
+##Moves the character back/front
+func change_collision_layer(direction : String) -> void:
+	print("Changing collision layer")
+	match direction:
+		"up":
+			print("Go back")
+		"down":
+			print("Come in front")
+			
+	#
