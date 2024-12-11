@@ -5,12 +5,14 @@ extends CharacterBody2D
 @export var movement_component : MovementComponent
 var current_game_state : String
 var current_held_item : String
+var inside_transition_area : bool
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
-	SignalBusSingleton.newstate.connect(on_new_game_state)
+	SignalBusSingleton.newstate.connect(_on_new_game_state)
 	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
+	interaction_component.in_transition_area.connect(_on_in_transition_area)
 
 func _physics_process(delta):
 	check_input()
@@ -28,13 +30,14 @@ func check_input() -> void:
 		
 		#UP Button
 		if Input.is_action_just_pressed("up"):
-			movement_component.change_collision_layer("up")
+			if inside_transition_area:
+				movement_component.change_collision_layer("up")
 			
 		#DOWN Button
 		if Input.is_action_just_pressed("down"):
-			movement_component.change_collision_layer("down")
+			if inside_transition_area:
+				movement_component.change_collision_layer("down")
 
-		
 		#Jump Button
 		if Input.is_action_just_pressed("jump"):
 			movement_component.jump()
@@ -71,7 +74,7 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 
 
-func on_new_game_state(emitter : Node, previous_state : String, new_state : String):
+func _on_new_game_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
 		current_game_state = new_state
 		
@@ -79,3 +82,6 @@ func _on_new_selected_item(emitter : Node, item_id : String) -> void:
 	if current_held_item != item_id:
 		current_held_item = item_id
 		print(current_held_item)
+		
+func _on_in_transition_area(emitter : Node, inside : bool) -> void:
+	inside_transition_area = inside

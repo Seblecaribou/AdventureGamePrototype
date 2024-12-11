@@ -5,6 +5,7 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
+signal in_transition_area(emitter : Node, inside : bool)
 
 func _ready():
 	update_interact_label()
@@ -14,10 +15,16 @@ func _physics_process(delta):
 	reset_interaction_ui()
 
 func _on_interaction_area_area_entered(area):
+	if area.name.contains("Entrance"):
+		in_transition_area.emit(self, true)
+		return
 	interactions.insert(0, area)
 	update_interact_label()
 
 func _on_interaction_area_area_exited(area):
+	if area.name.contains("Entrance"):
+		in_transition_area.emit(self, false)
+		return
 	interactions.erase(area)
 	update_interact_label()
 

@@ -94,5 +94,5 @@ position = Vector2(1572, 510)
 shape = SubResource("RectangleShape2D_4u1u0")
 
 [node name="EntranceBackground2" type="Area2D" parent="."]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 12
+collision_mask = 12

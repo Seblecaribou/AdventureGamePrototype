@@ -46,13 +46,21 @@ func run(running: bool) -> void:
 	else:
 		speed_multiplier = BASE_SPEED_MULTIPLIER
 
+
 ##Moves the character back/front
 func change_collision_layer(direction : String) -> void:
 	print("Changing collision layer")
 	match direction:
 		"up":
 			print("Go back")
+			character.set_scale(Vector2(0.9,0.9))
+			character.set_collision_layer_value(3, true)
+			character.set_collision_mask_value(3, true)
+			character.set_collision_layer_value(2, false)
+			character.set_collision_mask_value(2, false)
 		"down":
-			print("Come in front")
-			
-	#
+			character.set_scale(Vector2(1,1))
+			character.set_collision_layer_value(2, true)
+			character.set_collision_mask_value(2, true)
+			character.set_collision_layer_value(3, false)
+			character.set_collision_mask_value(3, false)

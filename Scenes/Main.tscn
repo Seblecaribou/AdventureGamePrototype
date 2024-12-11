@@ -175,7 +175,6 @@ player_character = NodePath("../../../../PlayerCharacter")
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
 position = Vector2(843, 512)
-scale = Vector2(1, 0.98911)
 collision_layer = 3
 
 [node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
