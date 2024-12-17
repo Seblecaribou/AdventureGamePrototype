@@ -49,11 +49,9 @@ func run(running: bool) -> void:
 
 ##Moves the character back/front
 func change_collision_layer(direction : String) -> void:
-	print("Changing collision layer")
 	match direction:
 		"up":
-			print("Go back")
-			character.set_scale(Vector2(0.9,0.9))
+			character.set_scale(Vector2(0.85,0.85))
 			character.set_collision_layer_value(3, true)
 			character.set_collision_mask_value(3, true)
 			character.set_collision_layer_value(2, false)

@@ -27,6 +27,10 @@ signal goal_validated(emitter : Node, goal_id : String)
 ##Connected: DialogueManager, GameStateMachine, InventoryManager, QuestManager
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String)
 
+##Emitters: PlayerCharacter
+##Connected: RoomComponent
+signal transitioned_area(emitter: Node, is_back: bool, player_z : int)
+
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager
 ##Connected: StateMachineComponent

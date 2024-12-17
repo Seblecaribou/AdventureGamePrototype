@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=7 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
+[ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
@@ -26,6 +27,18 @@ offset_bottom = 1166.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("1_hieij")
+
+[node name="BackgroundTopLayer" type="TextureRect" parent="."]
+visible = false
+z_as_relative = false
+layout_mode = 0
+offset_left = 114.0
+offset_top = 86.0
+offset_right = 2034.0
+offset_bottom = 1166.0
+scale = Vector2(0.89, 0.89)
+mouse_filter = 2
+texture = ExtResource("3_i4vp1")
 
 [node name="Interactables" type="Node" parent="."]
 

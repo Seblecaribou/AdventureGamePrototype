@@ -32,11 +32,13 @@ func check_input() -> void:
 		if Input.is_action_just_pressed("up"):
 			if inside_transition_area:
 				movement_component.change_collision_layer("up")
+				SignalBusSingleton.transitioned_area.emit(self, true, self.z_index)
 			
 		#DOWN Button
 		if Input.is_action_just_pressed("down"):
 			if inside_transition_area:
 				movement_component.change_collision_layer("down")
+				SignalBusSingleton.transitioned_area.emit(self, false, self.z_index)
 
 		#Jump Button
 		if Input.is_action_just_pressed("jump"):
