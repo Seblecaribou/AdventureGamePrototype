@@ -28,7 +28,7 @@ scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("1_hieij")
 
-[node name="BackgroundTopLayer" type="TextureRect" parent="."]
+[node name="Background1TopLayer" type="TextureRect" parent="."]
 visible = false
 z_as_relative = false
 layout_mode = 0
@@ -82,11 +82,11 @@ position = Vector2(941, 1044)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="EntranceBackground1" type="Area2D" parent="."]
+[node name="EntranceBackground2" type="Area2D" parent="."]
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
 modulate = Color(0.967466, 1, 0.500017, 1)
 polygon = PackedVector2Array(329, 919, 223, 1025, 706, 1015, 704, 909)
 
@@ -106,9 +106,9 @@ shape = SubResource("RectangleShape2D_4u1u0")
 position = Vector2(1572, 510)
 shape = SubResource("RectangleShape2D_4u1u0")
 
-[node name="EntranceBackground2" type="Area2D" parent="."]
+[node name="EntranceBackground3" type="Area2D" parent="."]
 collision_layer = 12
 collision_mask = 12
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground3"]
 polygon = PackedVector2Array(1218, 429, 1209, 472, 1439, 468, 1433, 423)

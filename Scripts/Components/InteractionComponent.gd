@@ -5,7 +5,7 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
-signal in_transition_area(emitter : Node, inside : bool)
+signal in_transition_area(emitter : Node, inside : bool, entrance_name : String)
 
 func _ready():
 	update_interact_label()
@@ -15,16 +15,15 @@ func _physics_process(delta):
 	reset_interaction_ui()
 
 func _on_interaction_area_area_entered(area):
-	print("Area entered : ", area.name)
-	if area.name.contains("Entrance"):
-		in_transition_area.emit(self, true)
+	if area.name.contains("EntranceBackground"):
+		in_transition_area.emit(self, true, area.name)
 		return
 	interactions.insert(0, area)
 	update_interact_label()
 
 func _on_interaction_area_area_exited(area):
 	if area.name.contains("Entrance"):
-		in_transition_area.emit(self, false)
+		in_transition_area.emit(self, false, area.name)
 		return
 	interactions.erase(area)
 	update_interact_label()

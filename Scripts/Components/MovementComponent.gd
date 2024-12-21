@@ -49,22 +49,34 @@ func run(running: bool) -> void:
 		speed_multiplier = BASE_SPEED_MULTIPLIER
 
 
-##Moves the character back/front
-func change_collision_layer(direction : String) -> void:
+##Moves the character from an entrance layer to an exit layer
+##Both layers are connected through an "EntranceBackground" (Area2D) 
+func change_collision_layer(direction : String, transition_area : String) -> void:
+	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
+	var exit_layer_number : int = entrance_layer_number + 1
+	UtilsSingleton.log_data(self, "change_collision_layer - entrance_layer_number", entrance_layer_number)
 	match direction:
+		#Player goes further back from the camera
 		"up":
 			character.set_scale(Vector2(0.85,0.85))
-			character.set_collision_layer_value(3, true)
-			character.set_collision_mask_value(3, true)
-			character.set_collision_layer_value(2, false)
-			character.set_collision_mask_value(2, false)
-			interaction_area.set_collision_mask_value(3, true)
-			interaction_area.set_collision_mask_value(2, false)
+			#We add the player to the exit collision layer
+			character.set_collision_layer_value(exit_layer_number, true)
+			character.set_collision_mask_value(exit_layer_number, true)
+			#We remove the player from the entrance collision layer
+			character.set_collision_layer_value(entrance_layer_number, false)
+			character.set_collision_mask_value(entrance_layer_number, false)
+			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the exit layer)
+			interaction_area.set_collision_mask_value(exit_layer_number, true)
+			interaction_area.set_collision_mask_value(entrance_layer_number, false)
+		#Player comes closer to the camera
 		"down":
 			character.set_scale(Vector2(1,1))
-			character.set_collision_layer_value(2, true)
-			character.set_collision_mask_value(2, true)
-			character.set_collision_layer_value(3, false)
-			character.set_collision_mask_value(3, false)
-			interaction_area.set_collision_mask_value(3, false)
-			interaction_area.set_collision_mask_value(2, true)
+			#We add the player to the entrance collision layer
+			character.set_collision_layer_value(entrance_layer_number, true)
+			character.set_collision_mask_value(entrance_layer_number, true)
+			#We remove the player from the exit collision layer
+			character.set_collision_layer_value(exit_layer_number, false)
+			character.set_collision_mask_value(exit_layer_number, false)
+			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the entrance layer)
+			interaction_area.set_collision_mask_value(exit_layer_number, false)
+			interaction_area.set_collision_mask_value(entrance_layer_number, true)

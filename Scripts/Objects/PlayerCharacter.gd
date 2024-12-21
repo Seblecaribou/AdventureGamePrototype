@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var movement_component : MovementComponent
 var current_game_state : String
 var current_held_item : String
+var transition_area_name : String
 var inside_transition_area : bool
 
 func _ready():
@@ -31,13 +32,13 @@ func check_input() -> void:
 		#UP Button
 		if Input.is_action_just_pressed("up"):
 			if inside_transition_area:
-				movement_component.change_collision_layer("up")
+				movement_component.change_collision_layer("up", transition_area_name)
 				SignalBusSingleton.transitioned_area.emit(self, true, self.z_index)
 			
 		#DOWN Button
 		if Input.is_action_just_pressed("down"):
 			if inside_transition_area:
-				movement_component.change_collision_layer("down")
+				movement_component.change_collision_layer("down", transition_area_name)
 				SignalBusSingleton.transitioned_area.emit(self, false, self.z_index)
 
 		#Jump Button
@@ -83,7 +84,8 @@ func _on_new_game_state(emitter : Node, previous_state : String, new_state : Str
 func _on_new_selected_item(emitter : Node, item_id : String) -> void:
 	if current_held_item != item_id:
 		current_held_item = item_id
-		print(current_held_item)
+		print("**PlayerCharacter** _on_new_selected_item : ", current_held_item)
 		
-func _on_in_transition_area(emitter : Node, inside : bool) -> void:
+func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String) -> void:
+	transition_area_name = entrance_name
 	inside_transition_area = inside
