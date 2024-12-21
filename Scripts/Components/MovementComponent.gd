@@ -5,12 +5,14 @@ extends Node
 @export var speed: float = 300.0
 @export var jump_velocity: float = -700.0
 @export var max_speed_multiplier: float = 3.2
+@export var interaction_area : Area2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const BASE_SPEED_MULTIPLIER: float = 2.0
 var speed_multiplier: float = 2.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
 
 func _ready():
 	character.floor_snap_length = 50.0
+	character.set_collision_layer_value(1, false)
 
 func _physics_process(delta):
 	ground_player(delta)
@@ -56,9 +58,13 @@ func change_collision_layer(direction : String) -> void:
 			character.set_collision_mask_value(3, true)
 			character.set_collision_layer_value(2, false)
 			character.set_collision_mask_value(2, false)
+			interaction_area.set_collision_mask_value(3, true)
+			interaction_area.set_collision_mask_value(2, false)
 		"down":
 			character.set_scale(Vector2(1,1))
 			character.set_collision_layer_value(2, true)
 			character.set_collision_mask_value(2, true)
 			character.set_collision_layer_value(3, false)
 			character.set_collision_mask_value(3, false)
+			interaction_area.set_collision_mask_value(3, false)
+			interaction_area.set_collision_mask_value(2, true)

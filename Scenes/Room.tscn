@@ -42,16 +42,16 @@ texture = ExtResource("3_i4vp1")
 
 [node name="Interactables" type="Node" parent="."]
 
+[node name="char_thierry" parent="Interactables" instance=ExtResource("2_unmnm")]
+visible = false
+position = Vector2(1544, 756)
+scale = Vector2(5.50463, 7.14542)
+
 [node name="Foreground" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1915.0
 offset_bottom = 1081.0
 mouse_filter = 2
-
-[node name="char_thierry" parent="." instance=ExtResource("2_unmnm")]
-visible = false
-position = Vector2(1544, 756)
-scale = Vector2(5.50463, 7.14542)
 
 [node name="CollisionMain" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -109,3 +109,6 @@ shape = SubResource("RectangleShape2D_4u1u0")
 [node name="EntranceBackground2" type="Area2D" parent="."]
 collision_layer = 12
 collision_mask = 12
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
+polygon = PackedVector2Array(1218, 429, 1209, 472, 1439, 468, 1433, 423)

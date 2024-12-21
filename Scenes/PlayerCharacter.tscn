@@ -238,9 +238,10 @@ script = ExtResource("8_s3oir")
 character = NodePath("..")
 animated_sprite_2D = NodePath("../AnimatedSprite2D")
 
-[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character")]
+[node name="MovementComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "interaction_area")]
 script = ExtResource("6_2bu6f")
 character = NodePath("..")
+interaction_area = NodePath("../Interaction Nodes/InteractionArea")
 
 [node name="Interaction Nodes" type="Node2D" parent="."]
 

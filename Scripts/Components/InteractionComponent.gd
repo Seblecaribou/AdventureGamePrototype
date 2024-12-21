@@ -15,6 +15,7 @@ func _physics_process(delta):
 	reset_interaction_ui()
 
 func _on_interaction_area_area_entered(area):
+	print("Area entered : ", area.name)
 	if area.name.contains("Entrance"):
 		in_transition_area.emit(self, true)
 		return
@@ -37,11 +38,9 @@ func update_interact_label():
 func reset_interaction_ui():
 	if player_character.current_game_state == "moving":
 		interaction_content.text = ""
-		pass
 
 ##Generates a goal_id to search in current objectives, based of interactable type, id and item being used
 func generate_goal_id(interaction_type : String, interaction_id : String, item_used : String = "") -> String:
-	print(item_used)
 	var action_type : String
 	match interaction_type:
 			"obs":

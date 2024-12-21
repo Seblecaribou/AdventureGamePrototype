@@ -1,12 +1,14 @@
 class_name Interactable
 extends Area2D
 
+@export var layer : int = 2
 var interactable_id : String
 var interactable_data : InteractableData
 var interactable_type : String
 var interact_label : String
 
 func _ready():
+	self.set_collision_layer_value(layer, true)
 	interactable_id = self.get_name().to_lower()
 	interactable_data = get_node("./InteractableData")
 	if interactable_data != null:
