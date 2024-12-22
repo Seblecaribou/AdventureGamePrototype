@@ -29,7 +29,7 @@ signal interacted(emitter : Node, interactable : Interactable, interaction_type 
 
 ##Emitters: PlayerCharacter
 ##Connected: RoomComponent
-signal transitioned_area(emitter: Node, is_back: bool, player_z : int)
+signal transitioned_area(emitter: Node, is_back: bool, player_z : int, transition_area_name : String)
 
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager
