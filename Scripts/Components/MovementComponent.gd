@@ -55,10 +55,12 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
 	var exit_layer_number : int = entrance_layer_number + 1
 	UtilsSingleton.log_data(self, "change_collision_layer - entrance_layer_number", entrance_layer_number)
+	var current_player_x_scale : float = character.get_scale().x
+	var current_player_y_scale : float = character.get_scale().y
 	match direction:
 		#Player goes further back from the camera
 		"up":
-			character.set_scale(Vector2(0.85,0.85))
+			character.set_scale(Vector2(current_player_x_scale - 0.15 ,current_player_y_scale - 0.15))
 			#We add the player to the exit collision layer
 			character.set_collision_layer_value(exit_layer_number, true)
 			character.set_collision_mask_value(exit_layer_number, true)
@@ -70,7 +72,7 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			interaction_area.set_collision_mask_value(entrance_layer_number, false)
 		#Player comes closer to the camera
 		"down":
-			character.set_scale(Vector2(1,1))
+			character.set_scale(Vector2(current_player_x_scale + 0.15, current_player_y_scale + 0.15))
 			#We add the player to the entrance collision layer
 			character.set_collision_layer_value(entrance_layer_number, true)
 			character.set_collision_mask_value(entrance_layer_number, true)
