@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=11 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
 [ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 [ext_resource type="Texture2D" uid="uid://biyminr5kx6r3" path="res://Images/Rooms/reception3.png" id="4_38h0n"]
+[ext_resource type="Texture2D" uid="uid://b5ofl4fy5g7qo" path="res://Images/Rooms/reception4.png" id="6_ypib7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
@@ -13,7 +14,7 @@ size = Vector2(1917.5, 72)
 size = Vector2(121, 933.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dp464"]
-size = Vector2(98.5, 570)
+size = Vector2(435.25, 570)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_croj7"]
 size = Vector2(1299, 178.5)
@@ -27,10 +28,10 @@ script = ExtResource("1_xoees")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 86.0
-offset_right = 2034.0
-offset_bottom = 1166.0
+offset_left = 81.0
+offset_top = 113.0
+offset_right = 1946.0
+offset_bottom = 1161.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("1_hieij")
@@ -39,10 +40,10 @@ texture = ExtResource("1_hieij")
 visible = false
 z_as_relative = false
 layout_mode = 0
-offset_left = 114.0
-offset_top = 86.0
-offset_right = 2034.0
-offset_bottom = 1166.0
+offset_left = 81.0
+offset_top = 113.0
+offset_right = 1946.0
+offset_bottom = 1161.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("3_i4vp1")
@@ -51,32 +52,39 @@ texture = ExtResource("3_i4vp1")
 visible = false
 z_as_relative = false
 layout_mode = 0
-offset_left = 114.0
-offset_top = 86.0
-offset_right = 2034.0
-offset_bottom = 1166.0
+offset_left = 81.0
+offset_top = 113.0
+offset_right = 1946.0
+offset_bottom = 1161.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("4_38h0n")
 
+[node name="Foreground" type="TextureRect" parent="."]
+z_index = 20
+z_as_relative = false
+layout_mode = 0
+offset_left = -150.0
+offset_top = -1.0
+offset_right = 1890.0
+offset_bottom = 1147.0
+mouse_filter = 2
+texture = ExtResource("6_ypib7")
+
 [node name="char_thierry" parent="." instance=ExtResource("2_unmnm")]
 visible = false
-position = Vector2(1544, 756)
+position = Vector2(1455, 787)
 scale = Vector2(5.50463, 7.14542)
+collision_mask = 2
 
-[node name="Foreground" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1915.0
-offset_bottom = 1081.0
-mouse_filter = 2
-
-[node name="EntranceBackground1" type="Area2D" parent="."]
+[node name="EntranceBackground1" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
 collision_layer = 3
 collision_mask = 3
 
-[node name="EntranceBackground2" type="Area2D" parent="."]
+[node name="EntranceBackground2" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
+position = Vector2(-43, 4)
 collision_layer = 6
 collision_mask = 6
 
@@ -84,8 +92,9 @@ collision_mask = 6
 modulate = Color(0.967466, 1, 0.500017, 1)
 polygon = PackedVector2Array(505, 914, 484, 1016, 665, 1015, 672, 910)
 
-[node name="EntranceBackground3" type="Area2D" parent="."]
+[node name="EntranceBackground3" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
+position = Vector2(-82, 29)
 collision_layer = 12
 collision_mask = 12
 
@@ -97,13 +106,13 @@ visible = false
 collision_layer = 6
 collision_mask = 6
 
-[node name="CollisionMain" type="StaticBody2D" parent="."]
+[node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
 visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="LeftWall" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(31.0001, 570)
+position = Vector2(4, 570)
 rotation = 3.14159
 scale = Vector2(0.127224, -13.3524)
 shape = SubResource("RectangleShape2D_f5u5t")
@@ -116,49 +125,49 @@ shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="RightWall" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(1632, 568)
+position = Vector2(1551, 561)
 rotation = 3.14159
 scale = Vector2(0.222761, -13.0222)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(941, 1044)
+position = Vector2(939, 1052)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="CollisionBackground1" type="StaticBody2D" parent="."]
+[node name="CollisionBackground1" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
 visible = false
 position = Vector2(-97, 89)
 collision_layer = 4
 collision_mask = 4
 
-[node name="Front" type="CollisionPolygon2D" parent="CollisionBackground1"]
-polygon = PackedVector2Array(347, 849, 801.877, 835.093, 1119, 572, 1312, 381, 1541, 370, 1531, 919, 343, 919)
+[node name="Staircase" type="CollisionPolygon2D" parent="CollisionBackground1"]
+polygon = PackedVector2Array(315, 871, 742, 865, 1253, 416, 1428, 401, 1432, 962, 314, 966)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBackground1"]
-position = Vector2(288, 454.875)
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionBackground1"]
+position = Vector2(259, 458)
 shape = SubResource("RectangleShape2D_4u1u0")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground1"]
-position = Vector2(1572, 510)
+[node name="RightWall" type="CollisionShape2D" parent="CollisionBackground1"]
+position = Vector2(1490, 475)
 shape = SubResource("RectangleShape2D_4u1u0")
 
-[node name="CollisionBackground2" type="StaticBody2D" parent="."]
+[node name="CollisionBackground2" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
 visible = false
 position = Vector2(-97, 89)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground2"]
-position = Vector2(1489.75, 109)
+position = Vector2(1627.38, 126)
 shape = SubResource("RectangleShape2D_dp464")
 debug_color = Color(3.85046e-07, 0.648068, 0.192581, 0.42)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionBackground2"]
-polygon = PackedVector2Array(479, -92, 1265, 390, 1532, 378, 1512, 921, 249, 928, 241, -92)
+[node name="Staircase" type="CollisionPolygon2D" parent="CollisionBackground2"]
+polygon = PackedVector2Array(544, -1, 1185, 413, 1836, 408, 1845, 960, 166, 963, 162, 1)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionBackground2"]
-position = Vector2(889, -160)
+position = Vector2(842, -61)
 shape = SubResource("RectangleShape2D_croj7")
 debug_color = Color(2.83971e-06, 0.640427, 0.35006, 0.42)

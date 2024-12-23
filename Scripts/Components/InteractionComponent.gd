@@ -15,7 +15,9 @@ func _physics_process(delta):
 	reset_interaction_ui()
 
 func _on_interaction_area_area_entered(area):
-	if area.name.contains("EntranceBackground"):
+	if area.is_in_group("EntranceBackground"):
+		#pass
+	#if area.name.contains("EntranceBackground"):
 		in_transition_area.emit(self, true, area.name)
 		return
 	interactions.insert(0, area)

@@ -1,6 +1,5 @@
-[gd_scene load_steps=27 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=26 format=3 uid="uid://co11dmbjerijd"]
 
-[ext_resource type="Texture2D" uid="uid://bx0asix1f5aov" path="res://Free/Background/Pink.png" id="1_4fsqj"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
@@ -59,7 +58,6 @@ offset_top = -289.0
 offset_right = -8.0
 offset_bottom = 361.0
 scale = Vector2(3.44462, 2.61239)
-texture = ExtResource("1_4fsqj")
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 

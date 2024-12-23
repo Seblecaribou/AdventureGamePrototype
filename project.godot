@@ -44,6 +44,11 @@ window/size/borderless=true
 
 enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 
+[global_group]
+
+EntranceBackground=""
+CollisionLayers=""
+
 [input]
 
 jump={
