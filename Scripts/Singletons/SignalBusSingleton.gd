@@ -4,7 +4,7 @@ extends Node
 #QuestManager
 ##Emitters: QuestManager 
 ##Connected: DialogueManager
-signal update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData])
+signal update_all_quests(emitter : Node, active_quests : Array[QuestData], finished_quests : Array[QuestData])
 
 ##Emitters: PlayerCharacter/InteractNodes/InteractionComponent 
 ##Connected: QuestManager
@@ -26,6 +26,10 @@ signal goal_validated(emitter : Node, goal_id : String)
 ##Emitters: InteractionComponent
 ##Connected: DialogueManager, GameStateMachine, InventoryManager, QuestManager
 signal interacted(emitter : Node, interactable : Interactable, interaction_type : String, player_position : Vector2, goal_id : String)
+
+##Emitters: PlayerCharacter
+##Connected: RoomComponent
+signal transitioned_area(emitter: Node, is_back: bool, player_z : int, transition_area_name : String)
 
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager

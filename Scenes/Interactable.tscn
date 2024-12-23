@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Objects/Interactable.gd" id="1_nglc3"]
 [ext_resource type="Script" path="res://Scripts/Resources/InteractableData.gd" id="2_72jsu"]
-[ext_resource type="Texture2D" uid="uid://clq445obhaalv" path="res://icon.svg" id="2_lobpb"]
+[ext_resource type="Texture2D" uid="uid://cmxo66obyjmi5" path="res://icon.svg" id="2_lobpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44mn0"]
 size = Vector2(48, 48)

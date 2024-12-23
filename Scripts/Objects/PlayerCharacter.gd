@@ -5,12 +5,15 @@ extends CharacterBody2D
 @export var movement_component : MovementComponent
 var current_game_state : String
 var current_held_item : String
+var transition_area_name : String
+var inside_transition_area : bool
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
-	SignalBusSingleton.newstate.connect(on_new_game_state)
+	SignalBusSingleton.newstate.connect(_on_new_game_state)
 	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
+	interaction_component.in_transition_area.connect(_on_in_transition_area)
 
 func _physics_process(delta):
 	check_input()
@@ -26,6 +29,18 @@ func check_input() -> void:
 		var direction: float = Input.get_axis("left", "right")
 		movement_component.move(direction)
 		
+		#UP Button
+		if Input.is_action_just_pressed("up"):
+			if inside_transition_area:
+				movement_component.change_collision_layer("up", transition_area_name)
+				SignalBusSingleton.transitioned_area.emit(self, true, self.z_index, transition_area_name)
+			
+		#DOWN Button
+		if Input.is_action_just_pressed("down"):
+			if inside_transition_area:
+				movement_component.change_collision_layer("down", transition_area_name)
+				SignalBusSingleton.transitioned_area.emit(self, false, self.z_index, transition_area_name)
+
 		#Jump Button
 		if Input.is_action_just_pressed("jump"):
 			movement_component.jump()
@@ -33,6 +48,8 @@ func check_input() -> void:
 		#Run Button
 		if Input.is_action_pressed("run"):
 			movement_component.run(true)
+		else: 
+			movement_component.run(false)
 
 		##InteractionComponent
 		if Input.is_action_just_pressed("interact"):
@@ -60,11 +77,15 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 
 
-func on_new_game_state(emitter : Node, previous_state : String, new_state : String):
+func _on_new_game_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
 		current_game_state = new_state
 		
 func _on_new_selected_item(emitter : Node, item_id : String) -> void:
 	if current_held_item != item_id:
 		current_held_item = item_id
-		print(current_held_item)
+		print("**PlayerCharacter** _on_new_selected_item : ", current_held_item)
+		
+func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String) -> void:
+	transition_area_name = entrance_name
+	inside_transition_area = inside

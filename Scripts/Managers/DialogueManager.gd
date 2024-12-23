@@ -1,7 +1,6 @@
 class_name DialogueManager
 extends Node
 
-@export var quest_manager : QuestManager
 @export var dialogue_menu : DialogueMenu
 @export var dialogue_data : DialogueData
 @export var dialogue_component : DialogueComponent
@@ -74,7 +73,7 @@ func _on_player_character_interacted(emitter : Node, interactable : Interactable
 		dialogue_menu.add_button(index, dialogue.objective_id, dialogue.dialogue_button_label)
 	dialogue_menu.place_buttons()
 
-func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], FinishedQuests : Array[QuestData]) -> void:
+func _on_update_all_quests(emitter : Node, active_quests : Array[QuestData], finished_quests : Array[QuestData]) -> void:
 	for quest in active_quests:
 		for step in quest.quest_steps:
 			for objective in step.objectives:

@@ -6,3 +6,4 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	self.global_position.x = %PlayerCharacter.global_position.x
+	

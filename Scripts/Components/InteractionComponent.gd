@@ -5,6 +5,7 @@ extends Node
 @export var player_character : PlayerCharacter
 @export var label: Label
 @export var interaction_content : RichTextLabel
+signal in_transition_area(emitter : Node, inside : bool, entrance_name : String)
 
 func _ready():
 	update_interact_label()
@@ -14,10 +15,18 @@ func _physics_process(delta):
 	reset_interaction_ui()
 
 func _on_interaction_area_area_entered(area):
+	if area.is_in_group("EntranceBackground"):
+		#pass
+	#if area.name.contains("EntranceBackground"):
+		in_transition_area.emit(self, true, area.name)
+		return
 	interactions.insert(0, area)
 	update_interact_label()
 
 func _on_interaction_area_area_exited(area):
+	if area.name.contains("Entrance"):
+		in_transition_area.emit(self, false, area.name)
+		return
 	interactions.erase(area)
 	update_interact_label()
 
@@ -30,11 +39,9 @@ func update_interact_label():
 func reset_interaction_ui():
 	if player_character.current_game_state == "moving":
 		interaction_content.text = ""
-		pass
 
 ##Generates a goal_id to search in current objectives, based of interactable type, id and item being used
 func generate_goal_id(interaction_type : String, interaction_id : String, item_used : String = "") -> String:
-	print(item_used)
 	var action_type : String
 	match interaction_type:
 			"obs":

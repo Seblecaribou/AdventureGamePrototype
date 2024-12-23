@@ -3,12 +3,16 @@ extends Node
 
 @export var character: CharacterBody2D
 @export var speed: float = 300.0
-@export var jump_velocity: float = -400.0
-@export var max_speed_multiplier: float = 1.75
+@export var jump_velocity: float = -700.0
+@export var max_speed_multiplier: float = 3.2
+@export var interaction_area : Area2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-const BASE_SPEED_MULTIPLIER: float = 1.0
-var speed_multiplier: float = 1.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
+const BASE_SPEED_MULTIPLIER: float = 2.0
+var speed_multiplier: float = 2.0 #variable that equals either max_speed_multiplier or BASE_SPEED_MULTIPLIER
 
+func _ready():
+	character.floor_snap_length = 50.0
+	character.set_collision_layer_value(1, false)
 
 func _physics_process(delta):
 	ground_player(delta)
@@ -43,3 +47,40 @@ func run(running: bool) -> void:
 		speed_multiplier = max_speed_multiplier
 	else:
 		speed_multiplier = BASE_SPEED_MULTIPLIER
+
+
+##Moves the character from an entrance layer to an exit layer
+##Both layers are connected through an "EntranceBackground" (Area2D) 
+func change_collision_layer(direction : String, transition_area : String) -> void:
+	#Determines how much is added/substracted to the player's scale when moving forward or backward
+	var scale_factor : float = 0.06
+	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
+	var exit_layer_number : int = entrance_layer_number + 1
+	UtilsSingleton.log_data(self, "change_collision_layer - entrance_layer_number", entrance_layer_number)
+	var current_player_x_scale : float = character.get_scale().x
+	var current_player_y_scale : float = character.get_scale().y
+	match direction:
+		#Player goes further back from the camera
+		"up":
+			character.set_scale(Vector2(current_player_x_scale - scale_factor ,current_player_y_scale - scale_factor))
+			#We add the player to the exit collision layer
+			character.set_collision_layer_value(exit_layer_number, true)
+			character.set_collision_mask_value(exit_layer_number, true)
+			#We remove the player from the entrance collision layer
+			character.set_collision_layer_value(entrance_layer_number, false)
+			character.set_collision_mask_value(entrance_layer_number, false)
+			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the exit layer)
+			interaction_area.set_collision_mask_value(exit_layer_number, true)
+			interaction_area.set_collision_mask_value(entrance_layer_number, false)
+		#Player comes closer to the camera
+		"down":
+			character.set_scale(Vector2(current_player_x_scale + scale_factor, current_player_y_scale + scale_factor))
+			#We add the player to the entrance collision layer
+			character.set_collision_layer_value(entrance_layer_number, true)
+			character.set_collision_mask_value(entrance_layer_number, true)
+			#We remove the player from the exit collision layer
+			character.set_collision_layer_value(exit_layer_number, false)
+			character.set_collision_mask_value(exit_layer_number, false)
+			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the entrance layer)
+			interaction_area.set_collision_mask_value(exit_layer_number, false)
+			interaction_area.set_collision_mask_value(entrance_layer_number, true)
