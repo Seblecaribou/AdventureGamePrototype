@@ -48,6 +48,7 @@ enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 
 EntranceBackground=""
 CollisionLayers=""
+EntranceTeleport=""
 
 [input]
 

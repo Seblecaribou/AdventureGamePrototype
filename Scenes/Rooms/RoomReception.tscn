@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=12 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
-[ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
+[ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
 [ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 [ext_resource type="Texture2D" uid="uid://biyminr5kx6r3" path="res://Images/Rooms/reception3.png" id="4_38h0n"]
@@ -18,6 +18,9 @@ size = Vector2(435.25, 570)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_croj7"]
 size = Vector2(1299, 178.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa5tb"]
+size = Vector2(575.5, 196)
 
 [node name="Room" type="Control"]
 z_index = -5
@@ -162,7 +165,7 @@ collision_mask = 8
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground2"]
 position = Vector2(1627.38, 126)
 shape = SubResource("RectangleShape2D_dp464")
-debug_color = Color(3.85046e-07, 0.648068, 0.192581, 0.42)
+debug_color = Color(1, 0.361088, 0.353245, 0.360784)
 
 [node name="Staircase" type="CollisionPolygon2D" parent="CollisionBackground2"]
 polygon = PackedVector2Array(544, -1, 1185, 413, 1836, 408, 1845, 960, 166, 963, 162, 1)
@@ -170,4 +173,14 @@ polygon = PackedVector2Array(544, -1, 1185, 413, 1836, 408, 1845, 960, 166, 963,
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionBackground2"]
 position = Vector2(842, -61)
 shape = SubResource("RectangleShape2D_croj7")
-debug_color = Color(2.83971e-06, 0.640427, 0.35006, 0.42)
+debug_color = Color(0.988235, 0.105882, 0, 0.196078)
+
+[node name="ToRoomHotelCorridor" type="Area2D" parent="." groups=["EntranceTeleport"]]
+position = Vector2(280, -134)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoomHotelCorridor"]
+position = Vector2(501.25, 274)
+shape = SubResource("RectangleShape2D_fa5tb")
+debug_color = Color(0, 0.65098, 0.137255, 0.52549)

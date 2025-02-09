@@ -15,10 +15,9 @@
 [ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
 [ext_resource type="Script" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
-[ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Room.tscn" id="18_cehyh"]
+[ext_resource type="PackedScene" uid="uid://bbo1rn3dxaict" path="res://Scenes/Rooms/RoomHotelCorridor.tscn" id="18_1dp38"]
+[ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Rooms/RoomReception.tscn" id="18_cehyh"]
 [ext_resource type="Script" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oo0u4"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -61,11 +60,10 @@ scale = Vector2(3.44462, 2.61239)
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldBoundaryDown" type="StaticBody2D" parent="."]
-position = Vector2(0, 1047)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryDown"]
-shape = SubResource("WorldBoundaryShape2D_oo0u4")
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
+unique_name_in_owner = true
+position = Vector2(329, 552)
+collision_layer = 3
 
 [node name="GameManagers" type="Node" parent="."]
 
@@ -170,11 +168,6 @@ player_character = NodePath("../../PlayerCharacter")
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
 player_character = NodePath("../../../../PlayerCharacter")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
-unique_name_in_owner = true
-position = Vector2(843, 512)
-collision_layer = 3
-
 [node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
 z_index = -1
 offset_left = -70.0
@@ -183,7 +176,7 @@ offset_right = -70.0
 offset_bottom = -259.0
 
 [node name="TestObjects" type="Node2D" parent="."]
-position = Vector2(-1030, -31)
+position = Vector2(3514, 1214)
 
 [node name="obs_bathtub_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(382, 190)
@@ -208,3 +201,9 @@ position = Vector2(91, 95)
 
 [node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(90, 202)
+
+[node name="RoomHotelCorridor" parent="." instance=ExtResource("18_1dp38")]
+offset_left = -157.0
+offset_top = -1382.0
+offset_right = -157.0
+offset_bottom = -1382.0
