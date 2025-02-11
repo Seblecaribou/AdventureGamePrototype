@@ -31,6 +31,10 @@ signal interacted(emitter : Node, interactable : Interactable, interaction_type 
 ##Connected: RoomComponent
 signal transitioned_area(emitter: Node, is_back: bool, player_z : int, transition_area_name : String)
 
+##Emitters: InteractableComponent
+##Connected: CameraManager
+signal teleported(emitter : Node, teleport_to : String, new_position : Vector2)
+
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager
 ##Connected: StateMachineComponent

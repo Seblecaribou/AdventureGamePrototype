@@ -19,7 +19,13 @@ func _on_interaction_area_area_entered(area):
 		in_transition_area.emit(self, true, area.name)
 		return
 	if area.is_in_group("EntranceTeleport"):
-		print("TP point : " + area.name)
+		var arrival_area : String = area.name.substr(8)
+		print("TP point : " + arrival_area)
+		if TeleportDictionarySingleton.get(arrival_area):
+			var new_position :Vector2 = TeleportDictionarySingleton.get(arrival_area)
+			player_character.global_position = new_position
+			SignalBusSingleton.teleported.emit(self, arrival_area, new_position)
+		return
 	interactions.insert(0, area)
 	update_interact_label()
 

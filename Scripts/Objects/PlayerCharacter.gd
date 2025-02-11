@@ -18,6 +18,7 @@ func _ready():
 func _physics_process(delta):
 	check_input()
 
+
 func check_input() -> void:
 	if current_game_state == "moving":
 		##Idle

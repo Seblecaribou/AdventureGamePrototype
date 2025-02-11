@@ -62,7 +62,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
-position = Vector2(329, 552)
+position = Vector2(351, 536)
 collision_layer = 3
 
 [node name="GameManagers" type="Node" parent="."]
