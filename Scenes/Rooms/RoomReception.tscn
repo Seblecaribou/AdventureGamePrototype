@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=12 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 [ext_resource type="Texture2D" uid="uid://biyminr5kx6r3" path="res://Images/Rooms/reception3.png" id="4_38h0n"]
 [ext_resource type="Texture2D" uid="uid://b5ofl4fy5g7qo" path="res://Images/Rooms/reception4.png" id="6_ypib7"]
-[ext_resource type="Script" path="res://Scripts/Components/TeleportComponent.gd" id="7_l8fte"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
@@ -103,6 +102,7 @@ collision_layer = 12
 collision_mask = 12
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground3"]
+visible = false
 polygon = PackedVector2Array(1218, 429, 1209, 472, 1318, 469, 1317, 427)
 
 [node name="EntranceBackground4" type="Area2D" parent="EntranceBackground3"]
@@ -180,7 +180,6 @@ debug_color = Color(0.988235, 0.105882, 0, 0.196078)
 position = Vector2(280, -134)
 collision_layer = 8
 collision_mask = 8
-script = ExtResource("7_l8fte")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_hotel_corridor_01"]
 position = Vector2(501.25, 274)

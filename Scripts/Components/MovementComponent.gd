@@ -52,16 +52,21 @@ func run(running: bool) -> void:
 ##Moves the character from an entrance layer to an exit layer
 ##Both layers are connected through an "EntranceBackground" (Area2D) 
 func change_collision_layer(direction : String, transition_area : String) -> void:
+	
 	#Determines how much is added/substracted to the player's scale when moving forward or backward
 	var scale_factor : float = 0.06
 	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
 	var exit_layer_number : int = entrance_layer_number + 1
-	UtilsSingleton.log_data(self, "change_collision_layer - entrance_layer_number", entrance_layer_number)
+	UtilsSingleton.log_data(self, "change_collision_layer - transition_area", transition_area)
 	var current_player_x_scale : float = character.get_scale().x
 	var current_player_y_scale : float = character.get_scale().y
 	match direction:
 		#Player goes further back from the camera
 		"up":
+			#We check if player is allowed to move up
+			if character.get_collision_layer_value(exit_layer_number):
+				return
+			#We make player character bigger 
 			character.set_scale(Vector2(current_player_x_scale - scale_factor ,current_player_y_scale - scale_factor))
 			#We add the player to the exit collision layer
 			character.set_collision_layer_value(exit_layer_number, true)
@@ -74,6 +79,9 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			interaction_area.set_collision_mask_value(entrance_layer_number, false)
 		#Player comes closer to the camera
 		"down":
+			#We check if player is allowed to move down
+			if character.get_collision_layer_value(entrance_layer_number):
+				return
 			character.set_scale(Vector2(current_player_x_scale + scale_factor, current_player_y_scale + scale_factor))
 			#We add the player to the entrance collision layer
 			character.set_collision_layer_value(entrance_layer_number, true)

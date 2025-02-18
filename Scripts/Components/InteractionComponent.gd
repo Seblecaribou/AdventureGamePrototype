@@ -20,11 +20,12 @@ func _on_interaction_area_area_entered(area):
 		return
 	if area.is_in_group("EntranceTeleport"):
 		var arrival_area : String = area.name.substr(8)
-		print("TP point : " + arrival_area)
 		if TeleportDictionarySingleton.get(arrival_area):
 			var new_position :Vector2 = TeleportDictionarySingleton.get(arrival_area)
 			player_character.global_position = new_position
 			SignalBusSingleton.teleported.emit(self, arrival_area, new_position)
+		else:
+			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation coordinates in TeleportDictionarySingleton.")
 		return
 	interactions.insert(0, area)
 	update_interact_label()
