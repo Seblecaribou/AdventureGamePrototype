@@ -7,7 +7,7 @@ extends Node
 signal teleported(emitter : Node, teleport_to : String, new_position : Vector2)
 
 ##Emitters: InteractionComponent
-##Connected: CameraManager
+##Connected: CameraManager, MovementComponent
 signal room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float)
 
 #QuestManager

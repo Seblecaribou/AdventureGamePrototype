@@ -14,6 +14,7 @@ func _ready():
 	character.floor_snap_length = 50.0
 	character.set_collision_layer_value(1, false)
 	SignalBusSingleton.teleported.connect(_on_teleported)
+	SignalBusSingleton.room_changed.connect(_on_room_changed)
 
 func _physics_process(delta):
 	ground_player(delta)
@@ -94,12 +95,20 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			interaction_area.set_collision_mask_value(entrance_layer_number, true)
 			
 func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2) -> void:
-	#Sets player's new global position
+	#Reset player scale
 	character.set_scale(Vector2(1,1))
 	#We reset every background/forground collision layers (1-32) and then sets them to 1
 	for i in range(1,33):
 		character.set_collision_layer_value(i, false)
 		character.set_collision_mask_value(i, false)
+		
 	character.set_collision_layer_value(2, true)
 	character.set_collision_mask_value(2, true)
+	#Sets player's new global position
 	character.global_position = new_position
+
+func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:
+	#We reset the collision mask for interaction area
+	for i in range(1,33):
+		interaction_area.set_collision_mask_value(i, false)
+	interaction_area.set_collision_mask_value(2, true)
