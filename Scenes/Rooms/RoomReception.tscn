@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=13 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
@@ -21,6 +21,9 @@ size = Vector2(1299, 178.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa5tb"]
 size = Vector2(575.5, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
+size = Vector2(1808, 1112)
 
 [node name="Room" type="Control"]
 z_index = -5
@@ -185,3 +188,12 @@ collision_mask = 8
 position = Vector2(501.25, 274)
 shape = SubResource("RectangleShape2D_fa5tb")
 debug_color = Color(0, 0.65098, 0.137255, 0.52549)
+
+[node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+collision_layer = 15
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
+position = Vector2(900, 572)
+shape = SubResource("RectangleShape2D_nu0qj")
+debug_color = Color(0.643083, 0.523352, 0, 0.42)

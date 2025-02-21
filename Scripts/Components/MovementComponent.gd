@@ -13,6 +13,7 @@ var speed_multiplier: float = 2.0 #variable that equals either max_speed_multipl
 func _ready():
 	character.floor_snap_length = 50.0
 	character.set_collision_layer_value(1, false)
+	SignalBusSingleton.teleported.connect(_on_teleported)
 
 func _physics_process(delta):
 	ground_player(delta)
@@ -52,7 +53,6 @@ func run(running: bool) -> void:
 ##Moves the character from an entrance layer to an exit layer
 ##Both layers are connected through an "EntranceBackground" (Area2D) 
 func change_collision_layer(direction : String, transition_area : String) -> void:
-	
 	#Determines how much is added/substracted to the player's scale when moving forward or backward
 	var scale_factor : float = 0.06
 	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
@@ -92,3 +92,14 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the entrance layer)
 			interaction_area.set_collision_mask_value(exit_layer_number, false)
 			interaction_area.set_collision_mask_value(entrance_layer_number, true)
+			
+func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2) -> void:
+	#Sets player's new global position
+	character.set_scale(Vector2(1,1))
+	#We reset every background/forground collision layers (1-32) and then sets them to 1
+	for i in range(1,33):
+		character.set_collision_layer_value(i, false)
+		character.set_collision_mask_value(i, false)
+	character.set_collision_layer_value(2, true)
+	character.set_collision_mask_value(2, true)
+	character.global_position = new_position

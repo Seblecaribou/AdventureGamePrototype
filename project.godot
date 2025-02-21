@@ -50,6 +50,7 @@ enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 EntranceBackground=""
 CollisionLayers=""
 EntranceTeleport=""
+RoomBoundary="A rectangle representing the boundaries of a RoomComponent"
 
 [input]
 

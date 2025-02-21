@@ -1,6 +1,15 @@
 #SignalBusSingleton.gd
 extends Node
 
+#Camera
+##Emitters: InteractionComponent
+##Connected: CameraManager, MovementComponent, RoomComponent
+signal teleported(emitter : Node, teleport_to : String, new_position : Vector2)
+
+##Emitters: InteractionComponent
+##Connected: CameraManager
+signal room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float)
+
 #QuestManager
 ##Emitters: QuestManager 
 ##Connected: DialogueManager
@@ -31,9 +40,6 @@ signal interacted(emitter : Node, interactable : Interactable, interaction_type 
 ##Connected: RoomComponent
 signal transitioned_area(emitter: Node, is_back: bool, player_z : int, transition_area_name : String)
 
-##Emitters: InteractableComponent
-##Connected: CameraManager
-signal teleported(emitter : Node, teleport_to : String, new_position : Vector2)
 
 #StateMachine
 ##Emitters: PlayerCharacter, DialogueButtonManager, InventoryManager
