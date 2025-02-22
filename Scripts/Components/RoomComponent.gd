@@ -19,7 +19,7 @@ func _on_transioned_area(emitter: Node, is_back : bool, player_z : int, transiti
 		else:
 			background_top_layer_node.hide()
 
-func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2) -> void:
+func _on_teleported(emitter : Node, arrival_area : String, arrival_area_data : Dictionary) -> void:
 	#We reset the visibility of the backgrounds that are not the main one.
 	for i in range(1,3):
 		var background_top_layer_node_path : String = "Background" + str(i) + "TopLayer"

@@ -26,6 +26,5 @@ func set_up_label():
 	
 #region Signal Callbacks
 func _on_button_pressed():
-	print("Coucou")
 	SignalBusSingleton.radial_button_pressed.emit(self)
 #endregion

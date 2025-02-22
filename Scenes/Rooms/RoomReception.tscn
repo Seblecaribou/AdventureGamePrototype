@@ -20,7 +20,7 @@ size = Vector2(435.25, 570)
 size = Vector2(1299, 178.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fa5tb"]
-size = Vector2(575.5, 196)
+size = Vector2(294, 295)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
 size = Vector2(1808, 1112)
@@ -180,16 +180,18 @@ shape = SubResource("RectangleShape2D_croj7")
 debug_color = Color(0.988235, 0.105882, 0, 0.196078)
 
 [node name="tp_room_hotel_corridor_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(280, -134)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_hotel_corridor_01"]
-position = Vector2(501.25, 274)
+position = Vector2(449, 323.5)
 shape = SubResource("RectangleShape2D_fa5tb")
 debug_color = Color(0, 0.65098, 0.137255, 0.52549)
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
 collision_layer = 15
 collision_mask = 0
 

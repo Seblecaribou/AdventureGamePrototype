@@ -94,7 +94,7 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			interaction_area.set_collision_mask_value(exit_layer_number, false)
 			interaction_area.set_collision_mask_value(entrance_layer_number, true)
 			
-func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2) -> void:
+func _on_teleported(emitter : Node, arrival_area : String, arrival_area_data : Dictionary) -> void:
 	#Reset player scale
 	character.set_scale(Vector2(1,1))
 	#We reset every background/forground collision layers (1-32) and then sets them to 1
@@ -102,13 +102,19 @@ func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2
 		character.set_collision_layer_value(i, false)
 		character.set_collision_mask_value(i, false)
 		
-	character.set_collision_layer_value(2, true)
-	character.set_collision_mask_value(2, true)
+	character.set_collision_layer_value(arrival_area_data.collision_mask, true)
+	character.set_collision_mask_value(arrival_area_data.collision_mask, true)
 	#Sets player's new global position
-	character.global_position = new_position
-
-func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:
+	character.global_position = arrival_area_data.arrival_area
+	
 	#We reset the collision mask for interaction area
 	for i in range(1,33):
 		interaction_area.set_collision_mask_value(i, false)
-	interaction_area.set_collision_mask_value(2, true)
+	interaction_area.set_collision_mask_value(arrival_area_data.collision_mask, true)
+
+func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:
+	#We reset the collision mask for interaction area
+	#for i in range(1,33):
+		#interaction_area.set_collision_mask_value(i, false)
+	#interaction_area.set_collision_mask_value(2, true)
+	pass

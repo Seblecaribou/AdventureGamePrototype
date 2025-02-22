@@ -50,7 +50,7 @@ func get_room_boundaries(area: Area2D, default : bool) -> Dictionary:
 	if default:
 		return { "top": -10000000, "left":  -10000000,  "bottom":  10000000, "right":  10000000 }
 		
-	# Recuperates the CollisionShape2D that represents the boundaries
+	# Recup the CollisionShape2D that represents the boundaries
 	var collision_boundary = area.get_node("CollisionShape2D")
 	if !collision_boundary or !collision_boundary.shape is RectangleShape2D:
 		UtilsSingleton.log_error(self, "get_area2d_bounds", "RoomBoundary was not set properly")
@@ -105,8 +105,8 @@ func _on_interaction_area_area_entered(area):
 	if area.is_in_group("EntranceTeleport"):
 		var arrival_area : String = area.name.substr(8)
 		if TeleportDictionarySingleton.get(arrival_area):
-			var new_position :Vector2 = TeleportDictionarySingleton.get(arrival_area)
-			SignalBusSingleton.teleported.emit(self, arrival_area, new_position)
+			var teleport_data : Dictionary = TeleportDictionarySingleton.get(arrival_area)
+			SignalBusSingleton.teleported.emit(self, arrival_area, teleport_data)
 		else:
 			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation coordinates in TeleportDictionarySingleton.")
 		return

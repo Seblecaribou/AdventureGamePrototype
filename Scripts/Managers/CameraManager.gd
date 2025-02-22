@@ -12,11 +12,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	self.global_position.x = %PlayerCharacter.global_position.x
 
-func _on_teleported(emitter : Node, teleport_to : String, new_position : Vector2) -> void:
-	self.global_position.y = new_position.y
+func _on_teleported(emitter : Node, arrival_area : String, arrival_area_data : Dictionary) -> void:
+	zoom(arrival_area_data.zoom_mutiplier, arrival_area_data.zoom_delay)
+	self.global_position.y = arrival_area_data.arrival_area.y
 
 func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:
 	self.limit_top = top_limit
 	self.limit_left = left_limit
 	self.limit_bottom = bottom_limit
 	self.limit_right = right_limit
+
+func zoom(multiplier : Vector2, delay : float) -> void:
+	print(multiplier, delay)
+	var zoom_tween = get_tree().create_tween()
+	zoom_tween.tween_method(set_zoom, zoom, multiplier, delay)
