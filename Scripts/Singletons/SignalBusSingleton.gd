@@ -3,8 +3,8 @@ extends Node
 
 #Camera
 ##Emitters: InteractionComponent
-##Connected: CameraManager, MovementComponent, RoomComponent
-signal teleported(emitter : Node, arrival_area : String, arrival_area_data : Dictionary)
+##Connected: CameraManager, MovementComponent, RoomComponent, PlayerCharacter
+signal teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary)
 
 ##Emitters: InteractionComponent
 ##Connected: CameraManager, MovementComponent

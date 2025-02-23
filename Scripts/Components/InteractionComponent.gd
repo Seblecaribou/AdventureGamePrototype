@@ -106,7 +106,7 @@ func _on_interaction_area_area_entered(area):
 		var arrival_area : String = area.name.substr(8)
 		if TeleportDictionarySingleton.get(arrival_area):
 			var teleport_data : Dictionary = TeleportDictionarySingleton.get(arrival_area)
-			SignalBusSingleton.teleported.emit(self, arrival_area, teleport_data)
+			SignalBusSingleton.teleported.emit(self, player_character.z_index, arrival_area, teleport_data)
 		else:
 			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation coordinates in TeleportDictionarySingleton.")
 		return

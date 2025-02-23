@@ -1,7 +1,7 @@
 class_name MovementComponent
 extends Node
 
-@export var character: CharacterBody2D
+@export var character: PlayerCharacter
 @export var speed: float = 300.0
 @export var jump_velocity: float = -700.0
 @export var max_speed_multiplier: float = 3.2
@@ -14,11 +14,12 @@ func _ready():
 	character.floor_snap_length = 50.0
 	character.set_collision_layer_value(1, false)
 	SignalBusSingleton.teleported.connect(_on_teleported)
-	SignalBusSingleton.room_changed.connect(_on_room_changed)
 
 func _physics_process(delta):
 	ground_player(delta)
 
+
+#region Methods
 ##Adds jump_velocity (a negative float) to a CharacterBody2D's velocity.y 
 func jump() -> void:
 	if character.is_on_floor():
@@ -58,7 +59,6 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 	var scale_factor : float = 0.06
 	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
 	var exit_layer_number : int = entrance_layer_number + 1
-	UtilsSingleton.log_data(self, "change_collision_layer - transition_area", transition_area)
 	var current_player_x_scale : float = character.get_scale().x
 	var current_player_y_scale : float = character.get_scale().y
 	match direction:
@@ -67,8 +67,8 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			#We check if player is allowed to move up
 			if character.get_collision_layer_value(exit_layer_number):
 				return
-			#We make player character bigger 
-			character.set_scale(Vector2(current_player_x_scale - scale_factor ,current_player_y_scale - scale_factor))
+			#We scale down the character to look smaller, because he's going away from camera
+			character.scale_character(exit_layer_number)
 			#We add the player to the exit collision layer
 			character.set_collision_layer_value(exit_layer_number, true)
 			character.set_collision_mask_value(exit_layer_number, true)
@@ -83,7 +83,8 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			#We check if player is allowed to move down
 			if character.get_collision_layer_value(entrance_layer_number):
 				return
-			character.set_scale(Vector2(current_player_x_scale + scale_factor, current_player_y_scale + scale_factor))
+			#We scale up the character to look bigger, because he's coming closer to camera
+			character.scale_character(entrance_layer_number)
 			#We add the player to the entrance collision layer
 			character.set_collision_layer_value(entrance_layer_number, true)
 			character.set_collision_mask_value(entrance_layer_number, true)
@@ -93,15 +94,15 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the entrance layer)
 			interaction_area.set_collision_mask_value(exit_layer_number, false)
 			interaction_area.set_collision_mask_value(entrance_layer_number, true)
-			
-func _on_teleported(emitter : Node, arrival_area : String, arrival_area_data : Dictionary) -> void:
-	#Reset player scale
-	character.set_scale(Vector2(1,1))
-	#We reset every background/forground collision layers (1-32) and then sets them to 1
+#region
+
+#region Signal Callback functions
+func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+	#We reset every background/forground collision
 	for i in range(1,33):
 		character.set_collision_layer_value(i, false)
 		character.set_collision_mask_value(i, false)
-		
+	#We set the collision layer and mask to the one the player is arriving in  
 	character.set_collision_layer_value(arrival_area_data.collision_mask, true)
 	character.set_collision_mask_value(arrival_area_data.collision_mask, true)
 	#Sets player's new global position
@@ -111,10 +112,4 @@ func _on_teleported(emitter : Node, arrival_area : String, arrival_area_data : D
 	for i in range(1,33):
 		interaction_area.set_collision_mask_value(i, false)
 	interaction_area.set_collision_mask_value(arrival_area_data.collision_mask, true)
-
-func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:
-	#We reset the collision mask for interaction area
-	#for i in range(1,33):
-		#interaction_area.set_collision_mask_value(i, false)
-	#interaction_area.set_collision_mask_value(2, true)
-	pass
+#region

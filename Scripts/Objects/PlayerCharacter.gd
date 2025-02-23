@@ -13,12 +13,13 @@ func _ready():
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(_on_new_game_state)
 	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
+	SignalBusSingleton.teleported.connect(_on_teleported)
 	interaction_component.in_transition_area.connect(_on_in_transition_area)
 
 func _physics_process(delta):
 	check_input()
 
-
+#region Methods
 func check_input() -> void:
 	if current_game_state == "moving":
 		##Idle
@@ -78,6 +79,20 @@ func check_input() -> void:
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 
 
+func scale_character(layer : int) -> void:
+	var scale_factor : float = 0.06
+	match layer:
+		1: #Forground
+			self.set_scale(Vector2(1 + scale_factor, 1 + scale_factor))
+		2: #Main
+			self.set_scale(Vector2(1,1))
+		3: #Background1
+			self.set_scale(Vector2(1 - scale_factor , 1 - scale_factor))
+		4: #Background2
+			self.set_scale(Vector2(1 - (2 * scale_factor) , 1 - (2 * scale_factor)))
+#region
+
+#region Signal Callback fuctions
 func _on_new_game_state(emitter : Node, previous_state : String, new_state : String):
 	if emitter.get_name().to_lower() == 'gamestatemachine':
 		current_game_state = new_state
@@ -90,3 +105,7 @@ func _on_new_selected_item(emitter : Node, item_id : String) -> void:
 func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String) -> void:
 	transition_area_name = entrance_name
 	inside_transition_area = inside
+
+func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+	scale_character(arrival_area_data.collision_mask)
+#region
