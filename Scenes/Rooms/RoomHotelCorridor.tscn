@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbo1rn3dxaict"]
+[gd_scene load_steps=10 format=3 uid="uid://bbo1rn3dxaict"]
 
 [ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_unfc5"]
 [ext_resource type="Texture2D" uid="uid://dqkd8q8e3hv57" path="res://Images/Rooms/corridor.jpg" id="2_l27im"]
 [ext_resource type="Texture2D" uid="uid://dicf35f4xtsqh" path="res://Images/Rooms/corridor2.png" id="3_ffxjp"]
+[ext_resource type="Texture2D" uid="uid://dhndfh8v5ubsd" path="res://Images/Rooms/corridor3.png" id="4_kw2ya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
 size = Vector2(1917.5, 72)
@@ -14,9 +15,12 @@ size = Vector2(118.5, 823.5)
 size = Vector2(189, 105)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgigl"]
-size = Vector2(1712, 992)
+size = Vector2(1421, 803)
 
-[node name="Room" type="Control"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpqr8"]
+radius = 18.3848
+
+[node name="RoomHotelCorridor" type="Control"]
 z_index = -5
 layout_mode = 3
 anchors_preset = 0
@@ -25,10 +29,10 @@ script = ExtResource("1_unfc5")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 176.0
-offset_right = 1854.0
-offset_bottom = 1128.0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 1582.0
+offset_bottom = 894.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("2_l27im")
@@ -37,10 +41,10 @@ texture = ExtResource("2_l27im")
 visible = false
 z_as_relative = false
 layout_mode = 0
-offset_left = 159.0
-offset_top = 175.0
-offset_right = 1854.0
-offset_bottom = 1127.0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 1582.0
+offset_bottom = 893.0
 scale = Vector2(0.89, 0.89)
 mouse_filter = 2
 texture = ExtResource("3_ffxjp")
@@ -49,12 +53,13 @@ texture = ExtResource("3_ffxjp")
 z_index = 20
 z_as_relative = false
 layout_mode = 0
-offset_left = -101.0
-offset_top = 82.0
-offset_right = 1819.0
-offset_bottom = 1162.0
-scale = Vector2(1.04, 0.92)
+offset_left = 1.54972e-05
+offset_right = 1511.0
+offset_bottom = 875.0
+scale = Vector2(0.940795, 0.92)
 mouse_filter = 2
+texture = ExtResource("4_kw2ya")
+expand_mode = 5
 
 [node name="EntranceBackground1" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
@@ -68,8 +73,9 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
+visible = false
 modulate = Color(0.967466, 1, 0.500017, 1)
-position = Vector2(-103, -54)
+position = Vector2(-236, -269)
 polygon = PackedVector2Array(505, 914, 354, 1014, 661, 1028, 727, 917)
 
 [node name="EntranceBackground3" type="Area2D" parent="." groups=["EntranceBackground"]]
@@ -85,6 +91,9 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
+z_as_relative = false
+position = Vector2(-133, -235)
 collision_layer = 2
 collision_mask = 2
 
@@ -96,13 +105,13 @@ shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="Roof" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(966, 147)
+position = Vector2(952, 211)
 scale = Vector2(1, 2.08)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="RightWall" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(1747, 559)
+position = Vector2(1653, 559)
 rotation = 3.14159
 scale = Vector2(0.222761, -13.0222)
 shape = SubResource("RectangleShape2D_f5u5t")
@@ -114,19 +123,22 @@ shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="CollisionBackground1" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
-position = Vector2(-97, 89)
+visible = false
+z_as_relative = false
+position = Vector2(-254, -138)
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBackground1"]
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionBackground1"]
 position = Vector2(372.75, 486)
 shape = SubResource("RectangleShape2D_nwir6")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionBackground1"]
+[node name="Stairs" type="CollisionPolygon2D" parent="CollisionBackground1"]
 position = Vector2(31, -2)
-polygon = PackedVector2Array(355, 809, 651, 816, 714, 849, 1015, 937, 1046, 39, 1847, 37, 1864, 994, 337, 978)
+polygon = PackedVector2Array(355, 809, 651, 816, 714, 849, 977, 935, 989, 52, 1847, 37, 1864, 994, 337, 978)
 
 [node name="tp_room_reception_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+position = Vector2(-191, -221)
 collision_layer = 4
 collision_mask = 4
 
@@ -138,10 +150,20 @@ shape = SubResource("RectangleShape2D_ec2t3")
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
 visible = false
+position = Vector2(-167, -212)
 collision_layer = 15
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
-position = Vector2(918, 587)
+position = Vector2(877.5, 614.5)
 shape = SubResource("RectangleShape2D_jgigl")
 debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)
+
+[node name="ar_hotel_corridor_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_hotel_corridor_01"]
+position = Vector2(235, 531)
+shape = SubResource("CircleShape2D_cpqr8")
+debug_color = Color(0.301347, 0.463574, 1, 0.42)

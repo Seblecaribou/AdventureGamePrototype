@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=14 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
@@ -25,7 +25,10 @@ size = Vector2(294, 295)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
 size = Vector2(1808, 1112)
 
-[node name="Room" type="Control"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_el101"]
+radius = 12.0416
+
+[node name="RoomReception" type="Control"]
 z_index = -5
 layout_mode = 3
 anchors_preset = 0
@@ -89,14 +92,13 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="EntranceBackground2" type="Area2D" parent="." groups=["EntranceBackground"]]
-visible = false
 position = Vector2(-43, 4)
 collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
 modulate = Color(0.967466, 1, 0.500017, 1)
-polygon = PackedVector2Array(505, 914, 484, 1016, 665, 1015, 672, 910)
+polygon = PackedVector2Array(377, 928, 299, 1017, 665, 1015, 672, 910)
 
 [node name="EntranceBackground3" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
@@ -114,6 +116,7 @@ collision_layer = 6
 collision_mask = 6
 
 [node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -143,6 +146,7 @@ shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="CollisionBackground1" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
 position = Vector2(-97, 89)
 collision_layer = 4
 collision_mask = 4
@@ -159,6 +163,7 @@ position = Vector2(1490, 475)
 shape = SubResource("RectangleShape2D_4u1u0")
 
 [node name="CollisionBackground2" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
 position = Vector2(-97, 89)
 collision_layer = 8
 collision_mask = 8
@@ -196,3 +201,13 @@ collision_mask = 0
 position = Vector2(900, 572)
 shape = SubResource("RectangleShape2D_nu0qj")
 debug_color = Color(0.643083, 0.523352, 0, 0.42)
+
+[node name="ar_reception_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_reception_01"]
+position = Vector2(1220, 329)
+shape = SubResource("CircleShape2D_el101")
+debug_color = Color(0.351468, 0.48302, 1, 0.42)

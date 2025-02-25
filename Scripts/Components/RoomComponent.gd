@@ -20,14 +20,13 @@ func manage_layers(player_layer : int, player_z : int, is_back : bool) -> void:
 			background_top_layer_node.hide()
 #region
 	
-	
 #region Signal Callback functions
 func _on_transioned_area(emitter: Node, is_back : bool, player_z : int, transition_area_name : String) -> void:
 	#We use the name of the EntranceBackground collision node to select which BackgroundTopLayer should be displayed or hidden
 	var transition_area_id : int = int(transition_area_name.trim_prefix("EntranceBackground")) - 1
 	manage_layers(transition_area_id, player_z, is_back)
 
-func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary, area_node : CollisionShape2D) -> void:
 	#We reset the visibility of the backgrounds that are not the main one.
 	manage_layers(arrival_area_data.collision_mask - 1, player_z, false)
 #region

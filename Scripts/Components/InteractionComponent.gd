@@ -67,6 +67,15 @@ func get_room_boundaries(area: Area2D, default : bool) -> Dictionary:
 	var right = global_pos.x + collision_boundary.shape.size.x
 
 	return { "top": top, "left": left,  "bottom": bottom, "right": right }
+	
+func get_teleport_arrival_area_node(area_name : String) -> CollisionShape2D:
+	var arrival_area_name : String = "ar_" + area_name
+	var teleport_arrival_nodes = get_tree().get_nodes_in_group("ArrivalTeleport")
+	for node in teleport_arrival_nodes:
+		if node.name == arrival_area_name:
+			return node.get_child(0)
+	UtilsSingleton.log_error(self, "get_teleport_arrival_area_node", "No node with the arrival name " + arrival_area_name)
+	return null
 
 ##Handles player character's interaction with objects and NPCs
 func interact(held_item : String):
@@ -99,17 +108,23 @@ func interact(held_item : String):
 
 #region Signal Callback functions
 func _on_interaction_area_area_entered(area):
+	# ENTRANCE BACKGROUND
 	if area.is_in_group("EntranceBackground"):
 		in_transition_area.emit(self, true, area.name)
 		return
+	
+	# TELEPORT
 	if area.is_in_group("EntranceTeleport"):
 		var arrival_area : String = area.name.substr(8)
-		if TeleportDictionarySingleton.get(arrival_area):
+		var arrival_area_node : Node = get_teleport_arrival_area_node(arrival_area)
+		if TeleportDictionarySingleton.get(arrival_area) and arrival_area_node:
 			var teleport_data : Dictionary = TeleportDictionarySingleton.get(arrival_area)
-			SignalBusSingleton.teleported.emit(self, player_character.z_index, arrival_area, teleport_data)
+			SignalBusSingleton.teleported.emit(self, player_character.z_index, arrival_area, teleport_data, arrival_area_node)
 		else:
-			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation coordinates in TeleportDictionarySingleton.")
+			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation information.")
 		return
+	
+	# ROOM BOUNDARIES
 	if area.is_in_group("RoomBoundary"):
 		var room_boundaries : Dictionary = get_room_boundaries(area, false)
 		if room_boundaries.is_empty():

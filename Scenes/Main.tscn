@@ -204,7 +204,7 @@ position = Vector2(91, 95)
 position = Vector2(90, 202)
 
 [node name="RoomHotelCorridor" parent="." instance=ExtResource("18_1dp38")]
-offset_left = -157.0
-offset_top = -1382.0
-offset_right = -157.0
-offset_bottom = -1382.0
+offset_left = 3.0
+offset_top = -1313.0
+offset_right = 3.0
+offset_bottom = -1313.0

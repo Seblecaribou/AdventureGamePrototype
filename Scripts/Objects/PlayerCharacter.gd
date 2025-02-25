@@ -106,6 +106,6 @@ func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String
 	transition_area_name = entrance_name
 	inside_transition_area = inside
 
-func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary, area_node : CollisionShape2D) -> void:
 	scale_character(arrival_area_data.collision_mask)
 #region

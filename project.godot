@@ -51,6 +51,7 @@ EntranceBackground=""
 CollisionLayers=""
 EntranceTeleport=""
 RoomBoundary="A rectangle representing the boundaries of a RoomComponent"
+ArrivalTeleport="[Area2D] Corresponding arrival position for the teleport of the same name "
 
 [input]
 

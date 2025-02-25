@@ -97,7 +97,7 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 #region
 
 #region Signal Callback functions
-func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arrival_area_data : Dictionary, arrival_node : CollisionShape2D) -> void:
 	#We reset every background/forground collision
 	for i in range(1,33):
 		character.set_collision_layer_value(i, false)
@@ -106,7 +106,7 @@ func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arriva
 	character.set_collision_layer_value(arrival_area_data.collision_mask, true)
 	character.set_collision_mask_value(arrival_area_data.collision_mask, true)
 	#Sets player's new global position
-	character.global_position = arrival_area_data.arrival_area
+	character.global_position = arrival_node.global_position
 	
 	#We reset the collision mask for interaction area
 	for i in range(1,33):

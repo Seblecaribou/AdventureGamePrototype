@@ -26,9 +26,9 @@ func change_camera(new_x : Variant, new_y : Variant) -> void:
 #region
 
 #region Signal Callback functions
-func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary) -> void:
+func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary, arrival_node : CollisionShape2D) -> void:
 	zoom(arrival_area_data.zoom_mutiplier, arrival_area_data.zoom_delay)
-	#TODO revised the camera following character
+	#TODO revise the camera following character
 	#change_camera(null, arrival_area_data.arrival_area.y)
 
 func _on_room_changed(emitter : Node, top_limit : float, left_limit : float, bottom_limit : float, right_limit : float) -> void:

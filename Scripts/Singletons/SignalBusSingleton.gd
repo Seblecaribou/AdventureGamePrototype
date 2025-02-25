@@ -4,7 +4,7 @@ extends Node
 #Camera
 ##Emitters: InteractionComponent
 ##Connected: CameraManager, MovementComponent, RoomComponent, PlayerCharacter
-signal teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary)
+signal teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary, arrival_node : CollisionShape2D)
 
 ##Emitters: InteractionComponent
 ##Connected: CameraManager, MovementComponent

@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerJumpState.gd" id="12_3gsbr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywadu"]
-radius = 54.3333
+radius = 38.3333
 height = 108.667
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfraa"]
