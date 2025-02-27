@@ -7,13 +7,15 @@ var current_game_state : String
 var current_held_item : String
 var transition_area_name : String
 var inside_transition_area : bool
+var inside_teleport_entrance : bool = false
+var current_teleport_area : Node
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	current_game_state = "moving"
 	SignalBusSingleton.newstate.connect(_on_new_game_state)
 	SignalBusSingleton.new_selected_item.connect(_on_new_selected_item)
-	SignalBusSingleton.teleported.connect(_on_teleported)
+	SignalBusSingleton.in_teleport_entrance.connect(_on_in_teleport_entrance)
 	interaction_component.in_transition_area.connect(_on_in_transition_area)
 
 func _physics_process(delta):
@@ -52,10 +54,17 @@ func check_input() -> void:
 			movement_component.run(true)
 		else: 
 			movement_component.run(false)
+			
+		#Second Interact Button
+		if Input.is_action_just_pressed("second_interact") and inside_teleport_entrance:
+			if current_teleport_area:
+				teleport(current_teleport_area)
 
 		##InteractionComponent
+		#Interact Button
 		if Input.is_action_just_pressed("interact"):
 			interaction_component.interact(current_held_item)
+
 
 		##Menus
 		#RadialMenu Button
@@ -78,6 +87,16 @@ func check_input() -> void:
 		if Input.is_action_just_pressed("return"):
 			SignalBusSingleton.newstate_query.emit(self, "gamestatemachine", "moving")
 
+func teleport(area : Node) -> void:
+		var arrival_area : String = area.name.substr(8)
+		var arrival_area_node : Node = interaction_component.get_teleport_arrival_area_node(arrival_area)
+		if TeleportDictionarySingleton.get(arrival_area) and arrival_area_node:
+			var teleport_data : Dictionary = TeleportDictionarySingleton.get(arrival_area)
+			SignalBusSingleton.teleported.emit(self, self.z_index, arrival_area, teleport_data, arrival_area_node)
+		else:
+			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation information.")
+		current_teleport_area = null
+		inside_teleport_entrance = false
 
 func scale_character(layer : int) -> void:
 	var scale_factor : float = 0.06
@@ -106,6 +125,8 @@ func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String
 	transition_area_name = entrance_name
 	inside_transition_area = inside
 
-func _on_teleported(emitter : Node, player_z : int, arrival_area : String, arrival_area_data : Dictionary, area_node : CollisionShape2D) -> void:
-	scale_character(arrival_area_data.collision_mask)
+func _on_in_teleport_entrance(emitter : Node, area_node : Node) -> void:
+	inside_teleport_entrance = true
+	current_teleport_area = area_node
+	print(area_node)
 #region

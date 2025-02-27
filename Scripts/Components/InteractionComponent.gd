@@ -115,13 +115,7 @@ func _on_interaction_area_area_entered(area):
 	
 	# TELEPORT
 	if area.is_in_group("EntranceTeleport"):
-		var arrival_area : String = area.name.substr(8)
-		var arrival_area_node : Node = get_teleport_arrival_area_node(arrival_area)
-		if TeleportDictionarySingleton.get(arrival_area) and arrival_area_node:
-			var teleport_data : Dictionary = TeleportDictionarySingleton.get(arrival_area)
-			SignalBusSingleton.teleported.emit(self, player_character.z_index, arrival_area, teleport_data, arrival_area_node)
-		else:
-			UtilsSingleton.log_error(self, "_on_interaction_area_area_entered", "Missing teleportation information.")
+		SignalBusSingleton.in_teleport_entrance.emit(self, area)
 		return
 	
 	# ROOM BOUNDARIES
@@ -139,6 +133,9 @@ func _on_interaction_area_area_entered(area):
 func _on_interaction_area_area_exited(area):
 	if area.name.contains("Entrance"):
 		in_transition_area.emit(self, false, area.name)
+		return
+	if area.is_in_group("EntranceTeleport"):
+		SignalBusSingleton.in_teleport_entrance.emit(self, null)
 		return
 	interactions.erase(area)
 	update_interact_label()

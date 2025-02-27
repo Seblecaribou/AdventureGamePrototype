@@ -11,7 +11,7 @@ size = Vector2(2620.41, 161)
 size = Vector2(293.5, 1178)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgigl"]
-size = Vector2(2568, 904)
+size = Vector2(2631, 963)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec2t3"]
 size = Vector2(57, 65)
@@ -115,13 +115,12 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
-visible = false
 position = Vector2(-167, -212)
 collision_layer = 15
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
-position = Vector2(1451, 665)
+position = Vector2(1482.5, 694.5)
 shape = SubResource("RectangleShape2D_jgigl")
 debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)
 

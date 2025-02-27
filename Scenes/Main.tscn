@@ -183,6 +183,12 @@ offset_top = -167.0
 offset_right = -2848.0
 offset_bottom = -167.0
 
+[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
+offset_left = 1.0
+offset_top = -1064.0
+offset_right = 1.0
+offset_bottom = -1064.0
+
 [node name="TestObjects" type="Node2D" parent="."]
 position = Vector2(3514, 1214)
 
@@ -209,9 +215,3 @@ position = Vector2(91, 95)
 
 [node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(90, 202)
-
-[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
-offset_left = 1.0
-offset_top = -1064.0
-offset_right = 1.0
-offset_bottom = -1064.0

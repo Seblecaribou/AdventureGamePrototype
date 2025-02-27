@@ -29,7 +29,7 @@ radius = 12.0416
 size = Vector2(1808, 1112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ns5wf"]
-size = Vector2(80, 84)
+size = Vector2(174, 84)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h67mk"]
 radius = 25.318
@@ -219,14 +219,13 @@ position = Vector2(900, 572)
 shape = SubResource("RectangleShape2D_nu0qj")
 debug_color = Color(0.643083, 0.523352, 0, 0.42)
 
-[node name="tp_street_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
-visible = false
+[node name="tp_room_street_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
 position = Vector2(280, -134)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_street_01"]
-position = Vector2(-136, 1105)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_street_01"]
+position = Vector2(-89, 1105)
 shape = SubResource("RectangleShape2D_ns5wf")
 
 [node name="ar_reception_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
