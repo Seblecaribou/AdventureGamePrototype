@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cy3sbl11p3jqy" path="res://Images/Rooms/street_fg.png" id="3_raxri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
-size = Vector2(2620.41, 161)
+size = Vector2(3156.1, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xykgr"]
-size = Vector2(293.5, 1178)
+size = Vector2(352.75, 1178)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgigl"]
-size = Vector2(2631, 963)
+size = Vector2(3156, 1140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec2t3"]
 size = Vector2(57, 65)
@@ -36,7 +36,7 @@ script = ExtResource("1_unfc5")
 layout_mode = 0
 offset_right = 1428.0
 offset_bottom = 504.0
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.15, 2.15)
 mouse_filter = 2
 texture = ExtResource("2_dpe5u")
 
@@ -55,8 +55,9 @@ mouse_filter = 2
 z_index = 20
 z_as_relative = false
 layout_mode = 0
-offset_right = 1463.0
-offset_bottom = 536.0
+offset_left = -31.0
+offset_right = 1722.0
+offset_bottom = 640.0
 scale = Vector2(1.8, 1.8)
 mouse_filter = 2
 texture = ExtResource("3_raxri")
@@ -93,17 +94,17 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(1400, 1149)
+position = Vector2(1670.05, 1347)
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
 [node name="Left" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(118, 632)
+position = Vector2(94, 785)
 shape = SubResource("RectangleShape2D_xykgr")
 debug_color = Color(0.86716, 0.000549268, 0.857496, 0.42)
 
 [node name="Right" type="CollisionShape2D" parent="CollisionMain"]
-position = Vector2(2572.25, 646)
+position = Vector2(3054, 810)
 shape = SubResource("RectangleShape2D_xykgr")
 debug_color = Color(0.86716, 0.000549268, 0.857496, 0.42)
 
@@ -115,16 +116,18 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
 position = Vector2(-167, -212)
 collision_layer = 15
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
-position = Vector2(1482.5, 694.5)
+position = Vector2(1714, 783)
 shape = SubResource("RectangleShape2D_jgigl")
 debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)
 
 [node name="tp_room_reception_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 2
 collision_mask = 2
@@ -132,32 +135,35 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_reception_02"]
 z_index = 3
 z_as_relative = false
-position = Vector2(2462, 1018)
+position = Vector2(2905, 1203)
 shape = SubResource("RectangleShape2D_ec2t3")
 
 [node name="tp_kitchen_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tp_kitchen_01"]
-position = Vector2(330, 989)
+position = Vector2(372, 1128)
 shape = SubResource("RectangleShape2D_2hmdc")
 
 [node name="ar_street_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ar_street_01"]
-position = Vector2(2113, 673)
+position = Vector2(2487, 860)
 shape = SubResource("CircleShape2D_cpqr8")
 debug_color = Color(0.301347, 0.463574, 1, 0.42)
 
 [node name="ar_street_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ar_street_02"]
-position = Vector2(293, 620)
+position = Vector2(371, 739)
 shape = SubResource("CircleShape2D_qx5d0")
 debug_color = Color(0.342237, 0.485488, 1, 0.42)

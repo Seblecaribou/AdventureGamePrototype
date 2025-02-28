@@ -105,7 +105,8 @@ func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arriva
 	#We set the collision layer and mask to the one the player is arriving in  
 	character.set_collision_layer_value(arrival_area_data.collision_mask, true)
 	character.set_collision_mask_value(arrival_area_data.collision_mask, true)
-	#Sets player's new global position
+	#Sets player's new global position and scale
+	character.scale_character(arrival_area_data.collision_mask)
 	character.global_position = arrival_node.global_position
 	
 	#We reset the collision mask for interaction area

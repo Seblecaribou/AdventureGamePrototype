@@ -128,5 +128,4 @@ func _on_in_transition_area(emitter : Node, inside : bool, entrance_name :String
 func _on_in_teleport_entrance(emitter : Node, area_node : Node) -> void:
 	inside_teleport_entrance = true
 	current_teleport_area = area_node
-	print(area_node)
 #region

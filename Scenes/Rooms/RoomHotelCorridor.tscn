@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://e1rhcd0l2beh"]
+[gd_scene load_steps=11 format=3 uid="uid://e1rhcd0l2beh"]
 
 [ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_26bbu"]
 [ext_resource type="Texture2D" uid="uid://dqkd8q8e3hv57" path="res://Images/Rooms/corridor.jpg" id="2_1p85a"]
@@ -19,6 +19,9 @@ size = Vector2(1421, 803)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpqr8"]
 radius = 18.3848
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d56jq"]
+size = Vector2(84, 80.5)
 
 [node name="RoomHotelCorridor" type="Control"]
 z_index = -5
@@ -167,3 +170,11 @@ collision_mask = 2
 position = Vector2(235, 531)
 shape = SubResource("CircleShape2D_cpqr8")
 debug_color = Color(0.301347, 0.463574, 1, 0.42)
+
+[node name="tp_room_room_100_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_room_100_01"]
+position = Vector2(94, 721.75)
+shape = SubResource("RectangleShape2D_d56jq")

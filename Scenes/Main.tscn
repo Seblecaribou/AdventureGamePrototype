@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=28 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
 [ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
 [ext_resource type="PackedScene" uid="uid://bbo1rn3dxaict" path="res://Scenes/Rooms/RoomStreet.tscn" id="18_1dp38"]
 [ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Rooms/RoomReception.tscn" id="18_cehyh"]
+[ext_resource type="PackedScene" uid="uid://bg7o56eyvijhp" path="res://Scenes/Rooms/RoomRoom100.tscn" id="18_n2hfw"]
 [ext_resource type="Script" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
 [ext_resource type="PackedScene" uid="uid://e1rhcd0l2beh" path="res://Scenes/Rooms/RoomHotelCorridor.tscn" id="19_voqkq"]
 
@@ -178,16 +179,22 @@ offset_right = -70.0
 offset_bottom = -259.0
 
 [node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
-offset_left = -2848.0
-offset_top = -167.0
-offset_right = -2848.0
-offset_bottom = -167.0
+offset_left = -3324.0
+offset_top = -280.0
+offset_right = -3324.0
+offset_bottom = -280.0
+
+[node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
+offset_left = -1874.0
+offset_top = -2287.0
+offset_right = -1874.0
+offset_bottom = -2287.0
 
 [node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
-offset_left = 1.0
-offset_top = -1064.0
-offset_right = 1.0
-offset_bottom = -1064.0
+offset_left = 266.0
+offset_top = -2229.0
+offset_right = 266.0
+offset_bottom = -2229.0
 
 [node name="TestObjects" type="Node2D" parent="."]
 position = Vector2(3514, 1214)
