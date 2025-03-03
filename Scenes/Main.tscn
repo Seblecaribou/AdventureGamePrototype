@@ -1,25 +1,27 @@
-[gd_scene load_steps=28 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=30 format=3 uid="uid://co11dmbjerijd"]
 
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
+[ext_resource type="Script" uid="uid://dtf0dp4gco8cr" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
+[ext_resource type="Script" uid="uid://cmqtwumjk7b83" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
-[ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingDialogueState.gd" id="5_c6h1t"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingPickableState.gd" id="5_vhoqr"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/DialoguingState.gd" id="6_gr1pc"]
-[ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
-[ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
-[ext_resource type="Script" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
+[ext_resource type="Script" uid="uid://bf7xv8syjd6sq" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
+[ext_resource type="Script" uid="uid://i0kix5c8773f" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
+[ext_resource type="Script" uid="uid://di2pr4wijhk5v" path="res://Scripts/Components/States/GameStateManager/SelectingDialogueState.gd" id="5_c6h1t"]
+[ext_resource type="Script" uid="uid://padmxq4c2tb3" path="res://Scripts/Components/States/GameStateManager/SelectingPickableState.gd" id="5_vhoqr"]
+[ext_resource type="Script" uid="uid://lwf05wv74vps" path="res://Scripts/Components/States/GameStateManager/DialoguingState.gd" id="6_gr1pc"]
+[ext_resource type="Script" uid="uid://c6uov88ep3um0" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
+[ext_resource type="Script" uid="uid://blq050mju5i0j" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
+[ext_resource type="Script" uid="uid://i1mugvbr2odo" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
+[ext_resource type="Script" uid="uid://o4suqtmav0m5" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
+[ext_resource type="Script" uid="uid://dduxilyfxfmci" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
 [ext_resource type="PackedScene" uid="uid://bbo1rn3dxaict" path="res://Scenes/Rooms/RoomStreet.tscn" id="18_1dp38"]
 [ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Rooms/RoomReception.tscn" id="18_cehyh"]
 [ext_resource type="PackedScene" uid="uid://bg7o56eyvijhp" path="res://Scenes/Rooms/RoomRoom100.tscn" id="18_n2hfw"]
-[ext_resource type="Script" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
+[ext_resource type="Script" uid="uid://bf3guu8vwd45g" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
 [ext_resource type="PackedScene" uid="uid://e1rhcd0l2beh" path="res://Scenes/Rooms/RoomHotelCorridor.tscn" id="19_voqkq"]
+[ext_resource type="PackedScene" uid="uid://bkuex5g252j44" path="res://Scenes/Rooms/RoomRoom101.tscn" id="20_0g5gr"]
+[ext_resource type="PackedScene" uid="uid://dno31x8ecaxbr" path="res://Scenes/Rooms/RoomBalcony100.tscn" id="22_777d6"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -41,12 +43,12 @@ resource_name = "surprised"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5hvta"]
 _data = {
-"angry": SubResource("Animation_m7pv6"),
-"happy": SubResource("Animation_mutag"),
-"idle": SubResource("Animation_anoue"),
-"inquisitive": SubResource("Animation_1v7xi"),
-"sad": SubResource("Animation_c4god"),
-"surprised": SubResource("Animation_15rf8")
+&"angry": SubResource("Animation_m7pv6"),
+&"happy": SubResource("Animation_mutag"),
+&"idle": SubResource("Animation_anoue"),
+&"inquisitive": SubResource("Animation_1v7xi"),
+&"sad": SubResource("Animation_c4god"),
+&"surprised": SubResource("Animation_15rf8")
 }
 
 [node name="Main" type="Node2D"]
@@ -153,7 +155,7 @@ position = Vector2(1014, 518)
 
 [node name="DialogueAnimator" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
 libraries = {
-"": SubResource("AnimationLibrary_5hvta")
+&"": SubResource("AnimationLibrary_5hvta")
 }
 
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
@@ -170,31 +172,6 @@ player_character = NodePath("../../PlayerCharacter")
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
 player_character = NodePath("../../../../PlayerCharacter")
-
-[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
-z_index = -1
-offset_left = -70.0
-offset_top = -259.0
-offset_right = -70.0
-offset_bottom = -259.0
-
-[node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
-offset_left = -3324.0
-offset_top = -280.0
-offset_right = -3324.0
-offset_bottom = -280.0
-
-[node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
-offset_left = -1874.0
-offset_top = -2287.0
-offset_right = -1874.0
-offset_bottom = -2287.0
-
-[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
-offset_left = 266.0
-offset_top = -2229.0
-offset_right = 266.0
-offset_bottom = -2229.0
 
 [node name="TestObjects" type="Node2D" parent="."]
 position = Vector2(3514, 1214)
@@ -222,3 +199,40 @@ position = Vector2(91, 95)
 
 [node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(90, 202)
+
+[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
+z_index = -1
+offset_left = -70.0
+offset_top = -259.0
+offset_right = -70.0
+offset_bottom = -259.0
+
+[node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
+offset_left = -3953.0
+offset_top = -204.0
+offset_right = -3953.0
+offset_bottom = -204.0
+
+[node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
+offset_left = -1965.0
+offset_top = -1672.0
+offset_right = -1965.0
+offset_bottom = -1672.0
+
+[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
+offset_left = 175.0
+offset_top = -1614.0
+offset_right = 175.0
+offset_bottom = -1614.0
+
+[node name="RoomRoom101" parent="." instance=ExtResource("20_0g5gr")]
+offset_left = 2336.0
+offset_top = -1596.0
+offset_right = 2336.0
+offset_bottom = -1596.0
+
+[node name="RoomBalcony100" parent="." instance=ExtResource("22_777d6")]
+offset_left = -4087.0
+offset_top = -1637.0
+offset_right = -4087.0
+offset_bottom = -1637.0

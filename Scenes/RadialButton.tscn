@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccxteltie5w8m"]
 
-[ext_resource type="Script" path="res://Scripts/Menus/Radial/RadialButtonManager.gd" id="1_jc25x"]
+[ext_resource type="Script" uid="uid://cwcbxt1cb0emv" path="res://Scripts/Menus/Radial/RadialButtonManager.gd" id="1_jc25x"]
 
 [node name="RadialButtonManager" type="Node2D" node_paths=PackedStringArray("radial_button_component", "button_sprite", "button_label")]
 script = ExtResource("1_jc25x")

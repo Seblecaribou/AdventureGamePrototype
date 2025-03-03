@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
-[ext_resource type="Script" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
+[ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
 [ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 [ext_resource type="Texture2D" uid="uid://biyminr5kx6r3" path="res://Images/Rooms/reception3.png" id="4_38h0n"]

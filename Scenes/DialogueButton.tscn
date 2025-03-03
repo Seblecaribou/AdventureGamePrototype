@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ht2r5nsnjvvj"]
 
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueButtonManager.gd" id="1_8yg4a"]
+[ext_resource type="Script" uid="uid://b2i1vyd1nt225" path="res://Scripts/Menus/Dialogue/DialogueButtonManager.gd" id="1_8yg4a"]
 
 [node name="DialogueButtonManager" type="Control" node_paths=PackedStringArray("dialogue_button_component", "button_sprite", "button_label")]
 layout_mode = 3
