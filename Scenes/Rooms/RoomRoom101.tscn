@@ -33,8 +33,8 @@ script = ExtResource("1_8a35y")
 layout_mode = 0
 offset_left = 16.0
 offset_top = 18.0
-offset_right = 1582.0
-offset_bottom = 894.0
+offset_right = 1596.0
+offset_bottom = 902.0
 scale = Vector2(0.87, 0.87)
 mouse_filter = 2
 texture = ExtResource("2_rkcbm")
@@ -45,8 +45,8 @@ z_as_relative = false
 layout_mode = 0
 offset_left = -31.0
 offset_top = -6.0
-offset_right = 1512.0
-offset_bottom = 879.0
+offset_right = 1525.0
+offset_bottom = 885.0
 scale = Vector2(0.940795, 0.92)
 mouse_filter = 2
 texture = ExtResource("3_eil1v")
@@ -85,18 +85,20 @@ rotation = -0.00739597
 shape = SubResource("RectangleShape2D_f5u5t")
 debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
 
-[node name="tp_room_corridor_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+[node name="tp_room_hotel_corridor_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_corridor_02"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_hotel_corridor_02"]
 z_index = 3
 z_as_relative = false
 position = Vector2(291, 910)
 shape = SubResource("RectangleShape2D_ec2t3")
 
 [node name="tp_room_balcony_101" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 2
 collision_mask = 2
@@ -106,6 +108,7 @@ position = Vector2(1441, 866)
 shape = SubResource("RectangleShape2D_tjbqk")
 
 [node name="ar_room_101_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -115,6 +118,7 @@ shape = SubResource("CircleShape2D_cpqr8")
 debug_color = Color(0.301347, 0.463574, 1, 0.42)
 
 [node name="ar_room_101_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 2
 collision_mask = 2
@@ -126,11 +130,10 @@ debug_color = Color(0.331415, 0.488264, 1, 0.42)
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
 visible = false
-position = Vector2(-167, -212)
 collision_layer = 15
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
-position = Vector2(860.5, 599)
+position = Vector2(700, 389)
 shape = SubResource("RectangleShape2D_jgigl")
 debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)

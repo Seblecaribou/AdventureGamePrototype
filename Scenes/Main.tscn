@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=31 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Script" uid="uid://dtf0dp4gco8cr" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
 [ext_resource type="Script" uid="uid://cmqtwumjk7b83" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://e1rhcd0l2beh" path="res://Scenes/Rooms/RoomHotelCorridor.tscn" id="19_voqkq"]
 [ext_resource type="PackedScene" uid="uid://bkuex5g252j44" path="res://Scenes/Rooms/RoomRoom101.tscn" id="20_0g5gr"]
 [ext_resource type="PackedScene" uid="uid://dno31x8ecaxbr" path="res://Scenes/Rooms/RoomBalcony100.tscn" id="22_777d6"]
+[ext_resource type="PackedScene" uid="uid://cnifx6oayjegi" path="res://Scenes/Rooms/RoomBalcony101.tscn" id="23_jyqft"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -52,6 +53,7 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
+position = Vector2(3111, -644)
 
 [node name="BackGround" type="TextureRect" parent="."]
 z_index = -100
@@ -92,7 +94,7 @@ script = ExtResource("6_gr1pc")
 script = ExtResource("3_txr1d")
 
 [node name="CameraManager" type="Camera2D" parent="GameManagers"]
-position = Vector2(888, 285)
+position = Vector2(3999, -359)
 editor_draw_limits = true
 script = ExtResource("18_qqulp")
 
@@ -171,7 +173,12 @@ player_character = NodePath("../../PlayerCharacter")
 [node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+offset_left = 3111.0
+offset_top = -644.0
+offset_right = 3111.0
+offset_bottom = -644.0
 player_character = NodePath("../../../../PlayerCharacter")
+metadata/_edit_use_anchors_ = true
 
 [node name="TestObjects" type="Node2D" parent="."]
 position = Vector2(3514, 1214)
@@ -206,33 +213,46 @@ offset_left = -70.0
 offset_top = -259.0
 offset_right = -70.0
 offset_bottom = -259.0
+metadata/_edit_use_anchors_ = true
 
 [node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
 offset_left = -3953.0
 offset_top = -204.0
 offset_right = -3953.0
 offset_bottom = -204.0
+metadata/_edit_use_anchors_ = true
 
 [node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
 offset_left = -1965.0
 offset_top = -1672.0
 offset_right = -1965.0
 offset_bottom = -1672.0
-
-[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
-offset_left = 175.0
-offset_top = -1614.0
-offset_right = 175.0
-offset_bottom = -1614.0
-
-[node name="RoomRoom101" parent="." instance=ExtResource("20_0g5gr")]
-offset_left = 2336.0
-offset_top = -1596.0
-offset_right = 2336.0
-offset_bottom = -1596.0
+metadata/_edit_use_anchors_ = true
 
 [node name="RoomBalcony100" parent="." instance=ExtResource("22_777d6")]
 offset_left = -4087.0
 offset_top = -1637.0
 offset_right = -4087.0
 offset_bottom = -1637.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
+offset_left = 175.0
+offset_top = -1614.0
+offset_right = 175.0
+offset_bottom = -1614.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomRoom101" parent="." instance=ExtResource("20_0g5gr")]
+offset_left = 2336.0
+offset_top = -1596.0
+offset_right = 2336.0
+offset_bottom = -1596.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomBalcony101" parent="." instance=ExtResource("23_jyqft")]
+offset_left = 4346.0
+offset_top = -1587.0
+offset_right = 4346.0
+offset_bottom = -1587.0
+metadata/_edit_use_anchors_ = true

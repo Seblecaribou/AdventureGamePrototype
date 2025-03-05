@@ -147,6 +147,7 @@ position = Vector2(31, -2)
 polygon = PackedVector2Array(355, 809, 651, 816, 714, 849, 977, 935, 989, 52, 1847, 37, 1864, 994, 337, 978)
 
 [node name="tp_room_reception_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 position = Vector2(-191, -221)
 collision_layer = 4
 collision_mask = 4
@@ -158,6 +159,7 @@ position = Vector2(814.5, 971.5)
 shape = SubResource("RectangleShape2D_ec2t3")
 
 [node name="ar_hotel_corridor_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -167,6 +169,7 @@ shape = SubResource("CircleShape2D_cpqr8")
 debug_color = Color(0.301347, 0.463574, 1, 0.42)
 
 [node name="tp_room_room_100_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -175,6 +178,7 @@ position = Vector2(94, 721.75)
 shape = SubResource("RectangleShape2D_d56jq")
 
 [node name="tp_room_room_101_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -182,22 +186,22 @@ collision_mask = 2
 position = Vector2(1275, 685)
 shape = SubResource("RectangleShape2D_gvmn3")
 
-[node name="ar_corridor_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+[node name="ar_hotel_corridor_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_corridor_02"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_hotel_corridor_02"]
 position = Vector2(1098, 508)
 shape = SubResource("CircleShape2D_atgm7")
 debug_color = Color(0.319048, 0.491285, 1, 0.42)
 
 [node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
 visible = false
-position = Vector2(-167, -212)
 collision_layer = 15
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
-position = Vector2(877.5, 614.5)
+position = Vector2(712, 404)
 shape = SubResource("RectangleShape2D_jgigl")
 debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)
