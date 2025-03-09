@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=35 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Script" uid="uid://dtf0dp4gco8cr" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
 [ext_resource type="Script" uid="uid://cmqtwumjk7b83" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://o4suqtmav0m5" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
 [ext_resource type="Script" uid="uid://dduxilyfxfmci" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
+[ext_resource type="PackedScene" uid="uid://bk2jxxtp75rws" path="res://Scenes/Rooms/RoomBakery.tscn" id="17_aht7i"]
 [ext_resource type="PackedScene" uid="uid://bbo1rn3dxaict" path="res://Scenes/Rooms/RoomStreet.tscn" id="18_1dp38"]
 [ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Rooms/RoomReception.tscn" id="18_cehyh"]
 [ext_resource type="PackedScene" uid="uid://bg7o56eyvijhp" path="res://Scenes/Rooms/RoomRoom100.tscn" id="18_n2hfw"]
@@ -25,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cnifx6oayjegi" path="res://Scenes/Rooms/RoomBalcony101.tscn" id="23_jyqft"]
 [ext_resource type="PackedScene" uid="uid://duthc23lgkonh" path="res://Scenes/Rooms/RoomSewers.tscn" id="24_3tgeq"]
 [ext_resource type="PackedScene" uid="uid://mdie6frxigpn" path="res://Scenes/Rooms/RoomBasement.tscn" id="25_c4ay3"]
+[ext_resource type="PackedScene" uid="uid://b6i1xwmuwfyv5" path="res://Scenes/Rooms/RoomKitchen.tscn" id="27_5jffn"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -70,7 +72,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
 unique_name_in_owner = true
-position = Vector2(351, 536)
+position = Vector2(-3040, 674)
 collision_layer = 3
 
 [node name="GameManagers" type="Node" parent="."]
@@ -209,19 +211,25 @@ position = Vector2(91, 95)
 [node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(90, 202)
 
-[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
-z_index = -1
-offset_left = -70.0
-offset_top = -259.0
-offset_right = -70.0
-offset_bottom = -259.0
-metadata/_edit_use_anchors_ = true
+[node name="RoomBakery" parent="." instance=ExtResource("17_aht7i")]
+offset_left = -6261.0
+offset_top = 2.0
+offset_right = -6261.0
+offset_bottom = 2.0
 
 [node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
 offset_left = -3953.0
 offset_top = -204.0
 offset_right = -3953.0
 offset_bottom = -204.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
+z_index = -1
+offset_left = -70.0
+offset_top = -259.0
+offset_right = -70.0
+offset_bottom = -259.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
@@ -270,3 +278,9 @@ offset_left = 350.0
 offset_top = 1623.0
 offset_right = 350.0
 offset_bottom = 1623.0
+
+[node name="RoomKitchen" parent="." instance=ExtResource("27_5jffn")]
+offset_left = -9022.0
+offset_top = -162.0
+offset_right = -9022.0
+offset_bottom = -162.0

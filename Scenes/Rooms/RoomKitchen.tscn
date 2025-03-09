@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6i1xwmuwfyv5"]
+
+[ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_yhq37"]
+[ext_resource type="Texture2D" uid="uid://jaq6jo73y5b1" path="res://Images/Rooms/kitchen.jpg" id="2_w6p1u"]
+[ext_resource type="Texture2D" uid="uid://l5cwny684x4v" path="res://Images/Rooms/bakery-kitchen_fg.png" id="3_w6p1u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
+size = Vector2(2098.47, 85)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el101"]
+radius = 33.4216
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns5wf"]
+size = Vector2(174, 84)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h67mk"]
+radius = 25.318
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trcq0"]
+size = Vector2(182.5, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
+size = Vector2(1732, 940)
+
+[node name="RoomKitchen" type="Control"]
+z_index = -5
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_yhq37")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 21.0
+offset_right = 1904.0
+offset_bottom = 1069.0
+scale = Vector2(0.89, 0.89)
+mouse_filter = 2
+texture = ExtResource("2_w6p1u")
+
+[node name="Foreground" type="TextureRect" parent="."]
+z_index = 20
+z_as_relative = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 1751.0
+offset_bottom = 980.0
+mouse_filter = 2
+texture = ExtResource("3_w6p1u")
+
+[node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
+position = Vector2(-42, -92)
+collision_layer = 2
+collision_mask = 2
+
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(299, 546)
+rotation = 3.14159
+scale = Vector2(0.127224, -13.3524)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Roof" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(961, 75)
+scale = Vector2(1, 2.08)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="RightWall" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(1872, 561)
+rotation = 3.14159
+scale = Vector2(0.222761, -13.0222)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(934, 1010)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="ar_kitchen_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+position = Vector2(-42, -92)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_kitchen_01"]
+position = Vector2(1474, 734)
+shape = SubResource("CircleShape2D_el101")
+debug_color = Color(0.351468, 0.48302, 1, 0.42)
+
+[node name="tp_room_sewers_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(238, -226)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_sewers_02"]
+position = Vector2(524, 1063)
+shape = SubResource("RectangleShape2D_ns5wf")
+
+[node name="ar_kitchen_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+position = Vector2(-42, -92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_kitchen_02"]
+position = Vector2(808, 710)
+shape = SubResource("CircleShape2D_h67mk")
+debug_color = Color(0.369154, 0.478027, 1, 0.42)
+
+[node name="tp_room_bakery_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(877, 722)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_bakery_02"]
+position = Vector2(712, 72)
+shape = SubResource("RectangleShape2D_trcq0")
+
+[node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
+position = Vector2(3, 0)
+collision_layer = 15
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
+position = Vector2(862, 486)
+shape = SubResource("RectangleShape2D_nu0qj")
+debug_color = Color(0.643083, 0.523352, 0, 0.42)

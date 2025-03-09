@@ -75,7 +75,7 @@ var reception_03 : Dictionary = {
 #BASEMENT
 var basement : Dictionary = {
 	collision_mask = 2,
-	zoom_mutiplier = Vector2(1,1),
+	zoom_mutiplier = Vector2(1.38,1.38),
 	zoom_delay = .25
 	}
 #endregion
@@ -84,13 +84,13 @@ var basement : Dictionary = {
 #region STREET
 var street_01 : Dictionary = {
 	collision_mask = 2,
-	zoom_mutiplier = Vector2(1,1),
+	zoom_mutiplier = Vector2(0.88,0.88),
 	zoom_delay = .5
 	}
 
 var street_02 : Dictionary = {
 	collision_mask = 2,
-	zoom_mutiplier = Vector2(1,1),
+	zoom_mutiplier = Vector2(0.82,0.82),
 	zoom_delay = .5
 	}
 #endregion
@@ -111,8 +111,29 @@ var sewers_02 : Dictionary = {
 #endregion
 
 #region BAKERY
-#Bakery
-
-#Kitchen
-
+#BAKERY
+var bakery_01 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1.5,1.5),
+	zoom_delay = .25
+	}
+	
+var bakery_02 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1.5,1.5),
+	zoom_delay = .25
+	}
+	
+#KITCHEN
+var kitchen_01 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .25
+	}
+	
+var kitchen_02 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .25
+	}
 #endregion
