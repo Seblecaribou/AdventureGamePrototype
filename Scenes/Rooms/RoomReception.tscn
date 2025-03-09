@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=17 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
 [ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
@@ -33,6 +33,9 @@ radius = 25.318
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
 size = Vector2(1810, 1102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trcq0"]
+size = Vector2(182.5, 133)
 
 [node name="RoomReception" type="Control"]
 z_index = -5
@@ -210,7 +213,6 @@ shape = SubResource("CircleShape2D_el101")
 debug_color = Color(0.351468, 0.48302, 1, 0.42)
 
 [node name="tp_room_street_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
-visible = false
 position = Vector2(280, -134)
 collision_layer = 2
 collision_mask = 2
@@ -236,3 +238,12 @@ collision_mask = 0
 position = Vector2(901, 567)
 shape = SubResource("RectangleShape2D_nu0qj")
 debug_color = Color(0.643083, 0.523352, 0, 0.42)
+
+[node name="tp_room_basement" type="Area2D" parent="." groups=["EntranceTeleport"]]
+position = Vector2(919, 814)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_basement"]
+position = Vector2(46.75, 36.5)
+shape = SubResource("RectangleShape2D_trcq0")

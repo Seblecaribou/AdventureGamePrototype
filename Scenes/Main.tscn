@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=33 format=3 uid="uid://co11dmbjerijd"]
 
 [ext_resource type="Script" uid="uid://dtf0dp4gco8cr" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
 [ext_resource type="Script" uid="uid://cmqtwumjk7b83" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://bkuex5g252j44" path="res://Scenes/Rooms/RoomRoom101.tscn" id="20_0g5gr"]
 [ext_resource type="PackedScene" uid="uid://dno31x8ecaxbr" path="res://Scenes/Rooms/RoomBalcony100.tscn" id="22_777d6"]
 [ext_resource type="PackedScene" uid="uid://cnifx6oayjegi" path="res://Scenes/Rooms/RoomBalcony101.tscn" id="23_jyqft"]
+[ext_resource type="PackedScene" uid="uid://duthc23lgkonh" path="res://Scenes/Rooms/RoomSewers.tscn" id="24_3tgeq"]
+[ext_resource type="PackedScene" uid="uid://mdie6frxigpn" path="res://Scenes/Rooms/RoomBasement.tscn" id="25_c4ay3"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -256,3 +258,15 @@ offset_top = -1587.0
 offset_right = 4346.0
 offset_bottom = -1587.0
 metadata/_edit_use_anchors_ = true
+
+[node name="RoomSewers" parent="." instance=ExtResource("24_3tgeq")]
+offset_left = -4446.0
+offset_top = 1946.0
+offset_right = -4446.0
+offset_bottom = 1946.0
+
+[node name="RoomBasement" parent="." instance=ExtResource("25_c4ay3")]
+offset_left = 350.0
+offset_top = 1623.0
+offset_right = 350.0
+offset_bottom = 1623.0

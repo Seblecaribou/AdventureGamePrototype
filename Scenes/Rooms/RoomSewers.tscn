@@ -1,0 +1,148 @@
+[gd_scene load_steps=14 format=3 uid="uid://duthc23lgkonh"]
+
+[ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_y3cr7"]
+[ext_resource type="Texture2D" uid="uid://bc4qhdf0o82mp" path="res://Images/Rooms/sewer.jpg" id="2_y3cr7"]
+[ext_resource type="Texture2D" uid="uid://bmg2tayoaswgc" path="res://Images/Rooms/sewer_fg.png" id="3_v6vrg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
+size = Vector2(3156.1, 161)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xykgr"]
+size = Vector2(3612, 190)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3cr7"]
+size = Vector2(186, 1171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6vrg"]
+size = Vector2(798.674, 332.671)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adijj"]
+size = Vector2(15.6259, 90.4501)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec2t3"]
+size = Vector2(185.5, 152.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hmdc"]
+size = Vector2(155.25, 126.125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpqr8"]
+radius = 30.8707
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx5d0"]
+radius = 19.2354
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgigl"]
+size = Vector2(3144, 1093)
+
+[node name="RoomSewers" type="Control"]
+z_index = -5
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_y3cr7")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 1488.0
+offset_bottom = 507.0
+scale = Vector2(2.15, 2.15)
+mouse_filter = 2
+texture = ExtResource("2_y3cr7")
+
+[node name="Foreground" type="TextureRect" parent="."]
+z_index = 20
+z_as_relative = false
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1788.0
+offset_bottom = 611.0
+scale = Vector2(1.8, 1.8)
+mouse_filter = 2
+texture = ExtResource("3_v6vrg")
+expand_mode = 1
+
+[node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
+z_as_relative = false
+position = Vector2(-133, -235)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(1644, 1270)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Ceilling" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(1782, 248)
+shape = SubResource("RectangleShape2D_xykgr")
+debug_color = Color(0.86716, 0.000549268, 0.857496, 0.42)
+
+[node name="Left" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(214, 747)
+shape = SubResource("RectangleShape2D_y3cr7")
+debug_color = Color(0.822279, 0.00170787, 0.961698, 0.42)
+
+[node name="Stairs" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(3337.11, 1088.8)
+rotation = 2.42714
+shape = SubResource("RectangleShape2D_v6vrg")
+debug_color = Color(0.856016, 0.000756808, 0.885512, 0.42)
+
+[node name="Right" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(3398.32, 736.675)
+scale = Vector2(10.665, 10.665)
+shape = SubResource("RectangleShape2D_adijj")
+debug_color = Color(0.866128, 0.000564863, 0.860159, 0.42)
+
+[node name="tp_room_kitchen_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_kitchen_02"]
+z_index = 3
+z_as_relative = false
+position = Vector2(290, 158)
+shape = SubResource("RectangleShape2D_ec2t3")
+
+[node name="tp_room_basement" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(3114, 530)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_basement"]
+position = Vector2(42, 44)
+shape = SubResource("RectangleShape2D_2hmdc")
+
+[node name="ar_sewers_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_sewers_01"]
+position = Vector2(2661, 626)
+shape = SubResource("CircleShape2D_cpqr8")
+debug_color = Color(0.301347, 0.463574, 1, 0.42)
+
+[node name="ar_sewers_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_sewers_02"]
+position = Vector2(409, 730)
+shape = SubResource("CircleShape2D_qx5d0")
+debug_color = Color(0.342237, 0.485488, 1, 0.42)
+
+[node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
+collision_layer = 15
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
+position = Vector2(1615, 548.5)
+shape = SubResource("RectangleShape2D_jgigl")
+debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)

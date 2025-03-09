@@ -17,11 +17,12 @@ func _physics_process(delta):
 
 
 #region Methods
-func update_interact_label():
+func update_interact_label(text_label : String = ""):
+	if !text_label.is_empty():
+		label.text = text_label
 	if interactions:
 		label.text = interactions[0].interact_label
-	else:
-		label.text = ""
+
 
 func reset_interaction_ui():
 	if player_character.current_game_state == "moving":
@@ -115,6 +116,7 @@ func _on_interaction_area_area_entered(area):
 	
 	# TELEPORT
 	if area.is_in_group("EntranceTeleport"):
+		update_interact_label("Go to " + area.name)
 		SignalBusSingleton.in_teleport_entrance.emit(self, area)
 		return
 	

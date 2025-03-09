@@ -1,8 +1,8 @@
 #TeleportDictionarySingleton.gd
 extends Node
 
-#HOTEL
-#Corridor
+#region HOTEL
+#CORRIDOR
 var hotel_corridor_01 : Dictionary = {
 	collision_mask = 2,
 	zoom_mutiplier = Vector2(1.38,1.38),
@@ -15,7 +15,7 @@ var hotel_corridor_02 : Dictionary = {
 	zoom_delay = .15
 	}
 
-#Room100
+#ROOM100
 var room_100_01 : Dictionary = {
 	collision_mask = 2,
 	zoom_mutiplier =  Vector2(1.38,1.38),
@@ -34,7 +34,7 @@ var balcony_100 : Dictionary = {
 	zoom_delay = .25
 	}
 	
-#Room101
+#ROOM101
 var room_101_01 : Dictionary = {
 	collision_mask = 2,
 	zoom_mutiplier = Vector2(1.38,1.38),
@@ -53,7 +53,7 @@ var balcony_101 : Dictionary = {
 	zoom_delay = .25
 	}
 
-#Reception
+#RECEPTION
 var reception_01 : Dictionary = {
 	collision_mask = 3,
 	zoom_mutiplier = Vector2(1,1),
@@ -65,11 +65,54 @@ var reception_02 : Dictionary = {
 	zoom_mutiplier = Vector2(1,1),
 	zoom_delay = .25
 	}
+	
+var reception_03 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .25
+	}
+	
+#BASEMENT
+var basement : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .25
+	}
+#endregion
 
 
-#STREET
+#region STREET
 var street_01 : Dictionary = {
 	collision_mask = 2,
 	zoom_mutiplier = Vector2(1,1),
 	zoom_delay = .5
 	}
+
+var street_02 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .5
+	}
+#endregion
+
+
+#region SEWERS
+var sewers_01 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .5
+	}
+	
+var sewers_02 : Dictionary = {
+	collision_mask = 2,
+	zoom_mutiplier = Vector2(1,1),
+	zoom_delay = .5
+	}
+#endregion
+
+#region BAKERY
+#Bakery
+
+#Kitchen
+
+#endregion
