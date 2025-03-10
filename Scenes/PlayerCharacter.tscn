@@ -1,20 +1,20 @@
 [gd_scene load_steps=36 format=3 uid="uid://d3h8d2gmlpihi"]
 
-[ext_resource type="Script" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
-[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerStateMachine.gd" id="2_gtyy5"]
-[ext_resource type="Script" path="res://Scripts/Components/MovementComponent.gd" id="6_2bu6f"]
-[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerObserveState.gd" id="6_3wlrt"]
+[ext_resource type="Script" uid="uid://cnna4gscnbchg" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
+[ext_resource type="Script" uid="uid://daq6io7nxpm16" path="res://Scripts/Components/States/Player/PlayerStateMachine.gd" id="2_gtyy5"]
+[ext_resource type="Script" uid="uid://c4ei56d4uh7q8" path="res://Scripts/Components/MovementComponent.gd" id="6_2bu6f"]
+[ext_resource type="Script" uid="uid://bwsw5feh7icf1" path="res://Scripts/Components/States/Player/PlayerObserveState.gd" id="6_3wlrt"]
 [ext_resource type="Texture2D" uid="uid://bu5n5kuu14fho" path="res://Images/Animations/idle_1st_frame.png" id="7_dcqpw"]
-[ext_resource type="Script" path="res://Scripts/Components/InteractionComponent.gd" id="7_hjhmt"]
+[ext_resource type="Script" uid="uid://y0vw0k58ku5w" path="res://Scripts/Components/InteractionComponent.gd" id="7_hjhmt"]
 [ext_resource type="Texture2D" uid="uid://bxcktu37f22e7" path="res://Images/Animations/jump.png" id="8_8gjbw"]
-[ext_resource type="Script" path="res://Scripts/Components/AnimationComponent.gd" id="8_s3oir"]
+[ext_resource type="Script" uid="uid://cr8wp6r70yxoc" path="res://Scripts/Components/AnimationComponent.gd" id="8_s3oir"]
 [ext_resource type="Texture2D" uid="uid://ujad0w6dwb66" path="res://Images/Animations/run.png" id="9_m5xnf"]
-[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerIdleState.gd" id="10_scoe8"]
-[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerRunState.gd" id="11_5bmtk"]
-[ext_resource type="Script" path="res://Scripts/Components/States/Player/PlayerJumpState.gd" id="12_3gsbr"]
+[ext_resource type="Script" uid="uid://cniga641g1tm2" path="res://Scripts/Components/States/Player/PlayerIdleState.gd" id="10_scoe8"]
+[ext_resource type="Script" uid="uid://bjge5v6woju64" path="res://Scripts/Components/States/Player/PlayerRunState.gd" id="11_5bmtk"]
+[ext_resource type="Script" uid="uid://bhijuf6rhs8cl" path="res://Scripts/Components/States/Player/PlayerJumpState.gd" id="12_3gsbr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywadu"]
-radius = 54.3333
+radius = 38.3333
 height = 108.667
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfraa"]
@@ -188,7 +188,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 18.0
+"speed": 22.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdd2a"]
@@ -229,8 +229,7 @@ shape = SubResource("CapsuleShape2D_ywadu")
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_yknqu")
-animation = &"jump"
-frame_progress = 0.447229
+animation = &"run"
 
 [node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "animated_sprite_2D")]
 unique_name_in_owner = true

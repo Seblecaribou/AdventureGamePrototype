@@ -1,24 +1,32 @@
-[gd_scene load_steps=26 format=3 uid="uid://co11dmbjerijd"]
+[gd_scene load_steps=35 format=3 uid="uid://co11dmbjerijd"]
 
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
+[ext_resource type="Script" uid="uid://dtf0dp4gco8cr" path="res://Scripts/Components/States/GameStateManager/GameStateMachine.gd" id="1_gxh85"]
+[ext_resource type="Script" uid="uid://cmqtwumjk7b83" path="res://Scripts/Components/States/GameStateManager/MovingState.gd" id="3_txr1d"]
 [ext_resource type="PackedScene" uid="uid://d3h8d2gmlpihi" path="res://Scenes/PlayerCharacter.tscn" id="3_w2hnh"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="4_hs0my"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
-[ext_resource type="Script" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingDialogueState.gd" id="5_c6h1t"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/SelectingPickableState.gd" id="5_vhoqr"]
-[ext_resource type="Script" path="res://Scripts/Components/States/GameStateManager/DialoguingState.gd" id="6_gr1pc"]
-[ext_resource type="Script" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
-[ext_resource type="Script" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
-[ext_resource type="Script" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
-[ext_resource type="Script" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
+[ext_resource type="Script" uid="uid://bf7xv8syjd6sq" path="res://Scripts/Components/States/GameStateManager/ExaminingState.gd" id="4_k5fou"]
+[ext_resource type="Script" uid="uid://i0kix5c8773f" path="res://Scripts/Managers/DialogueManager.gd" id="4_yumw5"]
+[ext_resource type="Script" uid="uid://di2pr4wijhk5v" path="res://Scripts/Components/States/GameStateManager/SelectingDialogueState.gd" id="5_c6h1t"]
+[ext_resource type="Script" uid="uid://padmxq4c2tb3" path="res://Scripts/Components/States/GameStateManager/SelectingPickableState.gd" id="5_vhoqr"]
+[ext_resource type="Script" uid="uid://lwf05wv74vps" path="res://Scripts/Components/States/GameStateManager/DialoguingState.gd" id="6_gr1pc"]
+[ext_resource type="Script" uid="uid://c6uov88ep3um0" path="res://Scripts/Resources/DialogueData.gd" id="6_q7uve"]
+[ext_resource type="Script" uid="uid://blq050mju5i0j" path="res://Scripts/Managers/QuestManager.gd" id="9_24dc1"]
+[ext_resource type="Script" uid="uid://i1mugvbr2odo" path="res://Scripts/Menus/Dialogue/DialogueMenu.gd" id="9_jnvcw"]
+[ext_resource type="Script" uid="uid://o4suqtmav0m5" path="res://Scripts/Menus/Dialogue/DialogueComponent.gd" id="11_lwelu"]
+[ext_resource type="Script" uid="uid://dduxilyfxfmci" path="res://Scripts/Managers/InventoryManager.gd" id="13_7fyol"]
 [ext_resource type="PackedScene" uid="uid://b3cv72wntst3o" path="res://Scenes/RadialMenu.tscn" id="14_ttu2l"]
-[ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Room.tscn" id="18_cehyh"]
-[ext_resource type="Script" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oo0u4"]
+[ext_resource type="PackedScene" uid="uid://bk2jxxtp75rws" path="res://Scenes/Rooms/RoomBakery.tscn" id="17_aht7i"]
+[ext_resource type="PackedScene" uid="uid://bbo1rn3dxaict" path="res://Scenes/Rooms/RoomStreet.tscn" id="18_1dp38"]
+[ext_resource type="PackedScene" uid="uid://dtdrjth3yf3wh" path="res://Scenes/Rooms/RoomReception.tscn" id="18_cehyh"]
+[ext_resource type="PackedScene" uid="uid://bg7o56eyvijhp" path="res://Scenes/Rooms/RoomRoom100.tscn" id="18_n2hfw"]
+[ext_resource type="Script" uid="uid://bf3guu8vwd45g" path="res://Scripts/Managers/CameraManager.gd" id="18_qqulp"]
+[ext_resource type="PackedScene" uid="uid://e1rhcd0l2beh" path="res://Scenes/Rooms/RoomHotelCorridor.tscn" id="19_voqkq"]
+[ext_resource type="PackedScene" uid="uid://bkuex5g252j44" path="res://Scenes/Rooms/RoomRoom101.tscn" id="20_0g5gr"]
+[ext_resource type="PackedScene" uid="uid://dno31x8ecaxbr" path="res://Scenes/Rooms/RoomBalcony100.tscn" id="22_777d6"]
+[ext_resource type="PackedScene" uid="uid://cnifx6oayjegi" path="res://Scenes/Rooms/RoomBalcony101.tscn" id="23_jyqft"]
+[ext_resource type="PackedScene" uid="uid://duthc23lgkonh" path="res://Scenes/Rooms/RoomSewers.tscn" id="24_3tgeq"]
+[ext_resource type="PackedScene" uid="uid://mdie6frxigpn" path="res://Scenes/Rooms/RoomBasement.tscn" id="25_c4ay3"]
+[ext_resource type="PackedScene" uid="uid://b6i1xwmuwfyv5" path="res://Scenes/Rooms/RoomKitchen.tscn" id="27_5jffn"]
 
 [sub_resource type="Animation" id="Animation_m7pv6"]
 resource_name = "angry"
@@ -40,15 +48,16 @@ resource_name = "surprised"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5hvta"]
 _data = {
-"angry": SubResource("Animation_m7pv6"),
-"happy": SubResource("Animation_mutag"),
-"idle": SubResource("Animation_anoue"),
-"inquisitive": SubResource("Animation_1v7xi"),
-"sad": SubResource("Animation_c4god"),
-"surprised": SubResource("Animation_15rf8")
+&"angry": SubResource("Animation_m7pv6"),
+&"happy": SubResource("Animation_mutag"),
+&"idle": SubResource("Animation_anoue"),
+&"inquisitive": SubResource("Animation_1v7xi"),
+&"sad": SubResource("Animation_c4god"),
+&"surprised": SubResource("Animation_15rf8")
 }
 
 [node name="Main" type="Node2D"]
+position = Vector2(3111, -644)
 
 [node name="BackGround" type="TextureRect" parent="."]
 z_index = -100
@@ -61,11 +70,10 @@ scale = Vector2(3.44462, 2.61239)
 stretch_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="WorldBoundaryDown" type="StaticBody2D" parent="."]
-position = Vector2(0, 1047)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundaryDown"]
-shape = SubResource("WorldBoundaryShape2D_oo0u4")
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
+unique_name_in_owner = true
+position = Vector2(-3040, 674)
+collision_layer = 3
 
 [node name="GameManagers" type="Node" parent="."]
 
@@ -90,7 +98,8 @@ script = ExtResource("6_gr1pc")
 script = ExtResource("3_txr1d")
 
 [node name="CameraManager" type="Camera2D" parent="GameManagers"]
-position = Vector2(888, 285)
+position = Vector2(3999, -359)
+editor_draw_limits = true
 script = ExtResource("18_qqulp")
 
 [node name="QuestManager" type="Node" parent="GameManagers"]
@@ -152,7 +161,7 @@ position = Vector2(1014, 518)
 
 [node name="DialogueAnimator" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
 libraries = {
-"": SubResource("AnimationLibrary_5hvta")
+&"": SubResource("AnimationLibrary_5hvta")
 }
 
 [node name="DialogueData" type="Node" parent="GameManagers/DialogueManager"]
@@ -168,22 +177,15 @@ player_character = NodePath("../../PlayerCharacter")
 [node name="RadialMenuCanvas" type="CanvasLayer" parent="GameManagers/InventoryManager"]
 
 [node name="RadialMenuComponent" parent="GameManagers/InventoryManager/RadialMenuCanvas" node_paths=PackedStringArray("player_character") instance=ExtResource("14_ttu2l")]
+offset_left = 3111.0
+offset_top = -644.0
+offset_right = 3111.0
+offset_bottom = -644.0
 player_character = NodePath("../../../../PlayerCharacter")
-
-[node name="PlayerCharacter" parent="." instance=ExtResource("3_w2hnh")]
-unique_name_in_owner = true
-position = Vector2(843, 512)
-collision_layer = 3
-
-[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
-z_index = -1
-offset_left = -70.0
-offset_top = -259.0
-offset_right = -70.0
-offset_bottom = -259.0
+metadata/_edit_use_anchors_ = true
 
 [node name="TestObjects" type="Node2D" parent="."]
-position = Vector2(-1030, -31)
+position = Vector2(3514, 1214)
 
 [node name="obs_bathtub_bathroom01" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(382, 190)
@@ -208,3 +210,77 @@ position = Vector2(91, 95)
 
 [node name="char_thierry" parent="TestObjects" instance=ExtResource("4_hs0my")]
 position = Vector2(90, 202)
+
+[node name="RoomBakery" parent="." instance=ExtResource("17_aht7i")]
+offset_left = -6261.0
+offset_top = 2.0
+offset_right = -6261.0
+offset_bottom = 2.0
+
+[node name="RoomStreet" parent="." instance=ExtResource("18_1dp38")]
+offset_left = -3953.0
+offset_top = -204.0
+offset_right = -3953.0
+offset_bottom = -204.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomReception" parent="." instance=ExtResource("18_cehyh")]
+z_index = -1
+offset_left = -70.0
+offset_top = -259.0
+offset_right = -70.0
+offset_bottom = -259.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomRoom100" parent="." instance=ExtResource("18_n2hfw")]
+offset_left = -1965.0
+offset_top = -1672.0
+offset_right = -1965.0
+offset_bottom = -1672.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomBalcony100" parent="." instance=ExtResource("22_777d6")]
+offset_left = -4087.0
+offset_top = -1637.0
+offset_right = -4087.0
+offset_bottom = -1637.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomHotelCorridor" parent="." instance=ExtResource("19_voqkq")]
+offset_left = 175.0
+offset_top = -1614.0
+offset_right = 175.0
+offset_bottom = -1614.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomRoom101" parent="." instance=ExtResource("20_0g5gr")]
+offset_left = 2336.0
+offset_top = -1596.0
+offset_right = 2336.0
+offset_bottom = -1596.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomBalcony101" parent="." instance=ExtResource("23_jyqft")]
+offset_left = 4346.0
+offset_top = -1587.0
+offset_right = 4346.0
+offset_bottom = -1587.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RoomSewers" parent="." instance=ExtResource("24_3tgeq")]
+offset_left = -4446.0
+offset_top = 1946.0
+offset_right = -4446.0
+offset_bottom = 1946.0
+
+[node name="RoomBasement" parent="." instance=ExtResource("25_c4ay3")]
+offset_left = 350.0
+offset_top = 1623.0
+offset_right = 350.0
+offset_bottom = 1623.0
+
+[node name="RoomKitchen" parent="." instance=ExtResource("27_5jffn")]
+offset_left = -9022.0
+offset_top = -162.0
+offset_right = -9022.0
+offset_bottom = -162.0

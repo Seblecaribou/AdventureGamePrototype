@@ -1,0 +1,121 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnifx6oayjegi"]
+
+[ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_ctotq"]
+[ext_resource type="Texture2D" uid="uid://bghnns3k3cm43" path="res://Images/Rooms/balcony101.jpg" id="2_ctotq"]
+[ext_resource type="Texture2D" uid="uid://cbq65d8y0vkbj" path="res://Images/Rooms/balcony100-2.png" id="3_n12iy"]
+[ext_resource type="Texture2D" uid="uid://tpl81pktxvik" path="res://Images/Rooms/balcony101_fg.png" id="4_7b7dx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5u5t"]
+size = Vector2(1917.5, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec2t3"]
+size = Vector2(117.5, 105)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpqr8"]
+radius = 24.1868
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgigl"]
+size = Vector2(1254, 717)
+
+[node name="RoomBalcony101" type="Control"]
+z_index = -5
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_ctotq")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 3.0
+offset_right = 1581.0
+offset_bottom = 911.0
+scale = Vector2(0.785, 0.785)
+mouse_filter = 2
+texture = ExtResource("2_ctotq")
+
+[node name="Background1TopLayer" type="TextureRect" parent="."]
+visible = false
+z_as_relative = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.81, 0.81)
+texture = ExtResource("3_n12iy")
+
+[node name="Foreground" type="TextureRect" parent="."]
+z_index = 20
+z_as_relative = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 1477.0
+offset_bottom = 890.055
+scale = Vector2(0.816, 0.798)
+mouse_filter = 2
+texture = ExtResource("4_7b7dx")
+expand_mode = 5
+
+[node name="CollisionMain" type="StaticBody2D" parent="." groups=["CollisionLayers"]]
+visible = false
+z_as_relative = false
+position = Vector2(-133, -235)
+collision_layer = 6
+collision_mask = 6
+
+[node name="LeftWall" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(134, 508)
+rotation = 3.14159
+scale = Vector2(0.127224, -13.3524)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Roof" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(967, 40)
+scale = Vector2(1, 2.08)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="RightWall" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(872, 554)
+rotation = 3.14159
+scale = Vector2(0.222761, -13.0222)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="Floor" type="CollisionShape2D" parent="CollisionMain"]
+position = Vector2(845, 897)
+shape = SubResource("RectangleShape2D_f5u5t")
+debug_color = Color(0.896899, 0.000194448, 0.773677, 0.42)
+
+[node name="tp_room_room_101_02" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(-191, -221)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_room_101_02"]
+z_index = 3
+z_as_relative = false
+position = Vector2(247, 791)
+shape = SubResource("RectangleShape2D_ec2t3")
+
+[node name="ar_balcony_101" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_balcony_101"]
+position = Vector2(260, 412)
+shape = SubResource("CircleShape2D_cpqr8")
+debug_color = Color(0.301347, 0.463574, 1, 0.42)
+
+[node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
+collision_layer = 15
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
+position = Vector2(626, 359.5)
+shape = SubResource("RectangleShape2D_jgigl")
+debug_color = Color(0.65427, 0.517664, 7.70092e-07, 0.42)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtdrjth3yf3wh"]
+[gd_scene load_steps=17 format=3 uid="uid://dtdrjth3yf3wh"]
 
 [ext_resource type="Texture2D" uid="uid://2bobktv4pvtb" path="res://Images/Rooms/reception.jpg" id="1_hieij"]
-[ext_resource type="Script" path="res://Scenes/RoomComponent.gd" id="1_xoees"]
+[ext_resource type="Script" uid="uid://dlfw23mgx8u1b" path="res://Scripts/Components/RoomComponent.gd" id="1_xoees"]
 [ext_resource type="PackedScene" uid="uid://kvuimi0lpjss" path="res://Scenes/Interactable.tscn" id="2_unmnm"]
 [ext_resource type="Texture2D" uid="uid://il4sd13utc4j" path="res://Images/Rooms/reception2.png" id="3_i4vp1"]
 [ext_resource type="Texture2D" uid="uid://biyminr5kx6r3" path="res://Images/Rooms/reception3.png" id="4_38h0n"]
@@ -19,7 +19,25 @@ size = Vector2(435.25, 570)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_croj7"]
 size = Vector2(1299, 178.5)
 
-[node name="Room" type="Control"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa5tb"]
+size = Vector2(294, 295)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el101"]
+radius = 12.0416
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns5wf"]
+size = Vector2(174, 84)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h67mk"]
+radius = 25.318
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trcq0"]
+size = Vector2(182.5, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu0qj"]
+size = Vector2(1810, 1102)
+
+[node name="RoomReception" type="Control"]
 z_index = -5
 layout_mode = 3
 anchors_preset = 0
@@ -90,7 +108,7 @@ collision_mask = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground2"]
 modulate = Color(0.967466, 1, 0.500017, 1)
-polygon = PackedVector2Array(505, 914, 484, 1016, 665, 1015, 672, 910)
+polygon = PackedVector2Array(377, 928, 299, 1017, 665, 1015, 672, 910)
 
 [node name="EntranceBackground3" type="Area2D" parent="." groups=["EntranceBackground"]]
 visible = false
@@ -99,6 +117,7 @@ collision_layer = 12
 collision_mask = 12
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EntranceBackground3"]
+visible = false
 polygon = PackedVector2Array(1218, 429, 1209, 472, 1318, 469, 1317, 427)
 
 [node name="EntranceBackground4" type="Area2D" parent="EntranceBackground3"]
@@ -162,7 +181,7 @@ collision_mask = 8
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CollisionBackground2"]
 position = Vector2(1627.38, 126)
 shape = SubResource("RectangleShape2D_dp464")
-debug_color = Color(3.85046e-07, 0.648068, 0.192581, 0.42)
+debug_color = Color(1, 0.361088, 0.353245, 0.360784)
 
 [node name="Staircase" type="CollisionPolygon2D" parent="CollisionBackground2"]
 polygon = PackedVector2Array(544, -1, 1185, 413, 1836, 408, 1845, 960, 166, 963, 162, 1)
@@ -170,4 +189,73 @@ polygon = PackedVector2Array(544, -1, 1185, 413, 1836, 408, 1845, 960, 166, 963,
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CollisionBackground2"]
 position = Vector2(842, -61)
 shape = SubResource("RectangleShape2D_croj7")
-debug_color = Color(2.83971e-06, 0.640427, 0.35006, 0.42)
+debug_color = Color(0.988235, 0.105882, 0, 0.196078)
+
+[node name="tp_room_hotel_corridor_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(280, -134)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_hotel_corridor_01"]
+position = Vector2(449, 323.5)
+shape = SubResource("RectangleShape2D_fa5tb")
+debug_color = Color(0, 0.65098, 0.137255, 0.52549)
+
+[node name="ar_reception_01" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_reception_01"]
+position = Vector2(1220, 329)
+shape = SubResource("CircleShape2D_el101")
+debug_color = Color(0.351468, 0.48302, 1, 0.42)
+
+[node name="tp_room_street_01" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(280, -134)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_street_01"]
+position = Vector2(-89, 1105)
+shape = SubResource("RectangleShape2D_ns5wf")
+
+[node name="ar_reception_02" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_reception_02"]
+position = Vector2(281, 801)
+shape = SubResource("CircleShape2D_h67mk")
+debug_color = Color(0.369154, 0.478027, 1, 0.42)
+
+[node name="ar_reception_03" type="Area2D" parent="." groups=["ArrivalTeleport"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ar_reception_03"]
+position = Vector2(977, 776)
+shape = SubResource("CircleShape2D_h67mk")
+debug_color = Color(0.369154, 0.478027, 1, 0.42)
+
+[node name="tp_room_basement" type="Area2D" parent="." groups=["EntranceTeleport"]]
+visible = false
+position = Vector2(919, 814)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tp_room_basement"]
+position = Vector2(46.75, 36.5)
+shape = SubResource("RectangleShape2D_trcq0")
+
+[node name="RoomBoundary" type="Area2D" parent="." groups=["RoomBoundary"]]
+visible = false
+collision_layer = 15
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomBoundary"]
+position = Vector2(901, 567)
+shape = SubResource("RectangleShape2D_nu0qj")
+debug_color = Color(0.643083, 0.523352, 0, 0.42)

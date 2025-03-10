@@ -1,7 +1,7 @@
 class_name MovementComponent
 extends Node
 
-@export var character: CharacterBody2D
+@export var character: PlayerCharacter
 @export var speed: float = 300.0
 @export var jump_velocity: float = -700.0
 @export var max_speed_multiplier: float = 3.2
@@ -13,10 +13,13 @@ var speed_multiplier: float = 2.0 #variable that equals either max_speed_multipl
 func _ready():
 	character.floor_snap_length = 50.0
 	character.set_collision_layer_value(1, false)
+	SignalBusSingleton.teleported.connect(_on_teleported)
 
 func _physics_process(delta):
 	ground_player(delta)
 
+
+#region Methods
 ##Adds jump_velocity (a negative float) to a CharacterBody2D's velocity.y 
 func jump() -> void:
 	if character.is_on_floor():
@@ -56,13 +59,16 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 	var scale_factor : float = 0.06
 	var entrance_layer_number : int = int(transition_area.trim_prefix("EntranceBackground"))
 	var exit_layer_number : int = entrance_layer_number + 1
-	UtilsSingleton.log_data(self, "change_collision_layer - entrance_layer_number", entrance_layer_number)
 	var current_player_x_scale : float = character.get_scale().x
 	var current_player_y_scale : float = character.get_scale().y
 	match direction:
 		#Player goes further back from the camera
 		"up":
-			character.set_scale(Vector2(current_player_x_scale - scale_factor ,current_player_y_scale - scale_factor))
+			#We check if player is allowed to move up
+			if character.get_collision_layer_value(exit_layer_number):
+				return
+			#We scale down the character to look smaller, because he's going away from camera
+			character.scale_character(exit_layer_number)
 			#We add the player to the exit collision layer
 			character.set_collision_layer_value(exit_layer_number, true)
 			character.set_collision_mask_value(exit_layer_number, true)
@@ -74,7 +80,11 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			interaction_area.set_collision_mask_value(entrance_layer_number, false)
 		#Player comes closer to the camera
 		"down":
-			character.set_scale(Vector2(current_player_x_scale + scale_factor, current_player_y_scale + scale_factor))
+			#We check if player is allowed to move down
+			if character.get_collision_layer_value(entrance_layer_number):
+				return
+			#We scale up the character to look bigger, because he's coming closer to camera
+			character.scale_character(entrance_layer_number)
 			#We add the player to the entrance collision layer
 			character.set_collision_layer_value(entrance_layer_number, true)
 			character.set_collision_mask_value(entrance_layer_number, true)
@@ -84,3 +94,23 @@ func change_collision_layer(direction : String, transition_area : String) -> voi
 			#We change the InteractionArea's masks so that it is visible for the correct layer (i.e the entrance layer)
 			interaction_area.set_collision_mask_value(exit_layer_number, false)
 			interaction_area.set_collision_mask_value(entrance_layer_number, true)
+#region
+
+#region Signal Callback functions
+func _on_teleported(emitter : Node, player_z: int, arrival_area : String, arrival_area_data : Dictionary, arrival_node : CollisionShape2D) -> void:
+	#We reset every background/forground collision
+	for i in range(1,33):
+		character.set_collision_layer_value(i, false)
+		character.set_collision_mask_value(i, false)
+	#We set the collision layer and mask to the one the player is arriving in  
+	character.set_collision_layer_value(arrival_area_data.collision_mask, true)
+	character.set_collision_mask_value(arrival_area_data.collision_mask, true)
+	#Sets player's new global position and scale
+	character.scale_character(arrival_area_data.collision_mask)
+	character.global_position = arrival_node.global_position
+	
+	#We reset the collision mask for interaction area
+	for i in range(1,33):
+		interaction_area.set_collision_mask_value(i, false)
+	interaction_area.set_collision_mask_value(arrival_area_data.collision_mask, true)
+#region

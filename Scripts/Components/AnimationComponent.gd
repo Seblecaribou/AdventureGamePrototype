@@ -3,6 +3,7 @@ extends Node
 
 @export var character : CharacterBody2D
 @export var animated_sprite_2D : AnimatedSprite2D
+var is_flipped : bool
 var animation_state : String = "idle"
 
 func _ready():
@@ -30,7 +31,12 @@ func animate(state : String):
 
 ##Changes flip_h depending on the character's velocity.x
 func flip_sprite() -> void:
-	animated_sprite_2D.flip_h = character.velocity.x < 0
+	if character.velocity.x < 0:
+		is_flipped = true
+	if character.velocity.x > 0:
+		is_flipped = false
+	animated_sprite_2D.flip_h = is_flipped
+	
 
 ##Connects to the signal newstate and changes animation_state accordingly
 func on_newstate(emitter : Node, previous_state : String, new_state : String):
