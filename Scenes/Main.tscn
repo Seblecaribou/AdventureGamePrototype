@@ -121,6 +121,7 @@ script = ExtResource("9_jnvcw")
 [node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
 visible = false
 z_index = 20
+z_as_relative = false
 script = ExtResource("11_lwelu")
 dialogue_frame = NodePath("DialogueFrame")
 dialogue_text = NodePath("DialogueText")
@@ -130,7 +131,6 @@ portrait_left = NodePath("PortraitLeft")
 
 [node name="DialogueFrame" type="Polygon2D" parent="GameManagers/DialogueManager/DialogueComponent"]
 z_index = 1
-position = Vector2(575.707, 572.213)
 scale = Vector2(1.02788, 1.47541)
 color = Color(0.984314, 0.984314, 0, 1)
 polygon = PackedVector2Array(402, -93, -384, -85, -377.164, -28.2078, -371, 23, 405, 29)
@@ -138,26 +138,35 @@ polygon = PackedVector2Array(402, -93, -384, -85, -377.164, -28.2078, -371, 23, 
 [node name="DialogueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
 self_modulate = Color(0.122185, 0.067379, 0.0128321, 1)
 z_index = 2
-offset_left = 227.0
-offset_top = 462.0
-offset_right = 957.0
-offset_bottom = 575.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -102.1
+offset_right = 365.0
+offset_bottom = 10.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
 bbcode_enabled = true
 
 [node name="DialogueContinueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 955.0
-offset_top = 561.0
-offset_right = 1019.0
-offset_bottom = 617.0
+z_index = 1
+offset_left = 372.0
+offset_top = -4.0
+offset_right = 436.0
+offset_bottom = 52.0
 bbcode_enabled = true
 text = "[font_size=30]A[/font_size]"
 
 [node name="PortraitLeft" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
-position = Vector2(160, 525)
+position = Vector2(-484, -53)
 
 [node name="PortraitRight" type="Sprite2D" parent="GameManagers/DialogueManager/DialogueComponent"]
-position = Vector2(1014, 518)
+position = Vector2(492, -52)
 
 [node name="DialogueAnimator" type="AnimationPlayer" parent="GameManagers/DialogueManager/DialogueComponent"]
 libraries = {

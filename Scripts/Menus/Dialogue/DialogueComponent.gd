@@ -10,6 +10,7 @@ var full_text : String = ""
 var current_char_index : int = 0
 var typing_timer : Timer = null
 
+
 func _ready():
 	manage_bbcode(AppSettingsSingleton.dialogue_bbcode_enabled)
 	start_display_timer()
@@ -39,6 +40,9 @@ func handle_dialogue_content(dialogue_content : DialogueData.DialogueContentData
 
 ## Displays full dialogue
 func display_dialogue(dialogue: String) -> void:
+	var camera = get_viewport().get_camera_2d()  # Get the active Camera2D
+	if camera:
+		self.global_position = camera.global_position # Set the dialogue at camera center
 	type_dialogue(dialogue)
 	self.visible = true
 
