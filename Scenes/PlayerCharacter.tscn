@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d3h8d2gmlpihi"]
+[gd_scene load_steps=64 format=3 uid="uid://d3h8d2gmlpihi"]
 
 [ext_resource type="Script" uid="uid://cnna4gscnbchg" path="res://Scripts/Objects/PlayerCharacter.gd" id="1_5gnik"]
 [ext_resource type="Script" uid="uid://daq6io7nxpm16" path="res://Scripts/Components/States/Player/PlayerStateMachine.gd" id="2_gtyy5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bwsw5feh7icf1" path="res://Scripts/Components/States/Player/PlayerObserveState.gd" id="6_3wlrt"]
 [ext_resource type="Texture2D" uid="uid://bu5n5kuu14fho" path="res://Images/Animations/idle_1st_frame.png" id="7_dcqpw"]
 [ext_resource type="Script" uid="uid://y0vw0k58ku5w" path="res://Scripts/Components/InteractionComponent.gd" id="7_hjhmt"]
+[ext_resource type="Texture2D" uid="uid://cqvd0x0u1yhfi" path="res://Images/Animations/direction_change.png" id="7_qg2eu"]
 [ext_resource type="Texture2D" uid="uid://bxcktu37f22e7" path="res://Images/Animations/jump.png" id="8_8gjbw"]
 [ext_resource type="Script" uid="uid://cr8wp6r70yxoc" path="res://Scripts/Components/AnimationComponent.gd" id="8_s3oir"]
 [ext_resource type="Texture2D" uid="uid://ujad0w6dwb66" path="res://Images/Animations/run.png" id="9_m5xnf"]
@@ -16,6 +17,14 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ywadu"]
 radius = 38.3333
 height = 108.667
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxmjj"]
+atlas = ExtResource("7_qg2eu")
+region = Rect2(0, 0, 970, 970)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk32v"]
+atlas = ExtResource("7_qg2eu")
+region = Rect2(1940, 0, 970, 970)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfraa"]
 atlas = ExtResource("7_dcqpw")
@@ -99,6 +108,17 @@ region = Rect2(1940, 2910, 970, 970)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yknqu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxmjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk32v")
+}],
+"loop": true,
+"name": &"direction_change",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dfraa")
@@ -194,27 +214,195 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdd2a"]
 radius = 174.141
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oqds6"]
+animation = &"direction_change"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkgr2"]
+animation = &"idle"
 
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_fkgr2"]
-xfade_time = 0.1
-input_0/name = "false"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "true"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qg2eu"]
+animation = &"jump_end"
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_qg2eu"]
-graph_offset = Vector2(-258, 8)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_fkgr2")
-nodes/Animation/position = Vector2(-240, 240)
-nodes/in_air/node = SubResource("AnimationNodeTransition_fkgr2")
-nodes/in_air/position = Vector2(140, 160)
-nodes/output/position = Vector2(560, 140)
-node_connections = [&"in_air", 1, &"Animation", &"output", 0, &"in_air"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxmjj"]
+animation = &"jump_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uk32v"]
+animation = &"jump_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_otte4"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oqds6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xnxt3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c8bqh"]
+advance_mode = 2
+advance_condition = &"jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcjqu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n8cba"]
+advance_mode = 2
+advance_condition = &"running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0eqq0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ildqw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ba1h1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qg2eu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxmjj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fkgr2"]
+states/End/position = Vector2(1308, 288)
+states/Start/position = Vector2(416, 288)
+states/direction_change/node = SubResource("AnimationNodeAnimation_oqds6")
+states/direction_change/position = Vector2(869, 473)
+states/idle/node = SubResource("AnimationNodeAnimation_fkgr2")
+states/idle/position = Vector2(752, 288)
+states/jump_end/node = SubResource("AnimationNodeAnimation_qg2eu")
+states/jump_end/position = Vector2(951, 58)
+states/jump_loop/node = SubResource("AnimationNodeAnimation_lxmjj")
+states/jump_loop/position = Vector2(752, 58)
+states/jump_start/node = SubResource("AnimationNodeAnimation_uk32v")
+states/jump_start/position = Vector2(752, 138)
+states/run/node = SubResource("AnimationNodeAnimation_otte4")
+states/run/position = Vector2(643, 473)
+transitions = ["jump_start", "jump_loop", SubResource("AnimationNodeStateMachineTransition_oqds6"), "jump_loop", "jump_end", SubResource("AnimationNodeStateMachineTransition_xnxt3"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_c8bqh"), "jump_end", "idle", SubResource("AnimationNodeStateMachineTransition_vcjqu"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_n8cba"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_0eqq0"), "run", "direction_change", SubResource("AnimationNodeStateMachineTransition_ildqw"), "direction_change", "idle", SubResource("AnimationNodeStateMachineTransition_ba1h1"), "run", "jump_start", SubResource("AnimationNodeStateMachineTransition_qg2eu"), "direction_change", "jump_start", SubResource("AnimationNodeStateMachineTransition_lxmjj")]
+graph_offset = Vector2(109, 23)
+
+[sub_resource type="Animation" id="Animation_lxmjj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_qg2eu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_uk32v"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+
+[sub_resource type="Animation" id="Animation_fkgr2"]
+resource_name = "jump_loop"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="Animation" id="Animation_otte4"]
+resource_name = "jump_start"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump_start"]
+}
+
+[sub_resource type="Animation" id="Animation_oqds6"]
+resource_name = "jump_end"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump_end"]
+}
+
+[sub_resource type="Animation" id="Animation_ildqw"]
+resource_name = "direction_change"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"direction_change"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_otte4"]
+_data = {
+&"RESET": SubResource("Animation_lxmjj"),
+&"direction_change": SubResource("Animation_ildqw"),
+&"idle": SubResource("Animation_qg2eu"),
+&"jump_end": SubResource("Animation_oqds6"),
+&"jump_loop": SubResource("Animation_fkgr2"),
+&"jump_start": SubResource("Animation_otte4"),
+&"run": SubResource("Animation_uk32v")
+}
 
 [node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("interaction_component", "movement_component")]
 texture_filter = 1
@@ -251,7 +439,8 @@ shape = SubResource("CapsuleShape2D_ywadu")
 texture_filter = 1
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_yknqu")
-animation = &"run"
+animation = &"idle"
+frame_progress = 0.669158
 
 [node name="AnimationComponent" type="Node2D" parent="." node_paths=PackedStringArray("character", "animated_sprite_2D")]
 unique_name_in_owner = true
@@ -300,13 +489,17 @@ label = NodePath("../InteractionLabel")
 interaction_content = NodePath("../InteractionDisplay")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_qg2eu")
+root_node = NodePath("../AnimatedSprite2D")
+tree_root = SubResource("AnimationNodeStateMachine_fkgr2")
 anim_player = NodePath("../AnimationPlayer")
-parameters/in_air/current_state = "false"
-parameters/in_air/transition_request = ""
-parameters/in_air/current_index = 0
+parameters/conditions/jumping = false
+parameters/conditions/running = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_otte4")
+}
 
 [connection signal="area_entered" from="Interaction Nodes/InteractionArea" to="Interaction Nodes/InteractionComponent" method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="Interaction Nodes/InteractionArea" to="Interaction Nodes/InteractionComponent" method="_on_interaction_area_area_exited"]

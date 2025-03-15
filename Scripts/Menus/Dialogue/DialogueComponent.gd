@@ -1,5 +1,5 @@
 class_name DialogueComponent
-extends Node2D
+extends Control
 
 @export var dialogue_frame : Polygon2D
 @export var dialogue_text : RichTextLabel

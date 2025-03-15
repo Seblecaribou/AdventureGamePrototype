@@ -118,10 +118,12 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("9_jnvcw")
 
-[node name="DialogueComponent" type="Node2D" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
+[node name="DialogueComponent" type="Control" parent="GameManagers/DialogueManager" node_paths=PackedStringArray("dialogue_frame", "dialogue_text", "dialogue_animator", "portrait_right", "portrait_left")]
 visible = false
 z_index = 20
 z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("11_lwelu")
 dialogue_frame = NodePath("DialogueFrame")
 dialogue_text = NodePath("DialogueText")
@@ -138,6 +140,7 @@ polygon = PackedVector2Array(402, -93, -384, -85, -377.164, -28.2078, -371, 23, 
 [node name="DialogueText" type="RichTextLabel" parent="GameManagers/DialogueManager/DialogueComponent"]
 self_modulate = Color(0.122185, 0.067379, 0.0128321, 1)
 z_index = 2
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
